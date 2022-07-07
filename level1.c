@@ -101,8 +101,10 @@ mulll2(ulong x, ulong y)
     ulong xylo, xymid, xyhi, xymidhi, xymidlo;
     ulong xhl, yhl;
 
-    xylo = xlo * ylo; xyhi = xhi * yhi;
-    xhl = xhi + xlo; yhl = yhi + ylo;
+    xylo = xlo * ylo; 
+    xyhi = xhi * yhi;
+    xhl = xhi + xlo; 
+    yhl = yhi + ylo;
     xymid = xhl * yhl - (xyhi + xylo);
 
     xymidhi = HIGHWORD(xymid);
@@ -122,6 +124,9 @@ int64_t mulll(ulong x, ulong y) {
     return result;
 }
 
+/* return x*y + old hiremainder 
+if result exceeds 64 bits top bits are in hiremainder,
+otherwise hiremainder is set to zero*/
 int64_t
 addmul(ulong x, ulong y)
 {
@@ -130,11 +135,15 @@ addmul(ulong x, ulong y)
     ulong xylo, xymid, xyhi, xymidhi, xymidlo;
     ulong xhl, yhl;
 
-    xylo = xlo * ylo; xyhi = xhi * yhi;
-    xhl = xhi + xlo; yhl = yhi + ylo;
+    xylo = xlo * ylo; 
+    xyhi = xhi * yhi;
+    xhl = xhi + xlo; 
+    yhl = yhi + ylo;
     xymid = xhl * yhl - (xyhi + xylo);
 
-    xylo += hiremainder; xyhi += (xylo < hiremainder);
+    /* add current value of hiremainder to xyhi, xylo*/
+    xylo += hiremainder; 
+    xyhi += (xylo < hiremainder);
 
     xymidhi = HIGHWORD(xymid);
     xymidlo = xymid << BITS_IN_HALFULONG;
