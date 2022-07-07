@@ -1,0 +1,346 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|Win32">
+      <Configuration>Debug</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|Win32">
+      <Configuration>Release</Configuration>
+      <Platform>Win32</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <VCProjectVersion>16.0</VCProjectVersion>
+    <Keyword>Win32Proj</Keyword>
+    <ProjectGuid>{6ee297b4-e0f7-45ae-bfd2-b8138f25a043}</ProjectGuid>
+    <RootNamespace>Pari2133</RootNamespace>
+    <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>true</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <UseDebugLibraries>false</UseDebugLibraries>
+    <PlatformToolset>v143</PlatformToolset>
+    <WholeProgramOptimization>true</WholeProgramOptimization>
+    <CharacterSet>Unicode</CharacterSet>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <ImportGroup Label="ExtensionSettings">
+  </ImportGroup>
+  <ImportGroup Label="Shared">
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <LinkIncremental>true</LinkIncremental>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <LinkIncremental>false</LinkIncremental>
+  </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>WIN32;NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\src64\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft SDKs\MPI\Lib\x64;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mpir.lib;Msmpi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <WarningLevel>Level3</WarningLevel>
+      <FunctionLevelLinking>true</FunctionLevelLinking>
+      <IntrinsicFunctions>true</IntrinsicFunctions>
+      <SDLCheck>true</SDLCheck>
+      <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <ConformanceMode>true</ConformanceMode>
+      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\src64\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <OpenMPSupport>true</OpenMPSupport>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <EnableCOMDATFolding>true</EnableCOMDATFolding>
+      <OptimizeReferences>true</OptimizeReferences>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+      <AdditionalLibraryDirectories>C:\Program Files %28x86%29\Microsoft SDKs\MPI\Lib\x64;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir\lib\x64\Release;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>mpir.lib;Msmpi.lib;%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="..\src64\graph\plottty.c" />
+    <ClCompile Include="..\src64\kernel\none\cmp.c" />
+    <ClCompile Include="..\src64\kernel\none\halfgcd.c" />
+    <ClCompile Include="..\src64\kernel\none\invmod.c" />
+    <ClCompile Include="..\src64\kernel\none\ratlift.c" />
+    <ClCompile Include="..\src64\language\es.c" />
+    <ClCompile Include="..\src64\modules\algebras.c" />
+    <ClCompile Include="..\src64\modules\elldata.c" />
+    <ClCompile Include="..\src64\modules\ellfromeqn.c" />
+    <ClCompile Include="..\src64\modules\forperm.c" />
+    <ClCompile Include="..\src64\modules\forsubset.c" />
+    <ClCompile Include="..\src64\modules\galois.c" />
+    <ClCompile Include="..\src64\modules\galpol.c" />
+    <ClCompile Include="..\src64\modules\genus2red.c" />
+    <ClCompile Include="..\src64\modules\groupid.c" />
+    <ClCompile Include="..\src64\modules\krasner.c" />
+    <ClCompile Include="..\src64\modules\mpqs.c" />
+    <ClCompile Include="..\src64\modules\part.c" />
+    <ClCompile Include="..\src64\modules\ratpoints.c" />
+    <ClCompile Include="..\src64\modules\stark.c" />
+    <ClCompile Include="..\src64\modules\thue.c" />
+    <ClCompile Include="..\src\basemath\alglin1.c" />
+    <ClCompile Include="..\src\basemath\alglin2.c" />
+    <ClCompile Include="..\src\basemath\alglin3.c" />
+    <ClCompile Include="..\src\basemath\aprcl.c" />
+    <ClCompile Include="..\src\basemath\arith1.c" />
+    <ClCompile Include="..\src\basemath\arith2.c" />
+    <ClCompile Include="..\src\basemath\base1.c" />
+    <ClCompile Include="..\src\basemath\base2.c" />
+    <ClCompile Include="..\src\basemath\base3.c" />
+    <ClCompile Include="..\src\basemath\base4.c" />
+    <ClCompile Include="..\src\basemath\base5.c" />
+    <ClCompile Include="..\src\basemath\bb_group.c" />
+    <ClCompile Include="..\src\basemath\bb_hnf.c" />
+    <ClCompile Include="..\src\basemath\bern.c" />
+    <ClCompile Include="..\src\basemath\bibli1.c" />
+    <ClCompile Include="..\src\basemath\bibli2.c" />
+    <ClCompile Include="..\src\basemath\bit.c" />
+    <ClCompile Include="..\src\basemath\bnflog.c" />
+    <ClCompile Include="..\src\basemath\bnfunits.c" />
+    <ClCompile Include="..\src\basemath\buch1.c" />
+    <ClCompile Include="..\src\basemath\buch2.c" />
+    <ClCompile Include="..\src\basemath\buch3.c" />
+    <ClCompile Include="..\src\basemath\buch4.c" />
+    <ClCompile Include="..\src\basemath\char.c" />
+    <ClCompile Include="..\src\basemath\concat.c" />
+    <ClCompile Include="..\src\basemath\crvwtors.c" />
+    <ClCompile Include="..\src\basemath\dirichlet.c" />
+    <ClCompile Include="..\src\basemath\ecpp.c" />
+    <ClCompile Include="..\src\basemath\ellanal.c" />
+    <ClCompile Include="..\src\basemath\elliptic.c" />
+    <ClCompile Include="..\src\basemath\ellisog.c" />
+    <ClCompile Include="..\src\basemath\ellpadic.c" />
+    <ClCompile Include="..\src\basemath\ellpadiclambdamu.c" />
+    <ClCompile Include="..\src\basemath\ellsea.c" />
+    <ClCompile Include="..\src\basemath\elltors.c" />
+    <ClCompile Include="..\src\basemath\F2v.c" />
+    <ClCompile Include="..\src\basemath\F2x.c" />
+    <ClCompile Include="..\src\basemath\F2xqE.c" />
+    <ClCompile Include="..\src\basemath\FF.c" />
+    <ClCompile Include="..\src\basemath\Fle.c" />
+    <ClCompile Include="..\src\basemath\Flv.c" />
+    <ClCompile Include="..\src\basemath\Flx.c" />
+    <ClCompile Include="..\src\basemath\FlxqE.c" />
+    <ClCompile Include="..\src\basemath\Flxq_log.c" />
+    <ClCompile Include="..\src\basemath\FlxX.c" />
+    <ClCompile Include="..\src\basemath\FpE.c" />
+    <ClCompile Include="..\src\basemath\FpV.c" />
+    <ClCompile Include="..\src\basemath\FpX.c" />
+    <ClCompile Include="..\src\basemath\FpXQX_factor.c" />
+    <ClCompile Include="..\src\basemath\FpXX.c" />
+    <ClCompile Include="..\src\basemath\FpX_factor.c" />
+    <ClCompile Include="..\src\basemath\galconj.c" />
+    <ClCompile Include="..\src\basemath\gen1.c" />
+    <ClCompile Include="..\src\basemath\gen2.c" />
+    <ClCompile Include="..\src\basemath\gen3.c" />
+    <ClCompile Include="..\src\basemath\Hensel.c" />
+    <ClCompile Include="..\src\basemath\hnf_snf.c" />
+    <ClCompile Include="..\src\basemath\hyperell.c" />
+    <ClCompile Include="..\src\basemath\hypergeom.c" />
+    <ClCompile Include="..\src\basemath\ifactor1.c" />
+    <ClCompile Include="..\src\basemath\kummer.c" />
+    <ClCompile Include="..\src\basemath\lfun.c" />
+    <ClCompile Include="..\src\basemath\lfunquad.c" />
+    <ClCompile Include="..\src\basemath\lfunutils.c" />
+    <ClCompile Include="..\src\basemath\lll.c" />
+    <ClCompile Include="..\src\basemath\map.c" />
+    <ClCompile Include="..\src\basemath\matperm.c" />
+    <ClCompile Include="..\src\basemath\mellininv.c" />
+    <ClCompile Include="..\src\basemath\mftrace.c" />
+    <ClCompile Include="..\src\basemath\modsym.c" />
+    <ClCompile Include="..\src\basemath\msfarey.c" />
+    <ClCompile Include="..\src\basemath\nffactor.c" />
+    <ClCompile Include="..\src\basemath\perm.c" />
+    <ClCompile Include="..\src\basemath\polarit1.c" />
+    <ClCompile Include="..\src\basemath\polarit2.c" />
+    <ClCompile Include="..\src\basemath\polarit3.c" />
+    <ClCompile Include="..\src\basemath\polclass.c" />
+    <ClCompile Include="..\src\basemath\polmodular.c" />
+    <ClCompile Include="..\src\basemath\prime.c" />
+    <ClCompile Include="..\src\basemath\Qfb.c" />
+    <ClCompile Include="..\src\basemath\qfisom.c" />
+    <ClCompile Include="..\src\basemath\qfsolve.c" />
+    <ClCompile Include="..\src\basemath\QX_factor.c" />
+    <ClCompile Include="..\src\basemath\random.c" />
+    <ClCompile Include="..\src\basemath\RgV.c" />
+    <ClCompile Include="..\src\basemath\RgX.c" />
+    <ClCompile Include="..\src\basemath\rootpol.c" />
+    <ClCompile Include="..\src\basemath\Ser.c" />
+    <ClCompile Include="..\src\basemath\subcyclo.c" />
+    <ClCompile Include="..\src\basemath\subfield.c" />
+    <ClCompile Include="..\src\basemath\subgroup.c" />
+    <ClCompile Include="..\src\basemath\trans1.c" />
+    <ClCompile Include="..\src\basemath\trans2.c" />
+    <ClCompile Include="..\src\basemath\trans3.c" />
+    <ClCompile Include="..\src\basemath\volcano.c" />
+    <ClCompile Include="..\src\basemath\zetamult.c" />
+    <ClCompile Include="..\src\basemath\ZG.c" />
+    <ClCompile Include="..\src\basemath\ZV.c" />
+    <ClCompile Include="..\src\basemath\ZX.c" />
+    <ClCompile Include="..\src\gp\emacs.c" />
+    <ClCompile Include="..\src\gp\gp.c" />
+    <ClCompile Include="..\src\gp\texmacs.c" />
+    <ClCompile Include="..\src\gp\whatnow.c" />
+    <ClCompile Include="..\src\graph\plotnone.c" />
+    <ClCompile Include="..\src\graph\plotport.c" />
+    <ClCompile Include="..\src\kernel\gmp\gcd.c" />
+    <ClCompile Include="..\src\kernel\gmp\gcdext.c" />
+    <ClCompile Include="..\src\kernel\gmp\mp.c" />
+    <ClCompile Include="..\src\kernel\none\add.c" />
+    <ClCompile Include="..\src\kernel\none\gcdll.c" />
+    <ClCompile Include="..\src\kernel\none\mp_indep.c" />
+    <ClCompile Include="..\src\language\anal.c" />
+    <ClCompile Include="..\src\language\compile.c" />
+    <ClCompile Include="..\src\language\default.c" />
+    <ClCompile Include="..\src\language\eval.c" />
+    <ClCompile Include="..\src\language\forprime.c" />
+    <ClCompile Include="..\src\language\gplib.c" />
+    <ClCompile Include="..\src\language\hash.c" />
+    <ClCompile Include="..\src\language\init.c" />
+    <ClCompile Include="..\src\language\intnum.c" />
+    <ClCompile Include="..\src\language\members.c" />
+    <ClCompile Include="..\src\language\paricfg.c" />
+    <ClCompile Include="..\src\language\pariinl.c" />
+    <ClCompile Include="..\src\language\parse.c" />
+    <ClCompile Include="..\src\language\readline.c" />
+    <ClCompile Include="..\src\language\str.c" />
+    <ClCompile Include="..\src\language\sumiter.c" />
+    <ClCompile Include="..\src\mt\mpi.c">
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">$MSMPI_INC)\64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories Condition="'$(Configuration)|$(Platform)'=='Release|x64'">$MSMPI_INC)\64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <ClCompile Include="..\src\mt\mt.c" />
+    <ClCompile Include="..\src\systems\mingw\mingw.c" />
+    <ClCompile Include="bfffo.c" />
+    <ClCompile Include="divll.c" />
+    <ClCompile Include="level1.c" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="..\Omingw-x86_64\paricfg.h" />
+    <ClInclude Include="..\src\gp\gp.h" />
+    <ClInclude Include="..\src\gp\gp_init.h" />
+    <ClInclude Include="..\src\gp\whatnow.h" />
+    <ClInclude Include="..\src\graph\rect.h" />
+    <ClInclude Include="..\src\headers\pari.h" />
+    <ClInclude Include="..\src\headers\paricast.h" />
+    <ClInclude Include="..\src\headers\paricom.h" />
+    <ClInclude Include="..\src\headers\paridecl.h" />
+    <ClInclude Include="..\src\headers\parierr.h" />
+    <ClInclude Include="..\src\headers\parigen.h" />
+    <ClInclude Include="..\src\headers\pariinl.h" />
+    <ClInclude Include="..\src\headers\parinf.h" />
+    <ClInclude Include="..\src\headers\pariold.h" />
+    <ClInclude Include="..\src\headers\paripriv.h" />
+    <ClInclude Include="..\src\headers\paristio.h" />
+    <ClInclude Include="..\src\headers\parisys.h" />
+    <ClInclude Include="..\src\headers\paritune.h" />
+    <ClInclude Include="..\src\kernel\gmp\int.h" />
+    <ClInclude Include="..\src\kernel\ia64\asm1.h" />
+    <ClInclude Include="..\src\kernel\none\divll.h" />
+    <ClInclude Include="..\src\kernel\none\divll_pre.h" />
+    <ClInclude Include="..\src\kernel\none\tune.h" />
+    <ClInclude Include="..\src\language\default.h" />
+    <ClInclude Include="..\src\language\init.h" />
+    <ClInclude Include="..\src\language\opcode.h" />
+    <ClInclude Include="..\src\language\parse.h" />
+    <ClInclude Include="..\src\language\parsec.h" />
+    <ClInclude Include="..\src\language\tree.h" />
+    <ClInclude Include="..\src\mt\mt.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="..\src\language\parse.y" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+</Project>
