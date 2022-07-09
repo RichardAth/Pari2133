@@ -1,5 +1,5 @@
 
-#line 2 "../src/kernel/none/level1.h"
+#line 2 "level1.c"
 /* Copyright (C) 2000  The PARI group.
 
 This file is part of the PARI/GP package.
@@ -14,10 +14,12 @@ Check the License for details. You should have received a copy of it, along
 with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-/* This file defines "level 1" kernel functions. */
+/* This file defines "level 1" kernel functions. 
+based mainly on level1.h */
 
 #include <intrin.h>
 #include <stdint.h>
+#include <assert.h>
 #include "pari.h"
 #include "paripriv.h"
 #include "int.h"
@@ -88,22 +90,32 @@ int64_t subllx(ulong a, ulong b) {
 
 /* end*/
 
-/* taken from src64\kernel\none\mulll.h */
+
 
 /* return low 64 bits of x*y.
 if product exceeds 64 bits top bits are in hiremainder,
 otherwise hiremainder is set to zero */
+
+#ifdef _WIN32
+#pragma intrinsic(_umul128)
+/* same function as original mulll but uses intrinsic to increase speed*/
+int64_t mulll(ulong x, ulong y) {
+    ulong result = _umul128(x, y, &hiremainder);
+    return result;
+}
+#else
+/* taken from src64\kernel\none\mulll.h */
 int64_t
-mulll2(ulong x, ulong y)
+mulll(ulong x, ulong y)
 {
     const ulong xlo = LOWWORD(x), xhi = HIGHWORD(x);
     const ulong ylo = LOWWORD(y), yhi = HIGHWORD(y);
     ulong xylo, xymid, xyhi, xymidhi, xymidlo;
     ulong xhl, yhl;
 
-    xylo = xlo * ylo; 
+    xylo = xlo * ylo;
     xyhi = xhi * yhi;
-    xhl = xhi + xlo; 
+    xhl = xhi + xlo;
     yhl = yhi + ylo;
     xymid = xhl * yhl - (xyhi + xylo);
 
@@ -116,17 +128,36 @@ mulll2(ulong x, ulong y)
 
     return xylo;
 }
-
-#pragma intrinsic(_umul128)
-/* same as original mulll but uses intrinsic to increase speed*/
-int64_t mulll(ulong x, ulong y) {
-    ulong result = _umul128(x, y, &hiremainder);
-    return result;
-}
+#endif
 
 /* return x*y + old hiremainder 
 if result exceeds 64 bits top bits are in hiremainder,
 otherwise hiremainder is set to zero*/
+//#ifdef _WIN32
+//#pragma intrinsic(_umul128, _addcarry_u64)
+///* _addcarry_u32(), _addcarry_u64()
+//Computes sum of two 32/64 bit wide unsigned integer values and a carry-in and 
+//returns the value of carry-out produced by the sum
+//Syntax:
+//extern unsigned char _addcarry_u64(unsigned char c_in, unsigned __int64 src1, unsigned __int64 src2, unsigned __int64 *sum_out);
+//Parameters
+//c_in     Value used for determining carry-in value
+//src1     32/64 bit source integer
+//src2     32/64 bit source integer
+//*sum_out Pointer to memory location where result is stored
+//*/
+//int64_t
+//addmul(ulong x, ulong y) {
+//    ulong result, top;
+//    unsigned char c2;
+//    result = _umul128(x, y, &top);
+//    /* add hiremainder*/
+//    c2 = _addcarry_u64(0, result, hiremainder, &result);
+//    hiremainder = top + c2;
+//    assert(hiremainder >= top); /* check for overflow*/
+//    return result;
+//}
+//#else
 int64_t
 addmul(ulong x, ulong y)
 {
@@ -154,7 +185,7 @@ addmul(ulong x, ulong y)
 
     return xylo;
 }
-
+//#endif
 /* end */
 
 

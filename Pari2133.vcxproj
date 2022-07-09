@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\src64\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\src64\mt;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -311,24 +311,17 @@
     <ClInclude Include="..\src\gp\gp_init.h" />
     <ClInclude Include="..\src\gp\whatnow.h" />
     <ClInclude Include="..\src\graph\rect.h" />
-    <ClInclude Include="..\src\headers\pari.h" />
-    <ClInclude Include="..\src\headers\paricast.h" />
     <ClInclude Include="..\src\headers\paricom.h" />
     <ClInclude Include="..\src\headers\paridecl.h" />
-    <ClInclude Include="..\src\headers\parierr.h" />
     <ClInclude Include="..\src\headers\parigen.h" />
     <ClInclude Include="..\src\headers\pariinl.h" />
-    <ClInclude Include="..\src\headers\parinf.h" />
-    <ClInclude Include="..\src\headers\pariold.h" />
-    <ClInclude Include="..\src\headers\paripriv.h" />
-    <ClInclude Include="..\src\headers\paristio.h" />
     <ClInclude Include="..\src\headers\parisys.h" />
     <ClInclude Include="..\src\headers\paritune.h" />
     <ClInclude Include="..\src\kernel\gmp\int.h" />
+    <ClInclude Include="..\src\kernel\gmp\tune.h" />
     <ClInclude Include="..\src\kernel\ia64\asm1.h" />
     <ClInclude Include="..\src\kernel\none\divll.h" />
     <ClInclude Include="..\src\kernel\none\divll_pre.h" />
-    <ClInclude Include="..\src\kernel\none\tune.h" />
     <ClInclude Include="..\src\language\default.h" />
     <ClInclude Include="..\src\language\init.h" />
     <ClInclude Include="..\src\language\opcode.h" />
@@ -336,6 +329,18 @@
     <ClInclude Include="..\src\language\parsec.h" />
     <ClInclude Include="..\src\language\tree.h" />
     <ClInclude Include="..\src\mt\mt.h" />
+    <ClInclude Include="pari.h" />
+    <ClInclude Include="paricast.h" />
+    <ClInclude Include="paricom.h" />
+    <ClInclude Include="paridecl.h" />
+    <ClInclude Include="parierr.h" />
+    <ClInclude Include="parigen.h" />
+    <ClInclude Include="pariinl.h" />
+    <ClInclude Include="parinf.h" />
+    <ClInclude Include="pariold.h" />
+    <ClInclude Include="paripriv.h" />
+    <ClInclude Include="paristio.h" />
+    <ClInclude Include="parisys.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\src\language\parse.y" />

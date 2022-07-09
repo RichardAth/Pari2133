@@ -1,5 +1,5 @@
 //#include "pari.h"
-
+#line 2 "..bfffo.c"
 typedef unsigned long long ulong;
 #  define BITS_IN_LONG 64
 

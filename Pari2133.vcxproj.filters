@@ -479,37 +479,16 @@
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\headers\pari.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\paricast.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\headers\paricom.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\headers\paridecl.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\headers\parierr.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\headers\parigen.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\headers\pariinl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\parinf.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\pariold.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\paripriv.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\paristio.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\headers\parisys.h">
@@ -563,10 +542,46 @@
     <ClInclude Include="..\src\kernel\none\divll_pre.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\kernel\none\tune.h">
+    <ClInclude Include="..\src\mt\mt.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\mt\mt.h">
+    <ClInclude Include="..\src\kernel\gmp\tune.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pari.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paricom.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paridecl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parigen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pariinl.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parinf.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pariold.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paripriv.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paristio.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parisys.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="parierr.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paricast.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
