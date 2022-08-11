@@ -387,9 +387,6 @@
     <ClCompile Include="..\src\kernel\gmp\gcdext.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\kernel\none\add.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="divll.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -411,9 +408,6 @@
     <ClCompile Include="..\src64\language\es.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src64\kernel\none\cmp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\systems\mingw\mingw.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -426,72 +420,66 @@
     <ClCompile Include="..\src64\kernel\none\ratlift.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src64\modules\galois.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\part.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\stark.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\elldata.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\algebras.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\groupid.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\mpqs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\ellfromeqn.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\genus2red.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src64\kernel\none\halfgcd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\galpol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\krasner.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\ratpoints.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\thue.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\forperm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\modules\forsubset.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src64\graph\plottty.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="..\src64\kernel\none\cmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="add.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="algebras.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elldata.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellfromeqn.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="forperm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="forsubset.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="galois.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="galpol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="genus2red.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="groupid.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="krasner.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mpqs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="part.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ratpoints.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stark.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="thue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\headers\paricom.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\paridecl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\parigen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\headers\pariinl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\parisys.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="..\src\headers\paritune.h">
@@ -518,9 +506,6 @@
     <ClInclude Include="..\src\language\default.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\gp\gp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\gp\gp_init.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -533,19 +518,7 @@
     <ClInclude Include="..\Omingw-x86_64\paricfg.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\kernel\gmp\int.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\none\divll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\none\divll_pre.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\mt\mt.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\gmp\tune.h">
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pari.h">
@@ -583,6 +556,27 @@
     </ClInclude>
     <ClInclude Include="paricast.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="int.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="divll_pre.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\kernel\none\mulll.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\kernel\none\tune.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src\kernel\none\tune-gen.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="..\src64\gp\gp.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="mpqs.h">
+      <Filter>Source Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

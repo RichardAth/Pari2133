@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\pari2133\src\kernel\gmp;C:\pari2133\src\kernel\none;C:\pari2133\src\headers;C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Pari2133;C:\pari2133\Omingw-x86_64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -153,21 +153,6 @@
     <ClCompile Include="..\src64\kernel\none\invmod.c" />
     <ClCompile Include="..\src64\kernel\none\ratlift.c" />
     <ClCompile Include="..\src64\language\es.c" />
-    <ClCompile Include="..\src64\modules\algebras.c" />
-    <ClCompile Include="..\src64\modules\elldata.c" />
-    <ClCompile Include="..\src64\modules\ellfromeqn.c" />
-    <ClCompile Include="..\src64\modules\forperm.c" />
-    <ClCompile Include="..\src64\modules\forsubset.c" />
-    <ClCompile Include="..\src64\modules\galois.c" />
-    <ClCompile Include="..\src64\modules\galpol.c" />
-    <ClCompile Include="..\src64\modules\genus2red.c" />
-    <ClCompile Include="..\src64\modules\groupid.c" />
-    <ClCompile Include="..\src64\modules\krasner.c" />
-    <ClCompile Include="..\src64\modules\mpqs.c" />
-    <ClCompile Include="..\src64\modules\part.c" />
-    <ClCompile Include="..\src64\modules\ratpoints.c" />
-    <ClCompile Include="..\src64\modules\stark.c" />
-    <ClCompile Include="..\src64\modules\thue.c" />
     <ClCompile Include="..\src\basemath\alglin1.c" />
     <ClCompile Include="..\src\basemath\alglin2.c" />
     <ClCompile Include="..\src\basemath\alglin3.c" />
@@ -276,7 +261,6 @@
     <ClCompile Include="..\src\kernel\gmp\gcd.c" />
     <ClCompile Include="..\src\kernel\gmp\gcdext.c" />
     <ClCompile Include="..\src\kernel\gmp\mp.c" />
-    <ClCompile Include="..\src\kernel\none\add.c" />
     <ClCompile Include="..\src\kernel\none\gcdll.c" />
     <ClCompile Include="..\src\kernel\none\mp_indep.c" />
     <ClCompile Include="..\src\language\anal.c" />
@@ -301,27 +285,38 @@
     </ClCompile>
     <ClCompile Include="..\src\mt\mt.c" />
     <ClCompile Include="..\src\systems\mingw\mingw.c" />
+    <ClCompile Include="add.c" />
+    <ClCompile Include="algebras.c" />
     <ClCompile Include="bfffo.c" />
     <ClCompile Include="divll.c" />
+    <ClCompile Include="elldata.c" />
+    <ClCompile Include="ellfromeqn.c" />
+    <ClCompile Include="forperm.c" />
+    <ClCompile Include="forsubset.c" />
+    <ClCompile Include="galois.c" />
+    <ClCompile Include="galpol.c" />
+    <ClCompile Include="genus2red.c" />
+    <ClCompile Include="groupid.c" />
+    <ClCompile Include="krasner.c" />
     <ClCompile Include="level1.c" />
+    <ClCompile Include="mpqs.c" />
+    <ClCompile Include="part.c" />
+    <ClCompile Include="ratpoints.c" />
+    <ClCompile Include="stark.c" />
+    <ClCompile Include="thue.c" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\Omingw-x86_64\paricfg.h" />
-    <ClInclude Include="..\src\gp\gp.h" />
+    <ClInclude Include="..\src64\gp\gp.h" />
     <ClInclude Include="..\src\gp\gp_init.h" />
     <ClInclude Include="..\src\gp\whatnow.h" />
     <ClInclude Include="..\src\graph\rect.h" />
-    <ClInclude Include="..\src\headers\paricom.h" />
-    <ClInclude Include="..\src\headers\paridecl.h" />
-    <ClInclude Include="..\src\headers\parigen.h" />
     <ClInclude Include="..\src\headers\pariinl.h" />
-    <ClInclude Include="..\src\headers\parisys.h" />
     <ClInclude Include="..\src\headers\paritune.h" />
-    <ClInclude Include="..\src\kernel\gmp\int.h" />
-    <ClInclude Include="..\src\kernel\gmp\tune.h" />
     <ClInclude Include="..\src\kernel\ia64\asm1.h" />
-    <ClInclude Include="..\src\kernel\none\divll.h" />
-    <ClInclude Include="..\src\kernel\none\divll_pre.h" />
+    <ClInclude Include="..\src\kernel\none\mulll.h" />
+    <ClInclude Include="..\src\kernel\none\tune-gen.h" />
+    <ClInclude Include="..\src\kernel\none\tune.h" />
     <ClInclude Include="..\src\language\default.h" />
     <ClInclude Include="..\src\language\init.h" />
     <ClInclude Include="..\src\language\opcode.h" />
@@ -329,6 +324,9 @@
     <ClInclude Include="..\src\language\parsec.h" />
     <ClInclude Include="..\src\language\tree.h" />
     <ClInclude Include="..\src\mt\mt.h" />
+    <ClInclude Include="divll_pre.h" />
+    <ClInclude Include="int.h" />
+    <ClInclude Include="mpqs.h" />
     <ClInclude Include="pari.h" />
     <ClInclude Include="paricast.h" />
     <ClInclude Include="paricom.h" />

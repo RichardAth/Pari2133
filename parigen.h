@@ -39,8 +39,8 @@ typedef long long *GEN;
 #else
 #  define BITS_IN_LONG 32
 #  define TWOPOTBITS_IN_LONG 5
-#  define LONG_MAX (2147483647L) /* 2^31-1 */
-#  define SMALL_ULONG(p) ((ulong)p <= 46337UL) /* 2p^2 < 2^BITS_IN_LONG */
+#  define LONG_MAX (2147483647LL) /* 2^31-1 */
+#  define SMALL_ULONG(p) ((ulong)p <= 46337ULL) /* 2p^2 < 2^BITS_IN_LONG */
 #endif
 #define ULONG_MAX (~0x0ULL)
 

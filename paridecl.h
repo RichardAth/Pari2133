@@ -5366,12 +5366,12 @@ GEN     zetamultconvert(GEN a, int64_t fl);
 
 /* level1.c */
 
-int64_t addll(ulong a, ulong b);
-int64_t addllx(ulong a, ulong b);
-int64_t subll(ulong __arg1, ulong __arg2);
-int64_t subllx(ulong a, ulong b);
+int64_t addll(ulong a, ulong b, ulong *overflow);
+int64_t addllx(ulong a, ulong b, ulong *overflow);
+int64_t subll(ulong __arg1, ulong __arg2, ulong *overflow);
+int64_t subllx(ulong a, ulong b, ulong *overflow);
 int64_t addmul(ulong x, ulong y);
-int64_t mulll(ulong x, ulong y);
+int64_t mulll(ulong x, ulong y, ulong* hireaminder);
 ulong  Fl_add(ulong a, ulong b, ulong p);
 ulong  Fl_addmul_pre(ulong x0, ulong x1, ulong y0, ulong p, ulong pi);
 ulong  Fl_addmulmul_pre(ulong x0, ulong y0, ulong x1, ulong y1, ulong p, ulong pi);

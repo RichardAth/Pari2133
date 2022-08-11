@@ -1630,7 +1630,9 @@ precdbl(int64_t x) {return (x - 1) << 1;}
 INLINE int64_t
 divsBIL(int64_t n) { return n >> TWOPOTBITS_IN_LONG; }
 INLINE int64_t
-remsBIL(int64_t n) { return n & (BITS_IN_LONG-1); }
+remsBIL(int64_t n) { 
+    return n & (BITS_IN_LONG-1); 
+}
 
 /*********************************************************************/
 /**                                                                 **/
@@ -2022,8 +2024,10 @@ is_vec_t(int64_t t) { return (t == t_VEC || t == t_COL); }
 INLINE GEN
 sqrtr(GEN x) {
   int64_t s = signe(x);
-  if (s == 0) return real_0_bit(expo(x) >> 1);
-  if (s >= 0) return sqrtr_abs(x);
+  if (s == 0) 
+      return real_0_bit(expo(x) >> 1);
+  if (s >= 0) 
+      return sqrtr_abs(x);
   retmkcomplex(gen_0, sqrtr_abs(x));
 }
 INLINE GEN
@@ -2508,7 +2512,7 @@ INLINE void
 F2x_clear(GEN x,int64_t v)
 {
    ulong* u=(ulong*)&x[2+divsBIL(v)];
-   *u&=~(1UL<<remsBIL(v));
+   *u&=~(1ULL<<remsBIL(v));
 }
 
 INLINE void

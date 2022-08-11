@@ -20,8 +20,11 @@ extern ulong hiremainder;
 unsigned integer. The return value holds the quotient, and the intrinsic 
 returns the remainder through a pointer parameter. 
 */
-int64_t divll(ulong n0, ulong d) {
-    ulong quotient = _udiv128(hiremainder, n0, d, &hiremainder);
+int64_t divll(ulong n0, ulong d, ulong* hiremainder) {
+    /* top 64 bits of dividend are in hiremainder, bottom 64 bits in n0,
+    divisor is d. quotient won't overflow unless initial value of hiremainder >= d.
+    remainder is returned in hiremainder. */
+    ulong quotient = _udiv128(*hiremainder, n0, d, hiremainder);
     return quotient;
 }
 #else
