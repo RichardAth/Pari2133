@@ -15,303 +15,6 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\basemath\alglin1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\alglin2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\alglin3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\aprcl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\arith1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\arith2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\base1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\base2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\base3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\base4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\base5.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bb_group.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bb_hnf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bern.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bibli1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bibli2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bit.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bnflog.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\bnfunits.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\buch1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\buch2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\buch3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\buch4.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\char.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\concat.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\crvwtors.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\dirichlet.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ecpp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ellanal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\elliptic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ellisog.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ellpadic.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ellpadiclambdamu.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ellsea.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\elltors.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\F2v.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\F2x.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\F2xqE.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FF.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Fle.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Flv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Flx.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Flxq_log.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FlxqE.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FlxX.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpE.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpV.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpX.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpX_factor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpXQX_factor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\FpXX.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\galconj.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\gen1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\gen2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\gen3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Hensel.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\hnf_snf.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\hyperell.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\hypergeom.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ifactor1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\kummer.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\lfun.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\lfunquad.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\lfunutils.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\lll.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\map.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\matperm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\mellininv.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\mftrace.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\modsym.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\msfarey.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\nffactor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\perm.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\polarit1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\polarit2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\polarit3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\polclass.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\polmodular.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\prime.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Qfb.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\qfisom.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\qfsolve.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\QX_factor.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\random.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\RgV.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\RgX.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\rootpol.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\Ser.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\subcyclo.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\subfield.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\subgroup.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\trans1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\trans2.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\trans3.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\volcano.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\zetamult.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ZG.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ZV.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\basemath\ZX.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src\language\anal.c">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -475,6 +178,303 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="thue.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alglin1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alglin2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="alglin3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="aprcl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arith1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="arith2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="base5.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bb_group.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bb_hnf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bern.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bibli1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bibli2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bit.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bnflog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="bnfunits.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buch1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buch2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buch3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="buch4.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="char.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="concat.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="crvwtors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="dirichlet.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ecpp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellanal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elliptic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellisog.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellpadic.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellpadiclambdamu.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ellsea.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="elltors.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F2v.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F2x.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="F2xqE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FF.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Fle.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flx.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Flxq_log.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlxqE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FlxX.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpE.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpX.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpX_factor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpXQX_factor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="FpXX.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="galconj.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gen1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gen2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gen3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Hensel.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hnf_snf.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hyperell.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hypergeom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ifactor1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="kummer.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lfun.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lfunquad.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lfunutils.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="lll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="map.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="matperm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mellininv.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mftrace.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="modsym.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="msfarey.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="nffactor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="perm.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polarit1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polarit2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polarit3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polclass.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="polmodular.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="prime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Qfb.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qfisom.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="qfsolve.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="QX_factor.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="random.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RgV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="RgX.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="rootpol.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Ser.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subcyclo.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subfield.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="subgroup.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trans1.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trans2.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="trans3.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="volcano.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="zetamult.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZG.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZV.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ZX.c">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>
