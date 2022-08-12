@@ -15,109 +15,16 @@
     </Filter>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="..\src\language\anal.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\compile.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\default.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\eval.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\forprime.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\gplib.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\hash.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\init.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\intnum.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\members.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\paricfg.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\pariinl.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\parse.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\readline.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\str.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\language\sumiter.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gp\emacs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gp\gp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gp\texmacs.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\gp\whatnow.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\graph\plotnone.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\graph\plotport.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\kernel\gmp\mp.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\kernel\gmp\gcd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\kernel\gmp\gcdext.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="divll.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="bfffo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src\kernel\none\mp_indep.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\kernel\none\gcdll.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="..\src64\kernel\none\invmod.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="level1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\language\es.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\systems\mingw\mingw.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\mt\mpi.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src\mt\mt.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\src64\kernel\none\ratlift.c">
@@ -477,6 +384,96 @@
     <ClCompile Include="ZX.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="gp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="anal.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="compile.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="default.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="es.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="eval.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="forprime.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gcd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gcdext.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gcdll.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="gplib.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="hash.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="init.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="intnum.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="members.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mingw.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mp_indep.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mpi.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mpinl.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="mt.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="paricfg.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="parse.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plotnone.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plotport.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="str.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="sumiter.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="emacs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="texmacs.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="whatnow.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\headers\pariinl.h">
@@ -578,10 +575,5 @@
     <ClInclude Include="mpqs.h">
       <Filter>Source Files</Filter>
     </ClInclude>
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="..\src\language\parse.y">
-      <Filter>Source Files</Filter>
-    </None>
   </ItemGroup>
 </Project>
