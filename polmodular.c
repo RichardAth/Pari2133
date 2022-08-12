@@ -16,8 +16,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 
 extern ulong overflow;
-extern ulong hiremainder;
-
+//extern ulong hiremainder;
+#define LOCAL_HIREMAINDER ulong hiremainder=0
 #define dbg_printf(lvl) if (DEBUGLEVEL >= (lvl) + 3) err_printf
 
 /**
@@ -825,7 +825,7 @@ Fl_addmul3(
 {
   ulong l0, l1, h0, h1;
   //LOCAL_OVERFLOW;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   overflow = 0;
   hiremainder = 0;
   l0 = mulll(x0, y2, &hiremainder); h0 = hiremainder;
@@ -845,7 +845,7 @@ Fl_addmul4(
 {
   ulong l0, l1, h0, h1;
   //LOCAL_OVERFLOW;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   overflow = 0;
   hiremainder = 0;
   l0 = mulll(x0, y3, &hiremainder); h0 = hiremainder;
@@ -867,7 +867,7 @@ Fl_addmul5(
 {
   ulong l0, l1, h0, h1;
   //LOCAL_OVERFLOW;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   l0 = mulll(x0, y4, &hiremainder); h0 = hiremainder;
   l1 = mulll(x1, y3, &hiremainder); h1 = hiremainder;
   l1 = addll(l0, l1, &overflow); h1 = addllx(h0, h1, &overflow);

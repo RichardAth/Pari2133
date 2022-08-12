@@ -53,7 +53,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 int bfffo(ulong x);
 int64_t divll(ulong x, ulong y, ulong* hiremainder);
 extern ulong overflow;
-extern ulong hiremainder;
+//extern ulong hiremainder;
 
 static void *pari_gmp_realloc(void *ptr, size_t old_size, size_t new_size) {
   (void)old_size; return (void *) pari_realloc(ptr,new_size);
@@ -686,7 +686,7 @@ divrr_with_gmp(GEN x, GEN y)
 #ifdef _DEBUG
   if (!lock_divrr) {
       lock_divrr = 1;
-      long long hrsave = hiremainder;
+
       char* buf;
       buf = GENtostr(x);
       printf("divrr_with_gmp: x = %s ", buf);
@@ -713,7 +713,7 @@ divrr_with_gmp(GEN x, GEN y)
       for (int64_t i = 0; i < llabs(zZt->_mp_size); i++)
           printf("%016llX ", zZt->_mp_d[i]);
       putchar('\n');
-      hiremainder = hrsave;
+ 
       lock_divrr = 0;
   }
 #endif
@@ -965,7 +965,7 @@ divrr(GEN x, GEN y)
   for (i=0; i<lr-1; i++)
   { /* r1 = r + (i-1), OK up to r1[2] (accesses at most r[lr]) */
     ulong k, qp;
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
     LOCAL_OVERFLOW;
 
     if (uel(r1,1) == y0) { 
@@ -1013,7 +1013,7 @@ divrr(GEN x, GEN y)
     }
     for (j--; j>1; j--)
     {
-      r1[j] = subll(r1[j], addmul(qp,y[j]), &overflow);
+      r1[j] = subll(r1[j], addmul(qp,y[j], &hiremainder), &overflow);
       hiremainder += overflow;
     }
     if (uel(r1,1) != hiremainder)
@@ -1067,11 +1067,10 @@ divrr(GEN x, GEN y)
 #ifdef _DEBUG
   if (!lock_divrr) {
       lock_divrr = 1;
-      long long hrsave = hiremainder;
+
       char* buf;
       buf = GENtostr(r);
       printf("divrr: r = %s ", buf);
-      hiremainder = hrsave;
       lock_divrr = 0;
   }
 #endif
@@ -1189,7 +1188,7 @@ red_montgomery(GEN T, GEN N, ulong inv)
   GEN Te, Td, Ne, Nd, scratch;
   ulong i, j, m, t, d, k = NLIMBS(N);
   int carry;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   LOCAL_OVERFLOW;
 
   if (k == 0) 
@@ -1206,12 +1205,12 @@ red_montgomery(GEN T, GEN N, ulong inv)
     if (d == 1) {
       hiremainder = uel(T,2);
       m = hiremainder * inv;
-      (void)addmul(m, n); /* t + m*n = 0 */
+      (void)addmul(m, n, &hiremainder); /* t + m*n = 0 */
       return utoi(hiremainder);
     } else { /* d = 2 */
       hiremainder = uel(T,2);
       m = hiremainder * inv;
-      (void)addmul(m, n); /* t + m*n = 0 */
+      (void)addmul(m, n, &hiremainder); /* t + m*n = 0 */
       t = addll(hiremainder, uel(T,3), &overflow);
       if (overflow) t -= n; /* t > n doesn't fit in 1 word */
       return utoi(t);
@@ -1239,10 +1238,10 @@ red_montgomery(GEN T, GEN N, ulong inv)
 
     /* set T := (T + mN) / B */
     Te = Td;
-    (void)addmul(m, *++Nd); /* = 0 */
+    (void)addmul(m, *++Nd, &hiremainder); /* = 0 */
     for (j=1; j<k; j++)
     {
-      t = addll(addmul(m, *++Nd), *++Td, &overflow);
+      t = addll(addmul(m, *++Nd, &hiremainder), *++Td, &overflow);
       *Td = t;
       hiremainder += overflow;
     }

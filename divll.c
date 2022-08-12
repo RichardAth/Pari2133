@@ -5,7 +5,7 @@
 
 /* external */
 int bfffo(ulong x);
-extern ulong hiremainder;
+//extern ulong hiremainder;
 
 
 #define __GLUE(hi, lo) (((hi) << BITS_IN_HALFULONG) | (lo))

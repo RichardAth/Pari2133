@@ -13,13 +13,6 @@ Check the License for details. You should have received a copy of it, along
 with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-#undef  LOCAL_HIREMAINDER
-//extern ulong hiremainder;
-#if defined(INLINE) && defined(__GNUC__) && !defined(DISABLE_INLINE)
-#define LOCAL_HIREMAINDER ulong hiremainder
-#else
-#define LOCAL_HIREMAINDER
-#endif
 
 #if defined(INLINE) && defined(__GNUC__) && !defined(DISABLE_INLINE)
 INLINE ulong /* precompute inverse of n */
@@ -34,11 +27,11 @@ get_Fl_red(ulong n)
 INLINE ulong /* precompute inverse of n */
 get_Fl_red(ulong n)
 {
-  ulong q, oldhi = hiremainder;
+  ulong q, hiremainder;
   n <<= bfffo(n);
   hiremainder = ~n;
   q = divll(~0ULL, n, &hiremainder);
-  hiremainder = oldhi;
+  
   return q;
 }
 #endif
@@ -47,7 +40,7 @@ INLINE ulong /* requires u1 <= n, n normalised */
 divll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv, ulong *pt_r)
 {
   ulong q0, q1, r;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   //LOCAL_OVERFLOW;
   q0 = mulll(ninv, u1, &hiremainder); q1 = hiremainder;
   q0 = addll(q0, u0, &overflow);
@@ -68,7 +61,7 @@ INLINE ulong /* requires u1 <= n, n normalised */
 remll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv)
 {
   ulong q0, q1, r;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   //LOCAL_OVERFLOW;
   q0 = mulll(ninv, u1, &hiremainder); q1 = hiremainder;
   q0 = addll(q0, u0, &overflow);
@@ -119,15 +112,15 @@ __extension__ ({                                                        \
 
 #else /* __GNUC__ */
 INLINE ulong
-divll_pre(ulong a_lo, ulong n, ulong ninv)
+divll_pre(ulong a_lo, ulong n, ulong ninv, ulong *hiremainder)
 {
   int norm = bfffo(n);
   int bits = BITS_IN_LONG - norm;
   ulong r, sn = n << norm;
-  const ulong u1 = ((hiremainder << norm) | (norm ? a_lo >> bits: 0));
+  const ulong u1 = ((*hiremainder << norm) | (norm ? a_lo >> bits: 0));
   const ulong u0 = a_lo << norm;
   const ulong q  = divll_pre_normalized(u1, u0, sn, ninv, &r);
-  hiremainder = r>>norm; return q;
+  *hiremainder = r>>norm; return q;
 }
 #endif /* __GNUC__ */
 

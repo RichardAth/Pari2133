@@ -21,22 +21,7 @@
     <ClCompile Include="bfffo.c">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\src64\kernel\none\invmod.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="level1.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\kernel\none\ratlift.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\kernel\none\halfgcd.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\graph\plottty.c">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="..\src64\kernel\none\cmp.c">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="add.c">
@@ -474,49 +459,25 @@
     <ClCompile Include="whatnow.c">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="cmp.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="halfgcd.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="invmod.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="plottty.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ratlift.c">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\src\headers\pariinl.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\headers\paritune.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\ia64\asm1.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="..\src\language\init.h">
       <Filter>Source Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\language\tree.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\language\parsec.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\language\parse.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\language\opcode.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\language\default.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gp\gp_init.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\gp\whatnow.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\graph\rect.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\Omingw-x86_64\paricfg.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\mt\mt.h">
-      <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="pari.h">
       <Filter>Header Files</Filter>
@@ -560,20 +521,23 @@
     <ClInclude Include="divll_pre.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="..\src\kernel\none\mulll.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\none\tune.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src\kernel\none\tune-gen.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
-    <ClInclude Include="..\src64\gp\gp.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="mpqs.h">
       <Filter>Source Files</Filter>
+    </ClInclude>
+    <ClInclude Include="paricfg.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="pwinver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="rect.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tree.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="tune.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

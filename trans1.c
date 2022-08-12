@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
 /* external */
 int bfffo(ulong x);
-extern ulong hiremainder;
+//extern ulong hiremainder;
+#define LOCAL_HIREMAINDER ulong hiremainder=0
 
 #ifdef LONG_IS_64BIT
 static const int64_t SQRTVERYBIGINT = 3037000500L; /* ceil(sqrt(LONG_MAX)) */
@@ -805,7 +806,7 @@ pow_monome(GEN x, int64_t n)
 
   if (HIGHWORD(dx) || HIGHWORD(n))
   {
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
     d = (int64_t)mulll((ulong)dx, (ulong)n, &hiremainder);
     if (hiremainder || (d &~ LGBITS)) 
         d = LGBITS; /* overflow */

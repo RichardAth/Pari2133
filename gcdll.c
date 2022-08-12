@@ -17,11 +17,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 #include "int.h"
 
-extern ulong hiremainder;
+//extern ulong hiremainder;
 extern ulong overflow;
 int bfffo(ulong x);
 
 #define LOCAL_OVERFLOW ulong overflow = 0
+#define LOCAL_HIREMAINDER ulong hiremainder=0
 
 /* divide (hiremainder * 2^BITS_IN_LONG + n0) by d; assume hiremainder < d.
  * Return quotient, set hiremainder to remainder */
@@ -212,7 +213,7 @@ ulong
 xgcduu(ulong d, ulong d1, int f, ulong* v, ulong* v1, int64_t *s)
 {
   ulong xv,xv1, xs, q,res;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   /* The above blurb contained a lie.  The main loop always stops when d1
    * has become equal to 1.  If (d1 == 1 && !(f&1)) after the loop, we do
@@ -292,7 +293,7 @@ ulong xxgcduu(ulong d, ulong d1, int f, ulong* u, ulong* u1,
         ulong* v, ulong* v1, int64_t *s)
 {
   ulong xu,xu1, xv,xv1, xs, q,res;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   xs = res = 0;
   xu = xv1 = 1ULL;
@@ -363,7 +364,7 @@ rgcduu(ulong d, ulong d1, ulong vmax,
 {
   ulong xu,xu1, xv,xv1, xs, q, res=0;
   int f = 0;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   if (vmax == 0) vmax = ULONG_MAX;
   xs = res = 0;
@@ -580,7 +581,7 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
   int64_t ld, ld1, lz;
   int skip = 0;
   LOCAL_OVERFLOW;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   /* following is just for convenience: vmax==0 means no bound */
   if (vmax == 0) vmax = ULONG_MAX;

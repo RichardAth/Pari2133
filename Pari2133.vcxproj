@@ -116,7 +116,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>_DEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Omingw-x86_64;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -134,7 +134,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NDEBUG;_CONSOLE;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Pari2133;C:\pari2133\Omingw-x86_64;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>C:\Users\admin99\Documents\Downloads_long_term_storage\mpir-3.0.0;C:\pari2133\Pari2133;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <OpenMPSupport>true</OpenMPSupport>
     </ClCompile>
     <Link>
@@ -147,11 +147,6 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\src64\graph\plottty.c" />
-    <ClCompile Include="..\src64\kernel\none\cmp.c" />
-    <ClCompile Include="..\src64\kernel\none\halfgcd.c" />
-    <ClCompile Include="..\src64\kernel\none\invmod.c" />
-    <ClCompile Include="..\src64\kernel\none\ratlift.c" />
     <ClCompile Include="add.c" />
     <ClCompile Include="algebras.c" />
     <ClCompile Include="alglin1.c" />
@@ -180,6 +175,7 @@
     <ClCompile Include="buch3.c" />
     <ClCompile Include="buch4.c" />
     <ClCompile Include="char.c" />
+    <ClCompile Include="cmp.c" />
     <ClCompile Include="compile.c" />
     <ClCompile Include="concat.c" />
     <ClCompile Include="crvwtors.c" />
@@ -231,6 +227,7 @@
     <ClCompile Include="gp.c" />
     <ClCompile Include="gplib.c" />
     <ClCompile Include="groupid.c" />
+    <ClCompile Include="halfgcd.c" />
     <ClCompile Include="hash.c" />
     <ClCompile Include="Hensel.c" />
     <ClCompile Include="hnf_snf.c" />
@@ -239,6 +236,7 @@
     <ClCompile Include="ifactor1.c" />
     <ClCompile Include="init.c" />
     <ClCompile Include="intnum.c" />
+    <ClCompile Include="invmod.c" />
     <ClCompile Include="krasner.c" />
     <ClCompile Include="kummer.c" />
     <ClCompile Include="level1.c" />
@@ -267,6 +265,7 @@
     <ClCompile Include="perm.c" />
     <ClCompile Include="plotnone.c" />
     <ClCompile Include="plotport.c" />
+    <ClCompile Include="plottty.c" />
     <ClCompile Include="polarit1.c" />
     <ClCompile Include="polarit2.c" />
     <ClCompile Include="polarit3.c" />
@@ -278,6 +277,7 @@
     <ClCompile Include="qfsolve.c" />
     <ClCompile Include="QX_factor.c" />
     <ClCompile Include="random.c" />
+    <ClCompile Include="ratlift.c" />
     <ClCompile Include="ratpoints.c" />
     <ClCompile Include="RgV.c" />
     <ClCompile Include="RgX.c" />
@@ -302,29 +302,13 @@
     <ClCompile Include="ZX.c" />
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="..\Omingw-x86_64\paricfg.h" />
-    <ClInclude Include="..\src64\gp\gp.h" />
-    <ClInclude Include="..\src\gp\gp_init.h" />
-    <ClInclude Include="..\src\gp\whatnow.h" />
-    <ClInclude Include="..\src\graph\rect.h" />
-    <ClInclude Include="..\src\headers\pariinl.h" />
-    <ClInclude Include="..\src\headers\paritune.h" />
-    <ClInclude Include="..\src\kernel\ia64\asm1.h" />
-    <ClInclude Include="..\src\kernel\none\mulll.h" />
-    <ClInclude Include="..\src\kernel\none\tune-gen.h" />
-    <ClInclude Include="..\src\kernel\none\tune.h" />
-    <ClInclude Include="..\src\language\default.h" />
     <ClInclude Include="..\src\language\init.h" />
-    <ClInclude Include="..\src\language\opcode.h" />
-    <ClInclude Include="..\src\language\parse.h" />
-    <ClInclude Include="..\src\language\parsec.h" />
-    <ClInclude Include="..\src\language\tree.h" />
-    <ClInclude Include="..\src\mt\mt.h" />
     <ClInclude Include="divll_pre.h" />
     <ClInclude Include="int.h" />
     <ClInclude Include="mpqs.h" />
     <ClInclude Include="pari.h" />
     <ClInclude Include="paricast.h" />
+    <ClInclude Include="paricfg.h" />
     <ClInclude Include="paricom.h" />
     <ClInclude Include="paridecl.h" />
     <ClInclude Include="parierr.h" />
@@ -335,6 +319,10 @@
     <ClInclude Include="paripriv.h" />
     <ClInclude Include="paristio.h" />
     <ClInclude Include="parisys.h" />
+    <ClInclude Include="pwinver.h" />
+    <ClInclude Include="rect.h" />
+    <ClInclude Include="tree.h" />
+    <ClInclude Include="tune.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

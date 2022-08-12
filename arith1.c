@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
 /* external */
 int bfffo(ulong x);
-extern ulong hiremainder;
+//extern ulong hiremainder;
 
 /* divide (hiremainder * 2^BITS_IN_LONG + n0) by d; assume hiremainder < d.
  * Return quotient, set hiremainder to remainder */
@@ -37,7 +37,7 @@ int64_t divll(ulong n0, ulong d, ulong* hiremainder);
 ulong /* precompute inverse of n */
 get_Fl_red(ulong n)
 {
-    //ulong hiremainder;
+    ulong hiremainder;
     n <<= bfffo(n);
     hiremainder = ~n;
     return divll(~0ULL, n, &hiremainder);

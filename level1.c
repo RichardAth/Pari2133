@@ -33,7 +33,7 @@ int64_t divll(ulong x, ulong y, ulong *hiremainder);
 /* note: __extension__ does not exist in visual studio C */
 
 ulong overflow = 0;
-ulong hiremainder = 0;
+//ulong hiremainder = 0;
 #define LOCAL_HIREMAINDER ulong hiremainder=0
 #define LOCAL_OVERFLOW ulong overflow = 0;
 
@@ -154,14 +154,14 @@ src1     32/64 bit source integer
 src2     32/64 bit source integer
 *sum_out Pointer to memory location where result is stored
 */
-int64_t addmul(ulong x, ulong y) {
+int64_t addmul(ulong x, ulong y, ulong *hiremainder) {
     ulong result, top;
     unsigned char c2;
     result = _umul128(x, y, &top);
     /* add hiremainder*/
-    c2 = _addcarry_u64(0, result, hiremainder, &result);
-    hiremainder = top + c2;
-    assert(hiremainder >= top); /* check for overflow*/
+    c2 = _addcarry_u64(0, result, *hiremainder, &result);
+    *hiremainder = top + c2;
+    assert(*hiremainder >= top); /* check for overflow*/
     return result;
 }
 #else
@@ -1078,7 +1078,7 @@ ulong umodsu(int64_t x, ulong y) {
 
 int64_t sdivss_rem(int64_t x, int64_t y, int64_t* r) {
     int64_t q;
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
     if (!y) 
         pari_err_INV("sdivss_rem", gen_0);
     hiremainder = 0; 
@@ -1111,7 +1111,7 @@ ulong ceildivuu(ulong a, ulong b) {
 
 ulong uabsdivui_rem(ulong x, GEN y, ulong* r) {
     int64_t q, s = signe(y);
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
 
     if (!s) 
         pari_err_INV("uabsdivui_rem", gen_0);
@@ -1142,7 +1142,7 @@ ulong uabsdiviu_rem(GEN n, ulong d, ulong* r) {
     default: /* 4 */
         {
             ulong n1, n0, q;
-            //LOCAL_HIREMAINDER;
+            LOCAL_HIREMAINDER;
             n0 = *int_W(n, 0);
             n1 = *int_W(n, 1);
             hiremainder = n1;
@@ -1155,7 +1155,7 @@ ulong uabsdiviu_rem(GEN n, ulong d, ulong* r) {
 
 int64_t sdivsi_rem(int64_t x, GEN y, int64_t* r) {
     int64_t q, s = signe(y);
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
 
     if (!s) 
         pari_err_INV("sdivsi_rem", gen_0);
@@ -1390,7 +1390,7 @@ int dvdiiz(GEN x, GEN y, GEN z) {
 /* copied from divll_pre.h*/
 ulong /* requires u1 <= n, n normalised */
 remll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv) {
-    ulong q0, q1, r, tmp;
+    ulong q0, q1, r;
     LOCAL_HIREMAINDER;
     LOCAL_OVERFLOW;
     q0 = mulll(ninv, u1, &hiremainder);
@@ -1451,9 +1451,9 @@ ulong Fl_mul_pre(ulong a, ulong b, ulong p, ulong pi) {
 ulong Fl_addmul_pre(ulong y0, ulong x0, ulong x1, ulong p, ulong pi)
 {
     ulong l0, h0;
-    //LOCAL_HIREMAINDER;
+    LOCAL_HIREMAINDER;
     hiremainder = y0;
-    l0 = addmul(x0, x1);
+    l0 = addmul(x0, x1, &hiremainder);
     h0 = hiremainder;
     return remll_pre(h0, l0, p, pi);
 }
@@ -1740,12 +1740,12 @@ void shift_right(GEN z2, GEN z1, int64_t imin, int64_t imax, ulong f, ulong sh) 
 
 /* Backward compatibility. Inefficient && unused */
 ulong shiftl(ulong x, ulong y) {
-    hiremainder = x >> (BITS_IN_LONG - y); 
+    ulong hiremainder = x >> (BITS_IN_LONG - y); 
     return (x << y);
 }
 
 ulong shiftlr(ulong x, ulong y) {
-    hiremainder = x << (BITS_IN_LONG - y); 
+    ulong hiremainder = x << (BITS_IN_LONG - y); 
     return (x >> y);
 }
 

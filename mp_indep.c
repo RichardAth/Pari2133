@@ -23,7 +23,7 @@ int bfffo(ulong x);
 int64_t divll(ulong x, ulong y, ulong* hiremainder);
 //ulong divll_pre(ulong a_lo, ulong n, ulong ninv);
 extern ulong overflow;
-extern ulong hiremainder;
+//extern ulong hiremainder;
 
 #define LOCAL_HIREMAINDER ulong hiremainder
 #define LOCAL_OVERFLOW ulong overflow = 0
@@ -174,12 +174,12 @@ mulur_2(ulong x, GEN y, int64_t s)
   int64_t m, sh, i, lx = lg(y), e = expo(y);
   GEN z = cgetr(lx);
   ulong garde;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   y--; 
   garde = mulll(x,y[lx], &hiremainder);
   for (i=lx-1; i>=3; i--) 
-      z[i]=addmul(x,y[i]);
+      z[i]=addmul(x,y[i], &hiremainder);
   z[2]=hiremainder; /* != 0 since y normalized and |x| > 1 */
   sh = bfffo(hiremainder); 
   m = BITS_IN_LONG-sh;
@@ -290,7 +290,7 @@ sqrz_i(GEN z, GEN x, int64_t lz)
   int64_t i, j, lzz, p1;
   ulong garde;
   GEN x1;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   LOCAL_OVERFLOW;
 
   if (lz > __SQRR_SQRI_LIMIT)
@@ -312,7 +312,7 @@ sqrz_i(GEN z, GEN x, int64_t lz)
   if (p1)
   {
     (void)mulll(p1,x[3], &hiremainder);
-    garde = addmul(p1,x[2]);
+    garde = addmul(p1,x[2], &hiremainder);
     z[lzz] = hiremainder;
   }
   else
@@ -326,11 +326,11 @@ sqrz_i(GEN z, GEN x, int64_t lz)
     if (p1)
     {
       (void)mulll(p1,x1[lz+1], &hiremainder);
-      garde = addll(addmul(p1,x1[lz]), garde, &overflow);
+      garde = addll(addmul(p1,x1[lz], &hiremainder), garde, &overflow);
       for (i=lzz; i>j; i--)
       {
         hiremainder += overflow;
-        z[i] = addll(addmul(p1,x1[i]), z[i], &overflow);
+        z[i] = addll(addmul(p1,x1[i], &hiremainder), z[i], &overflow);
       }
       z[j] = hiremainder+overflow;
     }
@@ -341,7 +341,7 @@ sqrz_i(GEN z, GEN x, int64_t lz)
   for (i=lzz; i>2; i--)
   {
     hiremainder += overflow;
-    z[i] = addll(addmul(p1,x1[i]), z[i], &overflow);
+    z[i] = addll(addmul(p1,x1[i], &hiremainder), z[i], &overflow);
   }
   z[2] = hiremainder+overflow;
   mulrrz_end(z, z, lz, 1, ez, garde);
@@ -362,11 +362,11 @@ INLINE void
 mulrrz_3(GEN z, GEN x, GEN y, int64_t flag, int64_t sz)
 {
   ulong garde;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   if (flag)
   {
     (void)mulll(x[2],y[3], &hiremainder);
-    garde = addmul(x[2],y[2]);
+    garde = addmul(x[2],y[2], &hiremainder);
   }
   else
     garde = mulll(x[2],y[2], &hiremainder);
@@ -383,7 +383,7 @@ mulrrz_i(GEN z, GEN x, GEN y, int64_t lz, int64_t flag, int64_t sz)
   int64_t ez, i, j, lzz, p1;
   ulong garde;
   GEN y1;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
   LOCAL_OVERFLOW;
 
   if (x == y) { 
@@ -409,7 +409,7 @@ mulrrz_i(GEN z, GEN x, GEN y, int64_t lz, int64_t flag, int64_t sz)
   if (p1)
   {
     (void)mulll(p1,y[3], &hiremainder);
-    garde = addll(addmul(p1,y[2]), garde, &overflow);
+    garde = addll(addmul(p1,y[2], &hiremainder), garde, &overflow);
     z[lzz] = overflow+hiremainder;
   }
   else z[lzz]=0;
@@ -419,11 +419,11 @@ mulrrz_i(GEN z, GEN x, GEN y, int64_t lz, int64_t flag, int64_t sz)
     if (p1)
     {
       (void)mulll(p1,y1[lz+1], &hiremainder);
-      garde = addll(addmul(p1,y1[lz]), garde, &overflow);
+      garde = addll(addmul(p1,y1[lz], &hiremainder), garde, &overflow);
       for (i=lzz; i>j; i--)
       {
         hiremainder += overflow;
-        z[i] = addll(addmul(p1,y1[i]), z[i], &overflow);
+        z[i] = addll(addmul(p1,y1[i], &hiremainder), z[i], &overflow);
       }
       z[j] = hiremainder+overflow;
     }
@@ -434,7 +434,7 @@ mulrrz_i(GEN z, GEN x, GEN y, int64_t lz, int64_t flag, int64_t sz)
   for (i=lzz; i>2; i--)
   {
     hiremainder += overflow;
-    z[i] = addll(addmul(p1,y1[i]), z[i], &overflow);
+    z[i] = addll(addmul(p1,y1[i], &hiremainder), z[i], &overflow);
   }
   z[2] = hiremainder+overflow;
   mulrrz_end(z, z, lz, sz, ez, garde);
@@ -594,7 +594,7 @@ vals(ulong z)
 GEN divsi(int64_t x, GEN y)
 {
   int64_t p1, s = signe(y);
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   if (!s) 
       pari_err_INV("divsi",gen_0);
@@ -767,7 +767,7 @@ divru(GEN x, ulong y)
   int64_t i, lx, sh, e, s = signe(x);
   ulong garde;
   GEN z;
-  //LOCAL_HIREMAINDER;
+  LOCAL_HIREMAINDER;
 
   if (!y) 
       pari_err_INV("divru",gen_0);
@@ -802,22 +802,22 @@ divru(GEN x, ulong y)
   }
   else
   {
-    ulong yp = get_Fl_red(y);
+    ulong yp = get_Fl_red(y, &hiremainder);
     if (y <= uel(x,2))
     {
       hiremainder = 0;
       for (i=2; i<lx; i++) 
-          z[i] = divll_pre(x[i],y,yp);
+          z[i] = divll_pre(x[i],y,yp, &hiremainder);
       /* we may have hiremainder != 0 ==> garde */
-      garde = divll_pre(0,y,yp);
+      garde = divll_pre(0,y,yp, &hiremainder);
     }
     else
     {
       int64_t l = lx-1;
       hiremainder = x[2];
       for (i=2; i<l; i++) 
-          z[i] = divll_pre(x[i+1],y,yp);
-      z[i] = divll_pre(0,y,yp);
+          z[i] = divll_pre(x[i+1],y,yp, &hiremainder);
+      z[i] = divll_pre(0,y,yp, &hiremainder);
       garde = hiremainder;
       e -= BITS_IN_LONG;
     }

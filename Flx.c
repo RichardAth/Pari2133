@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 ulong /* precompute inverse of n */
 get_Fl_red(ulong n);
 extern ulong overflow;
-extern ulong hiremainder;
+//extern ulong hiremainder;
 
 #define LOCAL_HIREMAINDER ulong hiremainder = 0
 #define LOCAL_OVERFLOW ulong overflow = 0
