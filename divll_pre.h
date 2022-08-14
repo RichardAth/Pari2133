@@ -41,7 +41,7 @@ divll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv, ulong *pt_r)
 {
   ulong q0, q1, r;
   LOCAL_HIREMAINDER;
-  //LOCAL_OVERFLOW;
+  LOCAL_OVERFLOW;
   q0 = mulll(ninv, u1, &hiremainder); q1 = hiremainder;
   q0 = addll(q0, u0, &overflow);
   q1 = addllx(q1+1, u1, &overflow);
@@ -62,7 +62,7 @@ remll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv)
 {
   ulong q0, q1, r;
   LOCAL_HIREMAINDER;
-  //LOCAL_OVERFLOW;
+  LOCAL_OVERFLOW;
   q0 = mulll(ninv, u1, &hiremainder); q1 = hiremainder;
   q0 = addll(q0, u0, &overflow);
   q1 = addllx(q1, u1, &overflow);

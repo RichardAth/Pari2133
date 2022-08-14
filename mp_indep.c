@@ -25,7 +25,7 @@ int64_t divll(ulong x, ulong y, ulong* hiremainder);
 extern ulong overflow;
 //extern ulong hiremainder;
 
-#define LOCAL_HIREMAINDER ulong hiremainder
+#define LOCAL_HIREMAINDER ulong hiremainder = 0
 #define LOCAL_OVERFLOW ulong overflow = 0
 
 #include "divll_pre.h"
@@ -802,7 +802,7 @@ divru(GEN x, ulong y)
   }
   else
   {
-    ulong yp = get_Fl_red(y, &hiremainder);
+    ulong yp = get_Fl_red(y);
     if (y <= uel(x,2))
     {
       hiremainder = 0;

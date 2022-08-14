@@ -108,7 +108,7 @@ entree  **varentries;
 THREAD int64_t *varpriority;
 
 THREAD pari_sp avma;
-//unsigned long long avma;
+
 
 THREAD struct pari_mainstack *pari_mainstack;
 

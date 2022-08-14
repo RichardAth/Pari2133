@@ -20,6 +20,7 @@ int bfffo(ulong x);
 unsigned integer. The return value holds the quotient, and the intrinsic 
 returns the remainder through a pointer parameter. 
 */
+#pragma intrinsic(_udiv128)
 int64_t divll(ulong n0, ulong d, ulong* hiremainder) {
     /* top 64 bits of dividend are in hiremainder, bottom 64 bits in n0,
     divisor is d. quotient won't overflow unless initial value of hiremainder >= d.

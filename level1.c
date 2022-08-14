@@ -32,7 +32,7 @@ int64_t divll(ulong x, ulong y, ulong *hiremainder);
 /* based on src\kernel\none\addll.h */
 /* note: __extension__ does not exist in visual studio C */
 
-ulong overflow = 0;
+//ulong overflow = 0;
 //ulong hiremainder = 0;
 #define LOCAL_HIREMAINDER ulong hiremainder=0
 #define LOCAL_OVERFLOW ulong overflow = 0;
@@ -139,7 +139,7 @@ mulll(ulong x, ulong y)
 #endif
 
 /* return x*y + old hiremainder 
-if result exceeds 64 bits top bits are in hiremainder,
+if result exceeds 64 bits top bits are returned in hiremainder,
 otherwise hiremainder is set to zero*/
 #ifdef _WIN32
 #pragma intrinsic(_umul128, _addcarry_u64)
@@ -950,8 +950,6 @@ GEN subss(int64_t x, int64_t y) {
     return addss(-y, x); 
 }
 
-/* external */
-GEN addii_sign(GEN x, int64_t sx, GEN y, int64_t sy);
 
 GEN
 subii(GEN x, GEN y) {

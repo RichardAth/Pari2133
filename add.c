@@ -28,86 +28,6 @@ extern ulong avma;
 extern ulong overflow;
 int bfffo(ulong x);
 
-/* convert a T_Real to an mpf_t. The precison of the mpf_t is set to match the T_Real.
-value must be initialised before calling TrealToMP. */
-void TrealToMP(const GEN x, mpf_t value) {
-    int64_t typx = typ(x);
-    int64_t sign, exp, prec, i;
-    if (typx != t_REAL) {
-        fprintf(stderr, "invalid conversion attempted; T_Real expected \n");
-        return;
-    }
-    sign = signe(x);
-    exp = expo(x);
-    prec = realprec(x);  /* this is really the total length of x in 64-bit words */
-    assert(prec >= 3);
-    mpf_set_prec(value, (prec - 2) * 64);  /* set precision (convert length in
-                                           words to length in bits) */
-    mpf_set_ui(value, 0);
-    for (i = 2; i < prec; i++) {    /* copy mantissa from x to value */
-        mpf_mul_2exp(value, value, 64);
-        mpf_add_ui(value, value, x[i]);
-    }
-
-    /* set exponent */
-    int64_t shift = (prec - 2) * 64 - exp - 1;
-    if (shift >= 0)
-        mpf_div_2exp(value, value, shift);
-    else
-        mpf_mul_2exp(value, value, -shift);
-
-    if (sign < 0)
-        mpf_neg(value, value);  /* if x is -ve make value -ve */
-    return;
-}
-
-/* generate a human-readable display of x*/
-/* generate a human-readable display of x*/
-char* stringify(GEN x, int sign) {
-    int64_t typx = typ(x);
-    static char buffer[1024];
-    char* temp;
-
-    /* temporary, till problem with GENtostr for T_REAL is resolved */
-    if (typx == t_REAL) {
-        mpf_t val_d;
-        mpf_init(val_d);
-        int64_t numdigits = (realprec(x) - 2) * 20;  /* estimate maximum number
-                                                     of significant digits */
-        if (numdigits > sizeof(buffer) - 22)
-            numdigits = sizeof(buffer) - 22;   /* avoid buffer overflow */
-        TrealToMP(x, val_d);    /* convert to extended precision floating point */
-        if (sign < 0)
-            mpf_neg(val_d, val_d);    
-        gmp_sprintf(buffer, "%.*Fg", numdigits, val_d);
-        mpf_clear(val_d);
-        return buffer;
-    }
-    if (typx == t_COMPLEX) {
-        double val_d;
-        char rbuf[1024], ibuf[1024];
-        GEN real = gel(x, 1);
-        int typr = typ(real);
-        if (typr == t_REAL) {
-            val_d = rtodbl(real);
-            sprintf_s(rbuf, sizeof(rbuf), "%.15g", val_d);
-        }
-        GEN imag = gel(x, 2);
-        int typi = typ(imag);
-        if (typi == t_REAL) {
-            val_d = rtodbl(imag);
-            sprintf_s(ibuf, sizeof(ibuf), "%.15g", val_d);
-        }
-        sprintf_s(buffer, sizeof(buffer), "%s, I%s", rbuf, ibuf);
-        return buffer;
-    }
-
-    temp = GENtostr(x);
-    strcpy_s(buffer, sizeof(buffer), temp);
-    free(temp);
-    return buffer;
-}
-
 
 #define LOCAL_HIREMAINDER ulong hiremainder
 #define LOCAL_OVERFLOW ulong overflow = 0
@@ -292,10 +212,6 @@ addrr_sign(GEN x, int64_t sx, GEN y, int64_t sy)
   int extend, f2;
   GEN z;
   LOCAL_OVERFLOW;
-#ifdef _DEBUG
-  //printf("addrr: %s + ", stringify(x, sx));
-  //printf("%s = ", stringify(y, sy));
-#endif
 
   if (!sy)
   {
