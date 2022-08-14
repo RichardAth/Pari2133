@@ -219,7 +219,7 @@ sieve_init2(int64_t p, ratpoints_sieve_entry *se1, int64_t b1, ratpoints_args *a
   {
     help = (ulong*)malloc(((p >> TWOPOTBITS_IN_LONG) + 2) * sizeof(ulong));
     register ulong *he = &help[0];
-    register ulong *he1 = &he[(p>>TWOPOTBITS_IN_LONG) + 2];
+    register ulong *he1 = &he[(p >> TWOPOTBITS_IN_LONG) + 2];
     while (he1 != he) { he1--; *he1 = 0ULL; }
   }
   { register ulong work = 0ULL;
@@ -327,7 +327,7 @@ gen_sieves0(GEN listprime)
     ulong *w = (ulong *) stack_malloc_align(2*p*sizeof(ulong), RBA_ALIGN);
     for (i = 0; i < p; i++) uel(w,i) = ~0ULL;
     for (i = 0; i < BITS_IN_LONG; i++)
-      uel(w,(p*i)>>TWOPOTBITS_IN_LONG) &= ~(1ULL<<((p*i) & LONG_MASK));
+      uel(w,(p*i) >> TWOPOTBITS_IN_LONG) &= ~(1ULL<<((p*i) & LONG_MASK));
     for (i = 0; i < p; i++) uel(w,i+p) = uel(w,i);
     si[n] = w;
   }
@@ -354,7 +354,7 @@ ZX_positive_region(GEN P, int64_t h, int64_t bitprec)
   int64_t i=1, j;
   GEN iv, st, en;
   if (s<0 && nR==0) return NULL;
-  iv = cgetg(((nR+1+(s>=0))>>1)+1, t_VEC);
+  iv = cgetg(((nR+1+(s>=0)) >> 1)+1, t_VEC);
   if (s>=0) st = itor(gel(it,1),prec);
   else    { st = gel(R,i); i++; }
   for (j=1; i<nR; j++)
@@ -862,7 +862,7 @@ get_2adic_info(ratpoints_args *args, ulong *den_bits,
     int64_t i;
     for (i = 1; i < 16; i += 2)
     {
-      if (is_f_square16[16 + (((b*i)>>1) & 0x3)]) work |= bit;
+      if (is_f_square16[16 + (((b*i) >> 1) & 0x3)]) work |= bit;
       bit <<= 1;
     }
     /* now repeat the 8 bits */
@@ -877,7 +877,7 @@ get_2adic_info(ratpoints_args *args, ulong *den_bits,
     int64_t i;
     for (i = 1; i < 8; i += 2)
     {
-      if (is_f_square16[20 + (((b*i)>>1) & 0x1)]) work |= bit;
+      if (is_f_square16[20 + (((b*i) >> 1) & 0x1)]) work |= bit;
       bit <<= 1;
     }
     /* now repeat the 4 bits */
@@ -1204,13 +1204,13 @@ sift(int64_t b, ratpoints_bit_array *survivors, ratpoints_args *args,
 #ifdef HAS_SSE2
           if (sh >= BITS_IN_LONG)
           {
-            survl[0] &= ~(0ULL)>>(sh - BITS_IN_LONG);
+            survl[0] &= ~(0ULL) >> (sh - BITS_IN_LONG);
             survl[1] = 0ULL;
           }
           else
-            survl[1] &= ~(0ULL)>>sh;
+            survl[1] &= ~(0ULL) >> sh;
 #else
-          survl[0] &= ~(0ULL)>>sh;
+          survl[0] &= ~(0ULL) >> sh;
 #endif
         }
         nb += _ratpoints_sift0(b, w_low0, w_high0, args, which_bits,
@@ -1298,7 +1298,7 @@ find_points_work(ratpoints_args *args,
       { /* case 1 */
         int64_t n;
         args->flags |= RATPOINTS_REVERSED;
-        for (n = 0; n < degree>>1; n++) swap(pel(c,n), pel(c,degree-n));
+        for (n = 0; n < degree >> 1; n++) swap(pel(c,n), pel(c,degree-n));
         degree--;
         setlg(c,degree+3);
       }
@@ -1306,7 +1306,7 @@ find_points_work(ratpoints_args *args,
       { /* case 2 */
         int64_t n;
         args->flags |= RATPOINTS_REVERSED;
-        for (n = 0; n < degree>>1; n++) swap(pel(c,n), pel(c,degree-n));
+        for (n = 0; n < degree >> 1; n++) swap(pel(c,n), pel(c,degree-n));
         lcfsq = 0;
       }
     }
@@ -1316,7 +1316,7 @@ find_points_work(ratpoints_args *args,
       {
         int64_t n;
         args->flags |= RATPOINTS_REVERSED;
-        for (n = 1; n < degree>>1; n++) swap(pel(c,n),pel(c,degree+1-n));
+        for (n = 1; n < degree >> 1; n++) swap(pel(c,n),pel(c,degree+1-n));
       }
     }
   }
@@ -1725,7 +1725,7 @@ hyperellratpoints(GEN PQ, GEN h, int64_t flag)
   if (!Q)
   {
     L = QX_hyperellratpoints(P, h, flag|2LL, &den);
-    dy = (degpol(P)+1)>>1;
+    dy = (degpol(P)+1) >> 1;
     l = lg(L);
     for (i = 1; i < l; i++)
     {
@@ -1737,7 +1737,7 @@ hyperellratpoints(GEN PQ, GEN h, int64_t flag)
     return gerepilecopy(av, L);
   }
   H = RgX_add(RgX_muls(P,4), RgX_sqr(Q));
-  dy = (degpol(H)+1)>>1; dQ = degpol(Q);
+  dy = (degpol(H)+1) >> 1; dQ = degpol(Q);
   L = QX_hyperellratpoints(H, h, flag|2LL, &den);
   l = lg(L);
   for (i = 1; i < l; i++)

@@ -986,7 +986,7 @@ dbasis(GEN p, GEN f, int64_t mf, GEN a, GEN U)
     for (i=2; i<=n; i++)
     {
       if (i == dU+1)
-        h = compmod(p, U, mkvec3(a,da,stoi(vda)), f, pdp, (mf>>1) - 1);
+        h = compmod(p, U, mkvec3(a,da,stoi(vda)), f, pdp, (mf >> 1) - 1);
       else
       {
         h = FpXQ_mul(h, a, f, D);

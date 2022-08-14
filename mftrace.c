@@ -1433,7 +1433,7 @@ mysqrtu(ulong d)
 {
   GEN fa = myfactoru(d), P = gel(fa,1), E = gel(fa,2);
   int64_t l = lg(P), i, s = 1;
-  for (i = 1; i < l; i++) s *= upowuu(P[i], (E[i]+1)>>1);
+  for (i = 1; i < l; i++) s *= upowuu(P[i], (E[i]+1) >> 1);
   return s;
 }
 static GEN
@@ -2244,7 +2244,7 @@ static GEN
 cache_get(int64_t id, ulong D)
 {
   cache *S = &caches[id];
-  const ulong d = S->compressed? D>>1: D;
+  const ulong d = S->compressed? D >> 1: D;
   ulong max, l;
 
   if (!S->cache)
@@ -2348,7 +2348,7 @@ constcoredisc(int64_t lim)
       set_avma(av2); cachea = N;
       CACHE = update_factor_cache(N, lim, &cacheb);
     }
-    F = gel(CACHE, ((N-cachea)>>1)+1); /* factoru(N) */
+    F = gel(CACHE, ((N-cachea) >> 1)+1); /* factoru(N) */
     D[N] = d = corediscs_fact(F); /* = 3 mod 4 or 4 mod 16 */
     d2 = odd(d)? d<<3: d<<1;
     for (i = 1;;)
@@ -2431,7 +2431,7 @@ consttabh(int64_t lim)
   cachea = cacheb = 0;
   for (N = LIM + 3; N <= lim; N += 4)
   {
-    int64_t s = 0, limt = usqrt(N>>2), flsq = 0, ind, t, L, S;
+    int64_t s = 0, limt = usqrt(N >> 2), flsq = 0, ind, t, L, S;
     GEN DN, DN2;
     if (N + 2 >= lg(VDIV))
     { /* use local cache */
@@ -2441,9 +2441,9 @@ consttabh(int64_t lim)
         set_avma(av2); cachea = N;
         CACHE = update_factor_cache(N, lim+2, &cacheb);
       }
-      F = gel(CACHE, ((N-cachea)>>1)+1); /* factoru(N) */
+      F = gel(CACHE, ((N-cachea) >> 1)+1); /* factoru(N) */
       DN = divisorsu_fact(F);
-      F = gel(CACHE, ((N-cachea)>>1)+2); /* factoru(N+2) */
+      F = gel(CACHE, ((N-cachea) >> 1)+2); /* factoru(N+2) */
       DN2 = divisorsu_fact(F);
     }
     else
@@ -2544,12 +2544,12 @@ hclassno6u_count(ulong d)
     return 6 * itou(gel(quadclassunit0(utoineg(d), 0, NULL, 0), 1));
 
   /* this part would work with -d non fundamental */
-  b = d&1; b2 = (1+d)>>2;
+  b = d&1; b2 = (1+d) >> 2;
   if (!b)
   {
     for (a=1; a*a<b2; a++)
       if (b2%a == 0) h++;
-    f = (a*a==b2); b=2; b2=(4+d)>>2;
+    f = (a*a==b2); b=2; b2=(4+d) >> 2;
   }
   while (b2*3 < d)
   {
@@ -2557,7 +2557,7 @@ hclassno6u_count(ulong d)
     for (a=b+1; a*a < b2; a++)
       if (b2%a == 0) h += 2;
     if (a*a == b2) h++;
-    b += 2; b2 = (b*b+d)>>2;
+    b += 2; b2 = (b*b+d) >> 2;
   }
   if (b2*3 == d) return 6*h+2;
   if (f) return 6*h+3;
@@ -2578,7 +2578,7 @@ hclassno6u_2(ulong D, int64_t D0, int64_t F)
   return h;
 }
 /* D > 0; 6 * hclassno(D) (6*Hurwitz). Beware, cached value for D (=0,3 mod 4)
- * is stored at D>>1 */
+ * is stored at D >> 1 */
 ulong
 hclassno6u(ulong D)
 {
@@ -2887,7 +2887,7 @@ A22(int64_t N, int64_t k, GEN CHI)
   res = sqrtm1modN(N); limx = (N - 1) >> 1;
   G = gel(CHI,1); chi = gel(CHI,2);
   o = gmfcharorder(CHI);
-  o2 = itou(o)>>1;
+  o2 = itou(o) >> 1;
   for (S = 0, i = 1; i < lg(res); i++)
   { /* (x,N) = 1, S += real(chi(x)) */
     int64_t x = res[i];
@@ -2910,9 +2910,9 @@ nuinf(int64_t N)
   {
     int64_t p = P[i], e = E[i];
     if (odd(e))
-      t *= upowuu(p,e>>1) << 1;
+      t *= upowuu(p,e >> 1) << 1;
     else
-      t *= upowuu(p,(e>>1)-1) * (p+1);
+      t *= upowuu(p,(e >> 1)-1) * (p+1);
   }
   return t;
 }
@@ -2994,7 +2994,7 @@ mkgcd(int64_t N)
   if (N == 1) return mkvecsmall(N);
   GCD = cgetg(N + 1, t_VECSMALL);
   d = GCD+1; /* GCD[i+1] = d[i] = gcd(i,N) = gcd(N-i,N), i = 0..N-1 */
-  d[0] = N; d[1] = d[N-1] = 1; N2 = N>>1;
+  d[0] = N; d[1] = d[N-1] = 1; N2 = N >> 1;
   for (i = 2; i <= N2; i++) d[i] = d[N-i] = ugcd(N, i);
   return GCD;
 }
@@ -3334,7 +3334,7 @@ mfnewzerodata(int64_t N, GEN CHIP)
   {
     int64_t p = PN[i], e = EN[i];
     int64_t z = zv_search(P, p), c = z? E[z]: 0; /* c = v_p(FC) */
-    if ((e <= 2 && c == 1 && itos(gel(chi,z)) == (p>>1)) /* ord(CHI_p)=2 */
+    if ((e <= 2 && c == 1 && itos(gel(chi,z)) == (p >> 1)) /* ord(CHI_p)=2 */
         || (e >= 3 && c <= e - 2))
     { /* sc: -p */
       GEN v = non_residues(p);
@@ -7541,7 +7541,7 @@ mfatkineigenquad(GEN mf, GEN CHIP, int64_t Q, GEN MF, int64_t bitprec)
 static GEN
 myusqrt(ulong a, int64_t prec)
 {
-  if (a == 1UL) return gen_1;
+  if (a == 1ULL) return gen_1;
   if (uissquareall(a, &a)) return utoipos(a);
   return sqrtr_abs(utor(a, prec));
 }
@@ -8519,7 +8519,7 @@ mfbasis(GEN NK, int64_t space)
   GEN mf, CHI;
   if ((mf = checkMF_i(NK))) return concat(gel(mf,2), gel(mf,3));
   checkNK2(NK, &N, &k, &dk, &CHI, 0);
-  if (dk == 2) return gerepilecopy(av, mf2basis(N, k>>1, CHI, NULL, space));
+  if (dk == 2) return gerepilecopy(av, mf2basis(N, k >> 1, CHI, NULL, space));
   mf = mfinit_Nkchi(N, k, CHI, space, 1);
   return gerepilecopy(av, MF_get_basis(mf));
 }
@@ -9860,7 +9860,7 @@ mfeisensteinspaceinit_i(int64_t N, int64_t k, GEN CHI)
   r = QabM_init(ord, &p);
   vz = Fl_powers(r, ord, p);
   getcols(&M, &vj, k, nCHI, allN, vz, p, lim);
-  for (ell = k>>1; ell >= 1; ell--)
+  for (ell = k >> 1; ell >= 1; ell--)
     if (getcolsgen(dim, &M, &vj, &z, k, ell, nCHI, allN, vz, p, lim)) break;
   if (!z) update_Mj(&M, &vj, &z, p);
   if (lg(vj) - 1 < dim) return NULL;
@@ -10734,7 +10734,7 @@ mfkohnenbijection_i(GEN mf)
 {
   GEN CHI = MF_get_CHI(mf), K = mfkohnenbasis(mf);
   GEN mres, dMi, Mi, M, C, vB, mf3, SHI, T, P;
-  int64_t N4 = MF_get_N(mf)>>2, r = MF_get_r(mf), dK = lg(K) - 1;
+  int64_t N4 = MF_get_N(mf) >> 2, r = MF_get_r(mf), dK = lg(K) - 1;
   int64_t i, c, n, oldr, lt, ltold, sb3, t, limt;
   const int64_t MAXlt = 100;
 

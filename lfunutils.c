@@ -674,7 +674,7 @@ vecan_chiZ(GEN an, int64_t n, int64_t prec)
   int64_t i, id, d = Nu ? minuu(Nu, n): n;
   int64_t multichi= (lg(chi) > 1 && is_vec_t(typ(gel(chi,1))));
   ulong p;
-  if (!multichi && ord && n > (ord>>4))
+  if (!multichi && ord && n > (ord >> 4))
   {
     GEN w = ncharvecexpo(G, nchi);
     z = grootsof1(ord, prec);
@@ -717,7 +717,7 @@ vecan_chigen(GEN an, int64_t n, int64_t prec)
   int64_t multichi= (lg(chi) > 1 && is_vec_t(typ(gel(chi,1))));
   ulong p;
 
-  if (ord && n > (ord>>4))
+  if (ord && n > (ord >> 4))
     z = grootsof1(ord, prec);
   else
     z = rootsof1_cx(gord, prec);
@@ -1203,8 +1203,8 @@ ellsympow_gamma(int64_t m)
 {
   GEN V = cgetg(m+2, t_VEC);
   int64_t i = 1, j;
-  if (!odd(m)) gel(V, i++) = stoi(-2*(m>>2));
-  for (j = (m+1)>>1; j > 0; i+=2, j--)
+  if (!odd(m)) gel(V, i++) = stoi(-2*(m >> 2));
+  for (j = (m+1) >> 1; j > 0; i+=2, j--)
   {
     gel(V,i)   = stoi(1-j);
     gel(V,i+1) = stoi(1-j+1);
@@ -1233,7 +1233,7 @@ static GEN
 ellsympow_abelian(GEN p, GEN ap, int64_t m, int64_t o)
 {
   pari_sp av = avma;
-  int64_t i, M, n = (m+1)>>1;
+  int64_t i, M, n = (m+1) >> 1;
   GEN pk, tv, pn, pm, F, v;
   if (!odd(o))
   {
@@ -1331,7 +1331,7 @@ ellsympow_multred(GEN E, GEN p, int64_t m, int64_t vN, int64_t *cnd, int64_t *w)
   }
   else
   {
-    *cnd = equaliu(p,2)? ((m+1)>>1) * vN: m+1;
+    *cnd = equaliu(p,2)? ((m+1) >> 1) * vN: m+1;
     *w = (m & 3) == 1? ellrootno(E, p): 1;
     return pol_1(0);
   }
@@ -1344,10 +1344,10 @@ ellsympow_nonabelian(GEN p, int64_t m, int64_t bet)
  if (odd(m))
  {
    q2 = mulii(q2, p); /* p^m */
-   return gpowgs(deg2pol_shallow(q2, gen_0, gen_1, 0), bet>>1);
+   return gpowgs(deg2pol_shallow(q2, gen_0, gen_1, 0), bet >> 1);
  }
  togglesign_safe(&q2);
- F = gpowgs(deg2pol_shallow(q2, gen_0, gen_1, 0), bet>>1);
+ F = gpowgs(deg2pol_shallow(q2, gen_0, gen_1, 0), bet >> 1);
  if (!odd(bet)) return F;
  if (m%4 != 2) togglesign_safe(&q);
  return gmul(F, deg1pol_shallow(q, gen_1, 0));
@@ -1382,7 +1382,7 @@ ellsympow_goodred(GEN E, GEN p, int64_t m, int64_t *cnd, int64_t *w)
   int64_t o = 12/cgcd(12, Z_pval(ell_get_disc(E), p));
   int64_t bet = ellsympow_betam(o, m);
   int64_t eps = m + 1 - bet;
-  *w = odd(m) && odd(eps>>1) ? ellrootno(E,p): 1;
+  *w = odd(m) && odd(eps >> 1) ? ellrootno(E,p): 1;
   *cnd = eps;
   if (umodiu(p, o) == 1)
     return ellsympow_abelian_twist(E, p, m, o);
@@ -1423,7 +1423,7 @@ ellsympow_rootno3(GEN E, GEN p, int64_t o, int64_t m)
   const int64_t  w6n[]={-1,1,-1,1,-1,1};
   const int64_t w12p[]={1,1,-1,1,1,1};
   const int64_t w12n[]={-1,-1,-1,-1,-1,1};
-  int64_t w = ellrootno(E, p), mm = (m%12)>>1;
+  int64_t w = ellrootno(E, p), mm = (m%12) >> 1;
   switch(o)
   {
     case 2: return m%4== 1 ? -1: 1;
@@ -1485,7 +1485,7 @@ ellsympow_isabelian2(GEN F)
 static int64_t
 ellsympow_rootno2(GEN E, int64_t vN, int64_t m, int64_t bet)
 {
-  int64_t eps2 = (m + 1 - bet)>>1;
+  int64_t eps2 = (m + 1 - bet) >> 1;
   int64_t eta = odd(vN) && m%8==3 ? -1 : 1;
   int64_t w2 = odd(eps2) ? ellrootno(E, gen_2): 1;
   return eta == w2 ? 1 : -1;
@@ -1558,7 +1558,7 @@ lfunellsympow(GEN e, ulong m)
     B = mulii(B, powiu(p,cnd));
     w *= wp;
   }
-  pole = mero ? mkvec(mkvec2(stoi(1+(m>>1)),gen_0)): NULL;
+  pole = mero ? mkvec(mkvec2(stoi(1+(m >> 1)),gen_0)): NULL;
   ld = mkvecn(mero? 7: 6, tag(mkvec2(mkvec2(e,utoi(m)),bad), t_LFUN_SYMPOW_ELL),
         gen_0, ellsympow_gamma(m), stoi(m+1), B, stoi(w), pole);
   if (et) obj_free(et);

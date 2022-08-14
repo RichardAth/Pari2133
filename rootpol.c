@@ -642,7 +642,7 @@ fft2(GEN W, GEN p, GEN f, int64_t step, int64_t l)
     gel(f,1) = gsub(gel(p,0), gel(p,step)); return;
   }
   av = avma;
-  l1 = l>>1; step2 = step<<1;
+  l1 = l >> 1; step2 = step<<1;
   fft2(W,p,          f,   step2,l1);
   fft2(W,p+step,     f+l1,step2,l1);
   for (i = s1 = 0; i < l1; i++, s1 += step)
@@ -684,7 +684,7 @@ fft(GEN W, GEN p, GEN f, int64_t step, int64_t l, int64_t inv)
     gerepileallsp(av,av2,4,&gel(f,0),&gel(f,1),&gel(f,2),&gel(f,3));
     return;
   }
-  l1 = l>>2; l2 = 2*l1; l3 = l1+l2; step4 = step<<2;
+  l1 = l >> 2; l2 = 2*l1; l3 = l1+l2; step4 = step<<2;
   fft(W,p,          f,   step4,l1,inv);
   fft(W,p+step,     f+l1,step4,l1,inv);
   fft(W,p+(step<<1),f+l2,step4,l1,inv);
@@ -732,7 +732,7 @@ FFT_i(GEN W, GEN x)
   y = cgetg(l, t_VEC);
   if (tw==code(t_COMPLEX,t_INT) || tw==code(t_COMPLEX,t_REAL))
   {
-    int64_t inv = (l >= 5 && signe(imag_i(gel(W,1+(l>>2))))==1) ? 1 : 0;
+    int64_t inv = (l >= 5 && signe(imag_i(gel(W,1+(l >> 2))))==1) ? 1 : 0;
     fft(W+1, z+1, y+1, 1, l-1, inv);
   } else
     fft2(W+1, z+1, y+1, 1, l-1);

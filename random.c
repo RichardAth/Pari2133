@@ -39,7 +39,7 @@ int bfffo(ulong x);
 static u64
 _32to64(ulong a, ulong b) { u64 v = a; return (v<<32)|b; }
 static void
-_64to32(u64 v, ulong *a, ulong *b) { *a = v>>32; *b = v&0xFFFFFFFF; }
+_64to32(u64 v, ulong *a, ulong *b) { *a = v >> 32; *b = v&0xFFFFFFFF; }
 #endif
 static THREAD u64 state[64];
 static THREAD u64 xorgen_w;
@@ -56,8 +56,8 @@ block(void)
   xorgen_i = (xorgen_i+1)&(r-1);
   t = state[xorgen_i];
   v = state[(xorgen_i+(r-s))&(r-1)];   /* index is (i-s) mod r */
-  t ^= t<<a; t ^= t>>b;                   /* (I + L^a)(I + R^b) */
-  v ^= v<<c; v ^= v>>d;                   /* (I + L^c)(I + R^d) */
+  t ^= t<<a; t ^= t >> b;                   /* (I + L^a)(I + R^b) */
+  v ^= v<<c; v ^= v >> d;                   /* (I + L^c)(I + R^d) */
   w = t^v;
   return state[xorgen_i] = w;               /* update circular array */
 }
@@ -70,26 +70,26 @@ init_xor4096i(u64 v)
   int k;
 
   for (k = r; k > 0; k--) {/* avoid correlations for close seeds */
-    v ^= v<<10; v ^= v>>15; /* recurrence has period 2**64-1 */
-    v ^= v<<4;  v ^= v>>13;
+    v ^= v<<10; v ^= v >> 15; /* recurrence has period 2**64-1 */
+    v ^= v<<4;  v ^= v >> 13;
   }
   for (xorgen_w = v, k = 0; k < r; k++) { /* initialise circular array */
-    v ^= v<<10; v ^= v>>15;
-    v ^= v<<4;  v ^= v>>13;
+    v ^= v<<10; v ^= v >> 15;
+    v ^= v<<4;  v ^= v >> 13;
     state[k] = v + (xorgen_w+=weyl);
   }
   /* discard first 4*r results */
   for (xorgen_i = r-1, k = 4*r; k > 0; k--) (void)block();
 }
 
-void pari_init_rand(void) { init_xor4096i(1UL); }
+void pari_init_rand(void) { init_xor4096i(1ULL); }
 
 static u64
 rand64(void)
 {
   u64 v = block();
   xorgen_w += weyl; /* update Weyl generator */
-  return v + (xorgen_w ^ (xorgen_w>>27));
+  return v + (xorgen_w ^ (xorgen_w >> 27));
 }
 
 /* One random number uniformly distributed in [0..2**BIL) is returned, where
@@ -138,7 +138,7 @@ getrand(void)
   GEN x;
   ulong *xp;
   int64_t i;
-  if (xorgen_i < 0) init_xor4096i(1UL);
+  if (xorgen_i < 0) init_xor4096i(1ULL);
 
 #ifdef LONG_IS_64BIT
   x = cgetipos(2+r2+2); xp = (ulong *) int_LSW(x);
@@ -246,11 +246,11 @@ random_F2x(int64_t d, int64_t vs)
   {
     u64 v = rand64();
     uel(y,i)   = (ulong) v;
-    uel(y,i+1) = (ulong) (v>>32);
+    uel(y,i+1) = (ulong) (v >> 32);
   }
   if (i<l) uel(y,i) = (ulong) rand64();
 #endif
-  if (db) uel(y,l-1) &= ((1UL<<db)-1UL);
+  if (db) uel(y,l-1) &= ((1ULL<<db)-1ULL);
   return F2x_renormalize(y,l);
 }
 

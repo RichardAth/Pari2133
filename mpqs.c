@@ -557,7 +557,7 @@ mpqs_increment(mpqs_uint32_t *x)
     if (r1_mask == 1) { *x += r01_mask; break; }
     /* General case: add r01_mask, kill off as many 1 bits as possible to its
      * right while at the same time filling in 1 bits from the LSB. */
-    if (r1_mask == 2) { *x += (r01_mask>>1) + 1; return; }
+    if (r1_mask == 2) { *x += (r01_mask >> 1) + 1; return; }
     while (r01_mask > r1_mask && slider < r1_mask)
     {
       r01_mask >>= 1; slider <<= 1;
@@ -570,7 +570,7 @@ mpqs_increment(mpqs_uint32_t *x)
   r01_mask = ((*x ^ (*x + r1_mask)) + r1_mask) >> 2;
   if (r1_mask == r01_mask) { *x += r1_mask; return; }
   if (r1_mask == 1) { *x += r01_mask; return; }
-  if (r1_mask == 2) { *x += (r01_mask>>1) + 1; return; }
+  if (r1_mask == 2) { *x += (r01_mask >> 1) + 1; return; }
   while (r01_mask > r1_mask && slider < r1_mask)
   {
     r01_mask >>= 1; slider <<= 1;
@@ -1405,7 +1405,7 @@ mpqs_solve_linear_system(mpqs_handle_t *h, hashtable *frel)
       {
         GEN q = utoipos(FB[j].fbe_p);
         if (ei[j] & 1) pari_err_BUG("MPQS (relation is a nonsquare)");
-        X = remii(mulii(X, Fp_powu(q, (ulong)ei[j]>>1, N)), N);
+        X = remii(mulii(X, Fp_powu(q, (ulong)ei[j] >> 1, N)), N);
         X = gerepileuptoint(av3, X);
       }
     if (MPQS_DEBUGLEVEL >= 1 && !dvdii(subii(sqri(X), sqri(Y_prod)), N))

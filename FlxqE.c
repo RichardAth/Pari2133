@@ -808,7 +808,7 @@ get_norm(GEN a4, GEN a6, GEN T, ulong p, int64_t N)
   else
   {
     GEN P = mkpoln(4, pol1_Flx(sv), pol0_Flx(sv), a4, a6);
-    a = gel(FlxqX_powu(P,p>>1,T,p),2+p-1);
+    a = gel(FlxqX_powu(P,p >> 1,T,p),2+p-1);
   }
   return Zp_sqrtnlift(gen_1,subss(p,1),utoi(Flxq_norm(a,T,p)),utoi(p), N);
 }
@@ -885,7 +885,7 @@ zx_is_pcyc(GEN T)
   if (!uisprime(n+1))
     return 0;
   for (i=0; i<=n; i++)
-    if (T[i+2]!=1UL)
+    if (T[i+2]!=1ULL)
       return 0;
   return 1;
 }
@@ -1358,12 +1358,12 @@ Flxq_ellcard_Satoh(GEN a4, GEN a6, GEN j, GEN T, ulong p)
         GEN sk = Flx_Fl_add(Flx_neg(j, p), 1728%p, p);
         GEN sA4 = Flx_triple(Flxq_mul(sk, j, T, p), p);
         GEN u = Flxq_div(a4, sA4, T, p);
-        ulong ns = lgpol(s) ? Fl_neg(s[2], p): 0UL;
+        ulong ns = lgpol(s) ? Fl_neg(s[2], p): 0ULL;
         GEN P = mkvecsmall4(T[1], m[2], ns, 1L);
         GEN A4, A6, t, tP;
         Flxq_ellj_to_a4a6(polx_Flx(T[1]), P, p, &A4, &A6);
         tP = addis(q, 1 - Flxq_ellcard_naive(A4, A6, P, p));
-        t = elltrace_extension(tP, n>>1, q);
+        t = elltrace_extension(tP, n >> 1, q);
         return Flxq_is2npower(u, 2, T, p) ? subii(q1,t): addii(q1,t);
       }
     }
@@ -1378,7 +1378,7 @@ Flxq_ellcard_Kedlaya(GEN a4, GEN a6, GEN T, ulong p)
   pari_sp av = avma;
   GEN H = mkpoln(4, gen_1, gen_0, Flx_to_ZX(a4), Flx_to_ZX(a6));
   GEN Tp = Flx_to_ZX(get_Flx_mod(T));
-  int64_t n = degpol(Tp), e = ((p < 16 ? n+1: n)>>1)+1;
+  int64_t n = degpol(Tp), e = ((p < 16 ? n+1: n) >> 1)+1;
   GEN M = ZlXQX_hyperellpadicfrobenius(H, Tp, p, e);
   GEN N = ZpXQM_prodFrobenius(M, Tp, utoi(p), e);
   GEN q = powuu(p, e);
@@ -1442,12 +1442,12 @@ F3xq_ellcardj(GEN a4, GEN a6, GEN T, GEN q, int64_t n)
   {
     GEN q3;
     if (t==0) return q1;
-    q3 = powuu(p,(n+1)>>1);
+    q3 = powuu(p,(n+1) >> 1);
     return (t==1)^(n%4==1) ? subii(q1,q3): addii(q1,q3);
   }
   else
   {
-    GEN q22, q2 = powuu(p,n>>1);
+    GEN q22, q2 = powuu(p,n >> 1);
     GEN W = Flxq_pow(a4,shifti(q,-2),T,p);
     int64_t s = (W[2]==1)^(n%4==2);
     if (t!=0) return s ? addii(q1,q2): subii(q1, q2);

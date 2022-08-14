@@ -470,7 +470,7 @@ modinv_f_from_j(ulong j, ulong p, ulong pi, ulong s2, int64_t only_residue)
   /* f^8 must be a root of X^3 - \gamma_2 X - 16 */
   g2 = Fl_sqrtl_pre(j, 3, p, pi);
 
-  pol = mkvecsmall5(0UL, Fl_neg(16 % p, p), Fl_neg(g2, p), 0UL, 1UL);
+  pol = mkvecsmall5(0ULL, Fl_neg(16 % p, p), Fl_neg(g2, p), 0ULL, 1ULL);
   r = Flx_roots(pol, p);
   for (i = 1; i < lg(r); ++i)
     if (only_residue)
@@ -488,8 +488,8 @@ modinv_f3_from_j(ulong j, ulong p, ulong pi, ulong s2)
   int64_t i;
   ulong f = ULONG_MAX;
 
-  pol = mkvecsmall5(0UL,
-      Fl_neg(4096 % p, p), Fl_sub(768 % p, j, p), Fl_neg(48 % p, p), 1UL);
+  pol = mkvecsmall5(0ULL,
+      Fl_neg(4096 % p, p), Fl_sub(768 % p, j, p), Fl_neg(48 % p, p), 1ULL);
   r = Flx_roots(pol, p);
   for (i = 1; i < lg(r); ++i)
     if (eighth_root(&f, r[i], p, pi, s2)) return gc_ulong(av,f);
@@ -1767,7 +1767,7 @@ eval_modpoly_modp(GEN Tp, GEN j_powers, norm_eqn_t ne, int compute_derivs)
   ulong p = ne->p, pi = ne->pi;
   int64_t L = lg(j_powers) - 3;
   GEN j_pows_p = ZV_to_Flv(j_powers, p);
-  GEN tmp = cgetg(2 + 2 * compute_derivs, t_VEC);
+  GEN tmp = cgetg(2LL + 2 * compute_derivs, t_VEC);
   /* We wrap the result in this t_VEC Tp to trick the
    * ZM_*_CRT() functions into thinking it's a matrix. */
   gel(tmp, 1) = Flm_Flc_mul_pre(Tp, j_pows_p, p, pi);
@@ -3426,8 +3426,8 @@ modpoly_pickD_primes(
   one_prime = 0;
   *totbits = 0;
   if (max <= 1 && ! one_prime) {
-    p = ((pfilter & IQ_FILTER_1MOD3) ? 2 : 1) * ((pfilter & IQ_FILTER_1MOD4) ? 2 : 1);
-    one_prime = (1UL << ((FF_BITS+1)/2)) * (log2(L*L*(-D))-1)
+    p = ((pfilter & IQ_FILTER_1MOD3) ? 2LL : 1LL) * ((pfilter & IQ_FILTER_1MOD4) ? 2LL : 1LL);
+    one_prime = (1ULL << ((FF_BITS+1)/2)) * (log2(L*L*(-D))-1)
         > p*L*minbits*FF_BITS*M_LN2;
     if (one_prime) *totbits = minbits+1;   /* lie */
   }

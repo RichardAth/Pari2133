@@ -1530,12 +1530,12 @@ closure_eval(GEN C)
                    " '%s' in user function",get_arg_name(C,j+1));
       break;
     case OCcheckargs:
-      for (j=sp-1;operand;operand>>=1UL,j--)
+      for (j=sp-1; operand; operand>>=1ULL,j--)
         if ((operand&1L) && gel(st,j)==NULL)
           pari_err(e_MISC,"missing mandatory argument");
       break;
     case OCcheckargs0:
-      for (j=sp-1;operand;operand>>=1UL,j--)
+      for (j=sp-1; operand; operand>>=1ULL,j--)
         if ((operand&1L) && gel(st,j))
           pari_err(e_MISC,"argument type not implemented");
       break;

@@ -40,7 +40,7 @@ binary_zv(GEN x)
   {
     ulong u = *xp;
     int64_t j;
-    for (j=0; j<BITS_IN_LONG && k; j++) z[k--] = (u>>j)&1UL;
+    for (j=0; j<BITS_IN_LONG && k; j++) z[k--] = (u >> j)&1ULL;
     if (!k) break;
     xp = int_nextW(xp);
   }
@@ -253,7 +253,7 @@ binaire(GEN x)
 INLINE ulong
 int_get_bits(int64_t k, GEN *w, int64_t *r)
 {
-  ulong mask = (1UL << k) - 1;
+  ulong mask = (1ULL << k) - 1;
   ulong a = (((ulong) **w) >> *r) & mask;
   *r += k;
   if (*r >= BITS_IN_LONG) {

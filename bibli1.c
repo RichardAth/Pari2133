@@ -1395,7 +1395,7 @@ minim0_dolll(GEN a, GEN BORNE, GEN STOCKMAX, int64_t flag, int64_t dolll)
         break;
 
       case min_VECSMALL2:
-        { ulong norm = (ulong)(p + 0.5); if (!odd(norm)) L[norm>>1]++; }
+        { ulong norm = (ulong)(p + 0.5); if (!odd(norm)) L[norm >> 1]++; }
         break;
 
     }

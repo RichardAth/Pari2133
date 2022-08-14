@@ -256,8 +256,8 @@ Flj_order_ufact(GEN P, ulong n, GEN F, ulong a4, ulong p, ulong pi)
 
 GEN
 Fle_to_Flj(GEN P)
-{ return ell_is_inf(P) ? mkvecsmall3(1UL, 1UL, 0UL):
-                         mkvecsmall3(P[1], P[2], 1UL);
+{ return ell_is_inf(P) ? mkvecsmall3(1ULL, 1ULL, 0ULL):
+                         mkvecsmall3(P[1], P[2], 1ULL);
 }
 
 GEN

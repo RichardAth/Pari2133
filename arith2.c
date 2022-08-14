@@ -987,7 +987,7 @@ set_vexp(GEN v, int64_t l)
 {
   int64_t m;
   if (v[l]) return;
-  v[l] = 1; m = l>>1;
+  v[l] = 1; m = l >> 1;
   set_vexp(v, m);
   set_vexp(v, l-m);
 }
@@ -1018,7 +1018,7 @@ gen_digits_dac(GEN x, GEN vB, int64_t l, GEN *z,
                void *E, GEN div(void *E, GEN a, GEN b, GEN *r))
 {
   GEN q, r;
-  int64_t m = l>>1;
+  int64_t m = l >> 1;
   if (l==1) { *z=x; return; }
   q = div(E, x, gel(vB,m), &r);
   gen_digits_dac(r, vB, m, z, E, div);
@@ -1031,7 +1031,7 @@ gen_fromdigits_dac(GEN x, GEN vB, int64_t i, int64_t l, void *E,
                    GEN mul(void *E, GEN a, GEN b))
 {
   GEN a, b;
-  int64_t m = l>>1;
+  int64_t m = l >> 1;
   if (l==1) return gel(x,i);
   a = gen_fromdigits_dac(x, vB, i, m, E, add, mul);
   b = gen_fromdigits_dac(x, vB, i+m, l-m, E, add, mul);
@@ -1099,7 +1099,7 @@ digits_dacsmall(GEN x, GEN vB, int64_t l, ulong* z)
   GEN q,r;
   int64_t m;
   if (l==1) { *z=itou(x); return; }
-  m=l>>1;
+  m=l >> 1;
   q = dvmdii(x, gel(vB,m), &r);
   digits_dacsmall(q,vB,l-m,z);
   digits_dacsmall(r,vB,m,z+l-m);
@@ -1153,7 +1153,7 @@ static GEN
 fromdigitsu_dac(GEN x, GEN vB, int64_t i, int64_t l)
 {
   GEN a, b;
-  int64_t m = l>>1;
+  int64_t m = l >> 1;
   if (l==1) return utoi(uel(x,i));
   if (l==2) return addumului(uel(x,i), uel(x,i+1), gel(vB, m));
   a = fromdigitsu_dac(x, vB, i, m);

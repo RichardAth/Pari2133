@@ -257,7 +257,7 @@ sort_Dmq_by_cnum(void *data, GEN x, GEN y)
   return sort_Dmq_by_q(data, x, y);
 }
 
-/* return H s.t if -maxD <= D < 0 is fundamental then H[(-D)>>1] is the
+/* return H s.t if -maxD <= D < 0 is fundamental then H[(-D) >> 1] is the
  * ordinary class number of Q(sqrt(D)); junk at other entries. */
 static GEN
 allh(ulong maxD)
@@ -338,7 +338,7 @@ ecpp_disclist_init(ulong maxdisc, GEN primelist)
   { /* sieve by squares of primes */
     int64_t s, q = primelist[ip], p = labs(q);
     s = (q == p)? 3: 1;
-    for (t = (s*p+1)>>2; t <= lenv; t += p, s += 4)
+    for (t = (s*p+1) >> 2; t <= lenv; t += p, s += 4)
     {
       int64_t c = od[t];
       if (c) { if (s%p == 0) od[t] = 0; else  od[t] = c*q; }
@@ -379,7 +379,7 @@ ecpp_disclist_init(ulong maxdisc, GEN primelist)
   {
     int64_t s, q = primelist[ip], p = labs(q);
     s = (q == p)? 3: 1;
-    for (t = (s*p+1)>>2; t <= lenv; t += p, s += 4)
+    for (t = (s*p+1) >> 2; t <= lenv; t += p, s += 4)
     {
       GEN c = gel(od,t);
       if (c) vecsmalltrunc_append(gel(c,2), ip);
@@ -963,7 +963,7 @@ tunevec_batchsize(int64_t expiN, GEN param)
 {
   int64_t t, b = 28 - tunevec_tdivbd(expiN, param);
   if (b < 0) return expiN;
-  t = expiN >> b; return t < 1? 1: t;
+  t = expiN  >>  b; return t < 1? 1: t;
 }
 
 static GEN

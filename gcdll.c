@@ -49,9 +49,9 @@ gcduodd(ulong x, ulong y)         /* assume y&1==1, y > 1 */
   /* loop invariants: x,y odd and distinct. */
  yislarger:
   if ((x^y)&2)                 /* ...01, ...11 or vice versa */
-    y=(x>>2)+(y>>2)+1;         /* ==(x+y)>>2 except it can't overflow */
+    y=(x >> 2)+(y >> 2)+1;         /* ==(x+y) >> 2 except it can't overflow */
   else                         /* ...01,...01 or ...11,...11 */
-    y=(y-x)>>2;                /* now y!=0 in either case */
+    y=(y-x) >> 2;                /* now y!=0 in either case */
   while (!(y&1)) y>>=1;        /* kill any windfall-gained powers of 2 */
   if (y==1) return 1;          /* comparand == return value... */
   if (x==y) return y;          /* this and the next is just one comparison */
@@ -59,9 +59,9 @@ gcduodd(ulong x, ulong y)         /* assume y&1==1, y > 1 */
 
  xislarger:                    /* same as above, seen through a mirror */
   if ((x^y)&2)
-    x=(x>>2)+(y>>2)+1;
+    x=(x >> 2)+(y >> 2)+1;
   else
-    x=(x-y)>>2;                /* x!=0 */
+    x=(x-y) >> 2;                /* x!=0 */
   while (!(x&1)) x>>=1;
   if (x==1) return 1;
   if (x==y) return y;
@@ -104,7 +104,7 @@ ugcd(ulong a,ulong b)
   if (a>b) { a %= b; if (!a) return b; }
   else     { b %= a; if (!b) return a; }
   v = vals(a|b);
-  return mygcduodd(a>>v, b>>v) << v;
+  return mygcduodd(a >> v, b >> v) << v;
 }
 int64_t
 cgcd(int64_t a,int64_t b) { return (int64_t)ugcd(labs(a), labs(b)); }
@@ -116,7 +116,7 @@ igcduu(ulong a, ulong b)
   int64_t v;
   a %= b; if (!a) return utoipos(b);
   v = vals(a|b);
-  return utoipos( mygcduodd(a>>v, b>>v) << v );
+  return utoipos( mygcduodd(a >> v, b >> v) << v );
 }
 
 /*Warning: overflows silently if lcm does not fit*/
@@ -689,7 +689,7 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
   res = 1;
   if (xv1 > vmax)
   { /* gone past the bound already */
-    *u = 0ULL; *u1 = 1UL; *v = 1ULL; *v1 = xv1;
+    *u = 0ULL; *u1 = 1ULL; *v = 1ULL; *v1 = xv1;
     return res;
   }
   xu = 0ULL; xv = xu1 = 1ULL;

@@ -268,7 +268,7 @@ mfDcoefs(GEN F, GEN vD, int64_t d)
   int64_t l = lg(vD), i;
   GEN v = mfcoefs(F, vD[l-1], d), w = cgetg(l, t_COL);
   if (d == 4)
-    for (i = 1; i < l; i++) gel(w, i) = gel(v, (vD[i]>>2)+1);
+    for (i = 1; i < l; i++) gel(w, i) = gel(v, (vD[i] >> 2)+1);
   else
     for (i = 1; i < l; i++) gel(w, i) = gel(v, vD[i]+1);
   return w;

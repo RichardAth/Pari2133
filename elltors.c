@@ -51,7 +51,7 @@ tors(GEN e, int64_t k, GEN p, GEN q, GEN v)
   GEN r;
   if (q)
   {
-    int64_t n = k>>1;
+    int64_t n = k >> 1;
     GEN p1, best = q, np = ellmul(e,p,utoipos(n));
     if (n % 2 && smaller_x(gel(np,1), gel(best,1))) best = np;
     p1 = elladd(e,q,np);
@@ -228,7 +228,7 @@ elltors_divpol(GEN E, int64_t psylow)
     { /* C2 x C4 or C2 x C8 */
       P = gel(p, B);
       Q = gel(T2,2);
-      if (gequal(Q, ellmul(E, P, utoipos(B>>1)))) Q = gel(T2,1);
+      if (gequal(Q, ellmul(E, P, utoipos(B >> 1)))) Q = gel(T2,1);
     }
   }
   else /* cyclic */
@@ -236,10 +236,10 @@ elltors_divpol(GEN E, int64_t psylow)
     Q = NULL;
     if (v2)
     {
-      if (B>>v2 == 1)
+      if (B >> v2 == 1)
         P = gel(p, B);
       else
-        P = elladd(E, gel(p, B>>v2), gel(p, 1LL << v2));
+        P = elladd(E, gel(p, B >> v2), gel(p, 1LL << v2));
     }
     else P = gel(p, B);
   }
@@ -663,7 +663,7 @@ ellorder_Q(GEN E, GEN P)
   else
   { /* check whether [k]P = O over Q. Save potentially costly last elladd */
     GEN R;
-    Q = ellmul(E, P, utoipos(k>>1));
+    Q = ellmul(E, P, utoipos(k >> 1));
     R = odd(k)? elladd(E, P,Q): Q;
     if (!gequal(Q, ellneg(E,R))) k = 0;
   }

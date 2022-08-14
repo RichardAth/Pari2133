@@ -65,7 +65,7 @@ zm_divmod(GEN A, GEN B, ulong p)
 {
   pari_sp av = avma;
   GEN Ap = zm_to_Flm(A,p), Bp = zm_to_Flm(B,p);
-  GEN C = Flm_center(Flm_mul(Flm_inv(Ap, p), Bp, p), p, p>>1);
+  GEN C = Flm_center(Flm_mul(Flm_inv(Ap, p), Bp, p), p, p >> 1);
   return gerepileupto(av, C);
 }
 
@@ -929,7 +929,7 @@ autom(struct group *G, struct qfauto *qf, struct fingerprint *fp,
   }
 }
 
-#define MAXENTRY (1LL <<((BITS_IN_LONG-2)>>1))
+#define MAXENTRY (1LL <<((BITS_IN_LONG-2) >> 1))
 #define MAXNORM (1LL <<(BITS_IN_LONG-2))
 
 static int64_t
@@ -1141,7 +1141,7 @@ init_comb(struct qfcand *cand, GEN A, GEN e, struct qfauto *qf)
   GEN Am = zm_to_ZM(A);
   for (cand->cdep = 1; ; cand->cdep++)
   {
-    cand->comb = gen_comb(cand->cdep, Am, e, qf, (dim+1)>>1);
+    cand->comb = gen_comb(cand->cdep, Am, e, qf, (dim+1) >> 1);
     if (!cand->comb) break;
   }
   cand->cdep= maxss(1, cand->cdep-1);

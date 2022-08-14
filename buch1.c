@@ -1056,7 +1056,7 @@ START:
                compute_invresquad(&GRHcheck, LIMC));
   BQ.powsubFB = powsubFBquad(&BQ,CBUCH+1);
   if (DEBUGLEVEL>2) timer_printf(&T, "powsubFBquad");
-  BQ.limhash = (LIMC & HIGHMASK)? (HIGHBIT>>1): LIMC*LIMC;
+  BQ.limhash = (LIMC & HIGHMASK)? (HIGHBIT >> 1): LIMC*LIMC;
 
   need = BQ.KC + RELSUP - 2;
   current = 0;

@@ -229,7 +229,7 @@ quadratic_prec_mask(int64_t n)
   ulong mask = 0;
   for(i = 1;; i++, mask <<= 1)
   {
-    mask |= (a&1); a = (a+1)>>1;
+    mask |= (a&1); a = (a+1) >> 1;
     if (a==1) return mask | (1ULL << i);
   }
 }
@@ -674,7 +674,7 @@ ZpXQ_log(GEN a, GEN T, GEN p, int64_t N)
   int64_t is2 = absequaliu(p,2);
   ulong pp = is2 ? 0: itou_or_0(p);
   double lp = is2 ? 1: pp ? log2(pp): expi(p);
-  int64_t k = maxss(1 , (int64_t) .5+pow((double)(N>>1)/(lp*lp), 1./3));
+  int64_t k = maxss(1 , (int64_t) .5+pow((double)(N >> 1)/(lp*lp), 1./3));
   GEN ak, s, b, pol;
   int64_t e = is2 ? N-1: N;
   int64_t i, l = (e-2)/(2*(k+is2));
@@ -725,7 +725,7 @@ gen_ZpM_Dixon(GEN F, GEN V, GEN q, GEN p, int64_t N, void *E,
   GEN q2, qM;
   V = FpM_red(V, q);
   if (N == 1) return invl(E, V);
-  N2 = (N + 1)>>1; M = N - N2;
+  N2 = (N + 1) >> 1; M = N - N2;
   F = FpM_red(F, q);
   qM = powiu(p, M);
   q2 = M == N2? qM: mulii(qM, p);
@@ -748,7 +748,7 @@ gen_ZpX_Dixon(GEN F, GEN V, GEN q, GEN p, int64_t N, void *E,
   GEN q2, qM;
   V = FpX_red(V, q);
   if (N == 1) return invl(E, V);
-  N2 = (N + 1)>>1; M = N - N2;
+  N2 = (N + 1) >> 1; M = N - N2;
   F = FpXT_red(F, q);
   qM = powiu(p, M);
   q2 = M == N2? qM: mulii(qM, p);
@@ -777,7 +777,7 @@ gen_ZpM_Newton(GEN x, GEN p, int64_t n, void *E,
     GEN qM, q2, v, V;
     N2 = N; N <<= 1;
     q2 = q;
-    if (mask&1UL) { /* can never happen when q2 = p */
+    if (mask&1ULL) { /* can never happen when q2 = p */
       N--; M = N2-1;
       qM = diviiexact(q2,p); /* > 1 */
       q = mulii(qM,q2);
@@ -837,7 +837,7 @@ gen_ZpX_Newton(GEN x, GEN p, int64_t n, void *E,
     GEN qM, q2, v, V;
     N2 = N; N <<= 1;
     q2 = q;
-    if (mask&1UL) { /* can never happen when q2 = p */
+    if (mask&1ULL) { /* can never happen when q2 = p */
       N--; M = N2-1;
       qM = diviiexact(q2,p); /* > 1 */
       q = mulii(qM,q2);
@@ -976,7 +976,7 @@ ZpXQ_sqrtnlift(GEN a, GEN n, GEN x, GEN T, GEN p, int64_t e)
 {
   struct _ZpXQ_sqrtn d;
   d.a = a; d.T = T; d.n = n;
-  d.ai = ZpXQ_inv(ZX_Z_mul(a, n),T,p,(e+1)>>1);
+  d.ai = ZpXQ_inv(ZX_Z_mul(a, n),T,p,(e+1) >> 1);
   return gen_ZpX_Newton(x, p, e, &d, _sqrtn_eval, _sqrtn_invd);
 }
 
@@ -1038,7 +1038,7 @@ ZpX_ZpXQ_liftroot_ea(GEN P, GEN S, GEN T, GEN p, int64_t n, void *E,
       if (Se) return gerepileupto(ltop, Se);
     }
     qq = sqri(q); N <<= 1;
-    if (mask&1UL) { qq = diviiexact(qq, p); N--; }
+    if (mask&1ULL) { qq = diviiexact(qq, p); N--; }
     mask >>= 1;
     Pqq  = FpX_red(P, qq);
     Tqq  = FpXT_red(T, qq);

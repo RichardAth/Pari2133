@@ -79,7 +79,7 @@ unextprime(ulong n)
   /* find next prime residue class mod 210 */
   for(;;)
   {
-    rcn = (int64_t)(prc210_no[rc>>1]);
+    rcn = (int64_t)(prc210_no[rc >> 1]);
     if (rcn != NPRC) 
         break;
     rc += 2; /* cannot wrap since 209 is coprime and rc odd */
@@ -126,7 +126,7 @@ nextprime(GEN n)
   /* find next prime residue class mod 210 */
   for(;;)
   {
-    rcn = (int64_t)(prc210_no[rc>>1]);
+    rcn = (int64_t)(prc210_no[rc >> 1]);
     if (rcn != NPRC) break;
     rc += 2; /* cannot wrap since 209 is coprime and rc odd */
   }
@@ -159,7 +159,7 @@ uprecprime(ulong n)
   /* find previous prime residue class mod 210 */
   for(;;)
   {
-    rcn = (int64_t)(prc210_no[rc>>1]);
+    rcn = (int64_t)(prc210_no[rc >> 1]);
     if (rcn != NPRC) break;
     rc -= 2; /* cannot wrap since 1 is coprime and rc odd */
   }
@@ -197,7 +197,7 @@ precprime(GEN n)
   /* find previous prime residue class mod 210 */
   for(;;)
   {
-    rcn = (int64_t)(prc210_no[rc>>1]);
+    rcn = (int64_t)(prc210_no[rc >> 1]);
     if (rcn != NPRC) break;
     rc -= 2; /* cannot wrap since 1 is coprime and rc odd */
   }
@@ -516,13 +516,13 @@ elldouble(GEN N, GEN *gl, int64_t nbc, GEN *X1, GEN *X2)
 static int
 get_rule(ulong d, ulong e)
 {
-  if (d <= e + (e>>2)) /* floor(1.25*e) */
+  if (d <= e + (e >> 2)) /* floor(1.25*e) */
   {
     if ((d+e)%3 == 0) return 0; /* rule 1 */
     if ((d-e)%6 == 0) return 1;  /* rule 2 */
   }
   /* d <= 4*e but no ofl */
-  if ((d+3)>>2 <= e) return 2; /* rule 3, common case */
+  if ((d+3) >> 2 <= e) return 2; /* rule 3, common case */
   if ((d&1)==(e&1))  return 1; /* rule 4 = rule 2 */
   if (!(d&1))        return 3; /* rule 5 */
   if (d%3 == 0)      return 4; /* rule 6 */
@@ -578,7 +578,7 @@ ellmult(GEN N, GEN *gl, int64_t nbc, ulong k, GEN *X1, GEN *X2, GEN *XAUX)
     case 1: /* rules 2 and 4 */
       if ( (res = ecm_elladd(N, gl, nbc, A, B, B)) ) return res;
       if ( (res = elldouble(N, gl, nbc, A, A)) ) return res;
-      d = (d-e)>>1; break;
+      d = (d-e) >> 1; break;
     case 3: /* rule 5 */
       if ( (res = elldouble(N, gl, nbc, A, A)) ) return res;
       d >>= 1; break;
@@ -1159,7 +1159,7 @@ pollardbrent_i(GEN n, int64_t size, int64_t c0, int64_t retries)
   if (DEBUGLEVEL >= 4) timer_start(&T);
   c = c0 << 5; /* 2^5 iterations per round */
   msg_mask = (size >= 448? 0x1fff:
-                           (size >= 192? (256L<<((size-128)>>6))-1: 0xff));
+                           (size >= 192? (256L<<((size-128) >> 6))-1: 0xff));
   y = cgeti(tf);
   x1= cgeti(tf);
   av = avma;
@@ -1210,7 +1210,7 @@ PB_RETRY:
         return NULL;
       }
       P = gen_1;
-      if (DEBUGLEVEL >= 4) rho_dbg(&T, c0-(c>>5), msg_mask);
+      if (DEBUGLEVEL >= 4) rho_dbg(&T, c0-(c >> 5), msg_mask);
       affii(x,y); x = y; set_avma(av);
     }
 
@@ -1229,7 +1229,7 @@ PB_RETRY:
     * nuisance that all c0 between 4096 and 6144 would act exactly as
     * 4096;  with the halving trick only the range 4096..5120 collapses
     * (similarly for all other powers of two) */
-    if ((c -= (l>>1)) <= 0)
+    if ((c -= (l >> 1)) <= 0)
     { /* got bored */
       if (DEBUGLEVEL >= 4)
         err_printf("Rho: time = %6ld ms,\tPollard-Brent giving up.\n",
@@ -1242,16 +1242,16 @@ PB_RETRY:
     affii(x, x1); set_avma(av); x = x1;
     k = l; l <<= 1;
     /* don't show this for the first several (short) fast forward phases. */
-    if (DEBUGLEVEL >= 4 && (l>>7) > msg_mask)
-      err_printf("Rho: fast forward phase (%ld rounds of 64)...\n", l>>7);
+    if (DEBUGLEVEL >= 4 && (l >> 7) > msg_mask)
+      err_printf("Rho: fast forward phase (%ld rounds of 64)...\n", l >> 7);
     for (k1=k; k1; k1--)
     {
       one_iter(&x, &P, x1, n, delta);
       if ((k1 & 0x1f) == 0) gerepileall(av, 2, &x, &P);
     }
-    if (DEBUGLEVEL >= 4 && (l>>7) > msg_mask)
+    if (DEBUGLEVEL >= 4 && (l >> 7) > msg_mask)
       err_printf("Rho: time = %6ld ms,\t%3ld rounds, back to normal mode\n",
-                 timer_delay(&T), c0-(c>>5));
+                 timer_delay(&T), c0-(c >> 5));
     affii(x,y); P = gerepileuptoint(av, P); x = y;
   } /* forever */
 
@@ -1263,7 +1263,7 @@ fin:
     {
       if (DEBUGLEVEL >= 4)
       {
-        rho_dbg(&T, c0-(c>>5), 0);
+        rho_dbg(&T, c0-(c >> 5), 0);
         err_printf("\tfound factor = %Ps\n",g);
       }
       return g;
@@ -1282,7 +1282,7 @@ fin:
     x = addis(remii(sqri(x), g1), delta);
     g = gcdii(subii(x1, x), g1); if (!is_pm1(g)) break;
 
-    if (DEBUGLEVEL >= 4 && (--c & 0x1f) == 0) rho_dbg(&T, c0-(c>>5), msg_mask);
+    if (DEBUGLEVEL >= 4 && (--c & 0x1f) == 0) rho_dbg(&T, c0-(c >> 5), msg_mask);
   }
 
   if (g1 == n || equalii(g,g1))
@@ -1291,7 +1291,7 @@ fin:
     { /* out of luck */
       if (DEBUGLEVEL >= 4)
       {
-        rho_dbg(&T, c0-(c>>5), 0);
+        rho_dbg(&T, c0-(c >> 5), 0);
         err_printf("\tPollard-Brent failed.\n");
       }
       if (++retries >= 4) pari_err_BUG("");
@@ -1300,7 +1300,7 @@ fin:
     /* half lucky: we've split n, but g1 equals either g or n */
     if (DEBUGLEVEL >= 4)
     {
-      rho_dbg(&T, c0-(c>>5), 0);
+      rho_dbg(&T, c0-(c >> 5), 0);
       err_printf("\tfound %sfactor = %Ps\n", (g1!=n ? "composite " : ""), g);
     }
     res = cgetg(7, t_VEC);
@@ -1318,7 +1318,7 @@ fin:
   INIT(res+7, diviiexact(n,g1), gen_1, NULL);
   if (DEBUGLEVEL >= 4)
   {
-    rho_dbg(&T, c0-(c>>5), 0);
+    rho_dbg(&T, c0-(c >> 5), 0);
     err_printf("\tfound factors = %Ps, %Ps,\n\tand %Ps\n",
                gel(res,1), gel(res,4), gel(res,7));
   }
@@ -1348,7 +1348,7 @@ pollardbrent(GEN n)
     /* nonlinear increase in effort, kicking in around 80 bits */
     /* 301 gives 48121 + tune_pb_min */
     c0 = tune_pb_min + size - 60 +
-      ((size-73)>>1)*((size-70)>>3)*((size-56)>>4);
+      ((size-73) >> 1)*((size-70) >> 3)*((size-56) >> 4);
   else
     c0 = 49152; /* ECM is faster when it'd take longer */
   return pollardbrent_i(n, size, c0, 0);
@@ -1395,7 +1395,7 @@ squfof_ambig(int64_t a, int64_t B, int64_t dd, GEN D)
   int64_t b, c, q, qa, qc, qcb, a0, b0, b1, c0;
   int64_t cnt = 0; /* count reduction steps on the cycle */
 
-  q = (dd + (B>>1)) / a;
+  q = (dd + (B >> 1)) / a;
   qa = q * a;
   b = (qa - B) + qa; /* avoid overflow */
   {
@@ -1416,7 +1416,7 @@ squfof_ambig(int64_t a, int64_t B, int64_t dd, GEN D)
     if (c0 > dd)
       q = 1;
     else
-      q = (dd + (b>>1)) / c0;
+      q = (dd + (b >> 1)) / c0;
     if (q == 1)
     {
       qcb = c0 - b; b = c0 + qcb; c = a - qcb;
@@ -1435,7 +1435,7 @@ squfof_ambig(int64_t a, int64_t B, int64_t dd, GEN D)
 
     b1 = b;
   }
-  q = a&1 ? a : a>>1;
+  q = a&1 ? a : a >> 1;
   if (DEBUGLEVEL >= 4)
   {
     if (q > 1)
@@ -1477,7 +1477,7 @@ squfof(GEN n)
   if (nm4 == 1)
   { /* n = 1 (mod4):  run one iteration on D1 = n, another on D2 = 5n */
     D1 = n;
-    D2 = mului(5,n); d2 = itou(sqrti(D2)); dd2 = (int64_t)((d2>>1) + (d2&1));
+    D2 = mului(5,n); d2 = itou(sqrti(D2)); dd2 = (int64_t)((d2 >> 1) + (d2&1));
     b2 = (int64_t)((d2-1) | 1);        /* b1, b2 will always stay odd */
   }
   else
@@ -1496,7 +1496,7 @@ squfof(GEN n)
   L2 = (int64_t)usqrt(d2);
   /* dd1 used to compute floor((d1+b1)/2) as dd1+floor(b1/2), without
    * overflowing the 31bit signed integer size limit. Same for dd2. */
-  dd1 = (int64_t) ((d1>>1) + (d1&1));
+  dd1 = (int64_t) ((d1 >> 1) + (d1&1));
   a1 = a2 = 1;
 
   /* The two (identity) forms (a1,b1,-c1) and (a2,b2,-c2) are now set up.
@@ -1538,7 +1538,7 @@ squfof(GEN n)
     if (act1)
     { /* send first form through reduction operator if active */
       c = c1;
-      q = (c > dd1)? 1: (dd1 + (b1>>1)) / c;
+      q = (c > dd1)? 1: (dd1 + (b1 >> 1)) / c;
       if (q == 1)
       { qcb = c - b1; b1 = c + qcb; c1 = a1 - qcb; }
       else
@@ -1560,7 +1560,7 @@ squfof(GEN n)
     if (act2)
     { /* send second form through reduction operator if active */
       c = c2;
-      q = (c > dd2)? 1: (dd2 + (b2>>1)) / c;
+      q = (c > dd2)? 1: (dd2 + (b2 >> 1)) / c;
       if (q == 1)
       { qcb = c - b2; b2 = c + qcb; c2 = a2 - qcb; }
       else
@@ -1825,7 +1825,7 @@ static ulong powersmod[106] = {
 static int
 check_res(ulong x, ulong N, int shift, ulong *mask)
 {
-  int64_t r = x%N; if ((ulong)r> (N>>1)) r = N - r;
+  int64_t r = x%N; if ((ulong)r> (N >> 1)) r = N - r;
   *mask &= (powersmod[r] >> shift);
   return *mask;
 }
@@ -3905,11 +3905,11 @@ vecfactoru(ulong a, ulong b)
 }
 
 /* Assume a and b odd, return L s.t. L[k] = factoru(a + 2*(k-1))
- * If a <= c <= b odd, factoru(c) = L[(c-a)>>1 + 1] */
+ * If a <= c <= b odd, factoru(c) = L[(c-a) >> 1 + 1] */
 GEN
 vecfactoroddu_i(ulong a, ulong b)
 {
-  ulong N, k, p, n = ((b-a)>>1) + 1;
+  ulong N, k, p, n = ((b-a) >> 1) + 1;
   GEN v = const_vecsmall(n, 1);
   GEN L = cgetg(n+1, t_VEC);
   forprime_t T;
@@ -3938,7 +3938,7 @@ vecfactoroddu_i(ulong a, ulong b)
       if (ap < a) { ap += pk<<1; t+=2; }
       /* c=t*p^k by steps of 2*p^k; factorization of c*=p^k if (t,p)=1 */
       t %= p;
-      for (j = ((ap-a)>>1)+1; j <= n; j += pk)
+      for (j = ((ap-a) >> 1)+1; j <= n; j += pk)
       {
         if (t) { v[j] *= pk; matsmalltrunc_append(gel(L,j), p,k); }
         t += 2; if (t >= p) t -= p;

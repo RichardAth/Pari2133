@@ -114,7 +114,7 @@ F2v_to_Flv(GEN x)
   int64_t i,j,k;
   for (i=2, k=1; i<lx; i++)
     for (j=0; j<BITS_IN_LONG && k<l; j++,k++)
-      z[k] = (x[i]>>j)&1UL;
+      z[k] = (x[i] >> j)&1ULL;
   return z;
 }
 
@@ -188,7 +188,7 @@ const_F2v(int64_t m)
   for (i = 2; i < l; i++) 
       uel(c,i) = -1LL;
   if (remsBIL(m)) 
-      uel(c,l-1) = (1ULL <<remsBIL(m))-1UL;
+      uel(c,l-1) = (1ULL <<remsBIL(m))-1ULL;
   return c;
 }
 
@@ -726,7 +726,7 @@ precompute_F2w_F2wB(GEN x, GEN c)
   ulong z, xk;
   ulong i, j, k, index;
   x++; c++;
-  for (j = 0; j < (BIL>>3); j++)
+  for (j = 0; j < (BIL >> 3); j++)
   {
     for (i = 0; i < 256; i++)
     {
@@ -759,13 +759,13 @@ F2w_F2wB_mul_add_inplace(GEN v, GEN x, GEN y)
     word = v[i];
     y[i] ^=  c[ 0*256 + ((word>> 0) & 0xff) ]
            ^ c[ 1*256 + ((word>> 8) & 0xff) ]
-           ^ c[ 2*256 + ((word>>16) & 0xff) ]
-           ^ c[ 3*256 + ((word>>24) & 0xff) ]
+           ^ c[ 2*256 + ((word >> 16) & 0xff) ]
+           ^ c[ 3*256 + ((word >> 24) & 0xff) ]
 #ifdef LONG_IS_64BIT
-           ^ c[ 4*256 + ((word>>32) & 0xff) ]
-           ^ c[ 5*256 + ((word>>40) & 0xff) ]
-           ^ c[ 6*256 + ((word>>48) & 0xff) ]
-           ^ c[ 7*256 + ((word>>56)       ) ]
+           ^ c[ 4*256 + ((word >> 32) & 0xff) ]
+           ^ c[ 5*256 + ((word >> 40) & 0xff) ]
+           ^ c[ 6*256 + ((word >> 48) & 0xff) ]
+           ^ c[ 7*256 + ((word >> 56)       ) ]
 #endif
            ;
   }

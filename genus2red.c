@@ -995,7 +995,7 @@ tame_4(struct igusa *I, struct igusa_p *Ip)
       {
         case 0: condp = 4;
           Ip->type = stack_sprintf("[I*{%lld-%lld-%lld}] page 183",d1/2,d2/2,d3/2);
-          Ip->neron = shallowconcat(groupH(g/4), groupH(2-((h&2)>>1))); break;
+          Ip->neron = shallowconcat(groupH(g/4), groupH(2-((h&2) >> 1))); break;
         case 1:
           if      (d1 == d2 || d1 == d3) f2 = d1;
           else if (d2 == d3) f2 = d2;

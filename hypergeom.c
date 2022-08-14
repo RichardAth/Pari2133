@@ -639,7 +639,7 @@ myint21(void *E, GEN (*f)(void*, GEN), int64_t prec)
     if (gsigne(r) <= 0 || gcmp(r, gen_1) >= 0) pz = NULL;
   }
   if (pz) pz = mkendpt(pz,a);
-  else if (gcmpgs(a,-1) <= 0) prec += ((gexpo(a)+1)>>1) * EXTRAPREC64;
+  else if (gcmpgs(a,-1) <= 0) prec += ((gexpo(a)+1) >> 1) * EXTRAPREC64;
   return intnumsplit(E, f, p0, p1, pz, prec);
 }
 

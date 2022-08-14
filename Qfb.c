@@ -587,7 +587,7 @@ sREDB(ulong a, int64_t *b, ulong *c)
   if (*b < 0)
   { /* uz = -z >= 0, q < 0 */
     if (r >= 0) /* different signs=>no overflow, exact division */
-      uz = (ulong)-((*b + r)>>1);
+      uz = (ulong)-((*b + r) >> 1);
     else
     {
       ulong ub = (ulong)-*b, ur = (ulong)-r;
@@ -598,7 +598,7 @@ sREDB(ulong a, int64_t *b, ulong *c)
   else
   { /* uz = z >= 0, q > 0 */
     if (r <= 0)
-      uz = (*b + r)>>1;
+      uz = (*b + r) >> 1;
     else
     {
       ulong ub = (ulong)*b, ur = (ulong)r;

@@ -989,7 +989,7 @@ charpoly_bound(GEN M, GEN dM, GEN N)
   bin = gen_1;
   if (dM) B = divri(B, dM);
   B2 = sqrr(B);
-  for (k = n; k >= (n+1)>>1; k--)
+  for (k = n; k >= (n+1) >> 1; k--)
   {
     GEN t = mulri(powruhalf(mulur(k, B2), k), bin);
     if (abscmprr(t, s) > 0) s = t;

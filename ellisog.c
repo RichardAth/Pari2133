@@ -759,7 +759,7 @@ elkies98(GEN a4, GEN a6, int64_t l, GEN s, GEN a4t, GEN a6t)
 {
   GEN C, P, S;
   int64_t i, n, d;
-  d = l == 2 ? 1 : l>>1;
+  d = l == 2 ? 1 : l >> 1;
   C = cgetg(d+1, t_VEC);
   gel(C, 1) = gdivgs(gsub(a4, a4t), 5);
   if (d >= 2)
@@ -1195,7 +1195,7 @@ ellnf_goodl_l(GEN E, GEN v)
   GEN nf = ellnf_get_nf(E);
   GEN disc = ell_get_disc(E);
   int64_t lv = lg(v);
-  ulong w = 0UL;
+  ulong w = 0ULL;
   pari_sp av = avma;
   u_forprime_init(&T, 17UL,ULONG_MAX);
   for(i=1; i<=20; i++)
@@ -1227,7 +1227,7 @@ ellnf_goodl_l(GEN E, GEN v)
     }
     set_avma(av);
   }
-  return w^((1UL<<(lv-1))-1);
+  return w^((1ULL<<(lv-1))-1);
 }
 
 static GEN

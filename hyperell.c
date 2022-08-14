@@ -315,9 +315,9 @@ ZlX_hyperellpadicfrobenius(GEN H, ulong p, int64_t n)
   {
     pari_sp av2 = avma;
     GEN M, D;
-    D = diff_red(s, monomial(utoi(p),p*i-1,1),(k*p-1)>>1, Q, pN1);
+    D = diff_red(s, monomial(utoi(p),p*i-1,1),(k*p-1) >> 1, Q, pN1);
     if (DEBUGLEVEL>1) timer_printf(&ti,"red");
-    M = ZpXXQ_frob(D, U, V, (k-1)>>1, Q, p, N + 1);
+    M = ZpXXQ_frob(D, U, V, (k-1) >> 1, Q, p, N + 1);
     if (DEBUGLEVEL>1) timer_printf(&ti,"frob");
     gel(F, i) = gerepilecopy(av2, RgX_to_RgC(M, d-1));
   }
@@ -592,9 +592,9 @@ ZlXQX_hyperellpadicfrobenius(GEN H, GEN T, ulong p, int64_t n)
   {
     pari_sp av2 = avma;
     GEN M, D;
-    D = Fq_diff_red(s, monomial(pp,p*i-1,1),(k*p-1)>>1, Q, T, pN1, pp, N1);
+    D = Fq_diff_red(s, monomial(pp,p*i-1,1),(k*p-1) >> 1, Q, T, pN1, pp, N1);
     if (DEBUGLEVEL>1) timer_printf(&ti,"red");
-    M = ZpXQXXQ_frob(D, U, V, (k - 1)>>1, Q, T, p, N1);
+    M = ZpXQXXQ_frob(D, U, V, (k - 1) >> 1, Q, T, p, N1);
     if (DEBUGLEVEL>1) timer_printf(&ti,"frob");
     gel(F, i) = gerepileupto(av2, ZXX_to_FpXC(M, d-1, q, varn(T)));
   }
@@ -635,7 +635,7 @@ F2x_genus2charpoly_naive(GEN P, GEN Q)
   b += q0 + q1;
   if (lgpol(QT))
     c = (F2xq_trace(F2xq_div(PT, F2xq_sqr(QT, T), T), T)==0 ? 1: -1);
-  return mkvecsmalln(6, 0UL, 4UL, 2*a, (b+2*c+a*a)>>1, a, 1UL);
+  return mkvecsmalln(6, 0ULL, 4UL, 2*a, (b+2*c+a*a) >> 1, a, 1ULL);
 }
 
 static GEN
@@ -675,7 +675,7 @@ Flx_genus2charpoly_naive(GEN H, ulong p)
 {
   pari_sp av = avma, av2;
   ulong pi = get_Fl_red(p);
-  ulong i, j, p2 = p>>1, D = 2, e = ((p&2UL) == 0) ? -1 : 1;
+  ulong i, j, p2 = p >> 1, D = 2, e = ((p&2UL) == 0) ? -1 : 1;
   int64_t a, b, c = 0, n = degpol(H);
   GEN t, k = const_vecsmall(p, -1);
   k[1] = 0;
@@ -706,13 +706,13 @@ Flx_genus2charpoly_naive(GEN H, ulong p)
     set_avma(av2);
   }
   set_avma(av);
-  return mkvecsmalln(6, 0UL, p*p, a*p, (b+2*c+a*a)>>1, a, 1UL);
+  return mkvecsmalln(6, 0ULL, p*p, a*p, (b+2*c+a*a) >> 1, a, 1ULL);
 }
 
 static GEN
 charpoly_funceq(GEN P, GEN q)
 {
-  int64_t i, l, g = degpol(P)>>1;
+  int64_t i, l, g = degpol(P) >> 1;
   GEN Q = cgetg_copy(P, &l);
   Q[1] = P[1];
   for (i=0; i<=g; i++)
@@ -774,7 +774,7 @@ hyperellcharpoly(GEN PQ)
       R = zx_to_ZX(Flx_genus2charpoly_naive(Hp, p));
       return gerepileupto(av, R);
     }
-    n = hyperell_Weil_bound(pp, (d-1)>>1, pp);
+    n = hyperell_Weil_bound(pp, (d-1) >> 1, pp);
     eps = odd(d)? 0: Fp_issquare(leading_coeff(H), pp);
     M = hyperellpadicfrobenius(H, p, n);
     R = centerlift(carberkowitz(M, 0));
@@ -791,7 +791,7 @@ hyperellcharpoly(GEN PQ)
     d = degpol(H);
     if (d <= 0) is_sing(H, p);
     eps = odd(d)? 0: Fq_issquare(leading_coeff(H), T, pp);
-    n = hyperell_Weil_bound(q, (d-1)>>1, pp);
+    n = hyperell_Weil_bound(q, (d-1) >> 1, pp);
     M = nfhyperellpadicfrobenius(H, T, p, n);
     R = simplify_shallow(centerlift(liftpol_shallow(carberkowitz(M, 0))));
     if (fixvar) (void)delete_var();

@@ -348,7 +348,7 @@ sieve_chunk(byteptr known_primes, ulong s, byteptr data, ulong n)
        = p + last number <= start + p - 2 and 0 (mod 2p)
        = p + start+p-2 - (start+p-2) % 2p
        = start + 2(p - 1 - ((start-1)/2 + (p-1)/2) % p). */
-    int64_t off = cnt - ((start+(p>>1)) % p);
+    int64_t off = cnt - ((start+(p >> 1)) % p);
     while (off >= 0) { data[off] = 1; off -= p; }
   }
 }
@@ -366,11 +366,11 @@ initprimes0(ulong maxnum, int64_t *lenp, ulong *lastp, byteptr p1)
 
   maxnum |= 1; /* make it odd. */
   /* base case */
-  if (maxnum < 1ul<<17) { initprimes1(maxnum>>1, lenp, lastp, p1); return; }
+  if (maxnum < 1ul<<17) { initprimes1(maxnum >> 1, lenp, lastp, p1); return; }
 
   /* Checked to be enough up to 40e6, attained at 155893 */
   rootnum = usqrt(maxnum) | 1;
-  initprimes1(rootnum>>1, &psize, &last, p1);
+  initprimes1(rootnum >> 1, &psize, &last, p1);
   end1 = p1 + psize - 1;
   remains = (maxnum - last) >> 1; /* number of odd numbers to check */
 
@@ -519,7 +519,7 @@ optimize_chunk(ulong a, ulong b)
   else
     chunk = (b - a) / tmp + 15;
   /* ensure 16 | chunk + 2 */
-  return (((chunk + 2)>>4)<<4) - 2;
+  return (((chunk + 2) >> 4)<<4) - 2;
 }
 static void
 sieve_init(forprime_t *T, ulong a, ulong b)
@@ -736,8 +736,8 @@ sieve_block(ulong a, ulong b, ulong maxpos, unsigned char* sieve)
       k >>= 1;
     }
     /* m = a + 2k is the smallest odd m >= a, p | m */
-    /* position n (corresponds to a+2n) is sieve[n>>3], bit n&7 */
-    while (k <= sz) { sieve[k>>3] |= 1 << (k&7); k += p; /* 2k += 2p */ }
+    /* position n (corresponds to a+2n) is sieve[n >> 3], bit n&7 */
+    while (k <= sz) { sieve[k >> 3] |= 1 << (k&7); k += p; /* 2k += 2p */ }
   }
 }
 
@@ -755,15 +755,15 @@ pari_sieve_init(struct pari_sieve *s, ulong a, ulong b)
 static struct pari_sieve pari_sieve_modular;
 
 #ifdef LONG_IS_64BIT
-#define PARI_MODULAR_BASE ((1UL<<((BITS_IN_LONG-2)>>1))+1)
+#define PARI_MODULAR_BASE ((1ULL<<((BITS_IN_LONG-2) >> 1))+1)
 #else
-#define PARI_MODULAR_BASE ((1UL<<(BITS_IN_LONG-1))+1)
+#define PARI_MODULAR_BASE ((1ULL<<(BITS_IN_LONG-1))+1)
 #endif
 
 void
 pari_init_primes(ulong maxprime)
 {
-  ulong a = PARI_MODULAR_BASE, b = a + (1UL<<20)-2;
+  ulong a = PARI_MODULAR_BASE, b = a + (1ULL<<20)-2;
   initprimetable(maxprime);
   pari_sieve_init(&pari_sieve_modular, a, b);
 }
@@ -781,7 +781,7 @@ init_modular_small(forprime_t *S)
 #ifdef LONG_IS_64BIT
   u_forprime_sieve_init(S, &pari_sieve_modular, ULONG_MAX);
 #else
-  ulong a = (1UL<<((BITS_IN_LONG-2)>>1))+1;
+  ulong a = (1ULL<<((BITS_IN_LONG-2) >> 1))+1;
   u_forprime_init(S, a, ULONG_MAX);
 #endif
 }

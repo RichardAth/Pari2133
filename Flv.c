@@ -500,8 +500,8 @@ Flm_ker_gauss_OK(GEN x, ulong p, int64_t deplin)
       if (d[i])
         uel(C,i) = ucoeff(x,d[i],k) % p;
       else
-        uel(C,i) = 0UL;
-    uel(C,k) = 1UL; for (i=k+1; i<=n; i++) uel(C,i) = 0UL;
+        uel(C,i) = 0ULL;
+    uel(C,k) = 1ULL; for (i=k+1; i<=n; i++) uel(C,i) = 0ULL;
   }
   if (deplin == 2) {
     GEN pc = cgetg(n - r + 1, t_VECSMALL);  /* indices of pivot columns */
@@ -580,8 +580,8 @@ Flm_ker_gauss(GEN x, ulong p, int64_t deplin)
       if (d[i])
         uel(C,i) = ucoeff(x,d[i],k);
       else
-        uel(C,i) = 0UL;
-    uel(C,k) = 1UL; for (i=k+1; i<=n; i++) uel(C,i) = 0UL;
+        uel(C,i) = 0ULL;
+    uel(C,k) = 1ULL; for (i=k+1; i<=n; i++) uel(C,i) = 0ULL;
   }
   if (deplin == 2) {
     GEN pc = cgetg(n - r + 1, t_VECSMALL);  /* indices of pivot columns */

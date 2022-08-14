@@ -649,7 +649,7 @@ find_eigen_value_oneroot(GEN a4, GEN a6, ulong ell, GEN tr, GEN h, GEN T, GEN p)
   h = FqX_get_red(h, T, p);
   Gy = Fq_find_eigen_Frobenius(a4, a6, h, T, p);
   t = Fl_div(tr[1], 2, ell);
-  if (t < (ell>>1)) t = ell - t;
+  if (t < (ell >> 1)) t = ell - t;
   Fq_elldivpolmod_init(&d, a4, a6, t, h, T, p);
   f = Fq_ellyn(&d, t);
   Dy = FqXQ_mul(Gy, gel(f,2), h, T, p);
@@ -1111,7 +1111,7 @@ newtonlogint(ulong n, ulong pp)
   while (n > pp)
   {
     s += ulogint(n, pp);
-    n = (n+1)>>1;
+    n = (n+1) >> 1;
   }
   return s;
 }
@@ -1120,7 +1120,7 @@ static GEN
 find_isogenous(GEN a4,GEN a6, ulong ell, struct meqn *MEQN, GEN g, GEN T,GEN p)
 {
   ulong pp = itou_or_0(p);
-  int64_t e = pp ? newtonlogint(1+(ell>>1), pp) + ulogint(2*ell+4, pp) + 1: 1;
+  int64_t e = pp ? newtonlogint(1+(ell >> 1), pp) + ulogint(2*ell+4, pp) + 1: 1;
   if (signe(a4)==0 || signe(a6)==0)
   {
     if (DEBUGLEVEL>0) err_printf("[%c: j=%ld]",MEQN->type,signe(a4)==0 ?0: 1728);

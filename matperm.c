@@ -53,7 +53,7 @@ matpermanent(GEN M)
   upper = 1LL << n;
   for (x = 1; x < upper; x++)
   {
-    int64_t gray = x ^ (x>>1), k = vals(x);
+    int64_t gray = x ^ (x >> 1), k = vals(x);
     GEN col = gel(M,k+1);
     if (gray & (1LL <<k))
     { for (i=1; i <= n; ++i) gel(in, i) = gadd(gel(in, i), gel(col, i)); }
@@ -100,7 +100,7 @@ ZM_permanent(GEN M)
   upper = (1LL <<n);
   for (x = 1; x < upper; x++)
   {
-    int64_t gray = x ^ (x>>1), k = vals(x);
+    int64_t gray = x ^ (x >> 1), k = vals(x);
     GEN c, col = gel(M, k+1);
     if (gray & (1LL <<k))
     { for (i=1; i <= n; ++i) gel(in, i) = addii(gel(in,i), gel(col,i)); }
@@ -126,7 +126,7 @@ zm_permanent(GEN M)
   pari_sp av2 = avma;
   for (x = 1; x < upper; x++)
   {
-    ulong gray = x ^ (x>>1);
+    ulong gray = x ^ (x >> 1);
     int64_t i, k = vals(x);
     GEN c, col = gel(M, k+1);
     if (gray & (1ULL <<k))

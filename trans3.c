@@ -1440,7 +1440,7 @@ gerfc(GEN x, int64_t prec)
     prec = size > 0 ? prec : prec + size;
     */
     /* NOT gsubsg(2, ...) : would create a result of
-     * huge accuracy if re(x)>>1, rounded to 2 by subsequent affc_fixlg... */
+     * huge accuracy if re(x) >> 1, rounded to 2 by subsequent affc_fixlg... */
     z = gsub(real2n(1,prec+EXTRAPREC64), gerfc(gneg(x), prec));
   }
   set_avma(av); return affc_fixlg(z, res);
@@ -1678,7 +1678,7 @@ szeta(int64_t k, int64_t prec)
     GEN B;
     if (!bernzone) constbern(0);
     if (k < lg(bernzone))
-      B = gel(bernzone, k>>1);
+      B = gel(bernzone, k >> 1);
     else
     {
       if (bernbitprec(k) > prec2nbits(prec))
@@ -1990,7 +1990,7 @@ number_of_terms(ulong p, int64_t prec)
   int64_t N, f;
 
   if (prec == 0) return p;
-  N = (int64_t)((p-1)*prec + (p>>1)*(log2(prec)/log2(p)));
+  N = (int64_t)((p-1)*prec + (p >> 1)*(log2(prec)/log2(p)));
   N = p*(N/p);
   f = valfact(N, p);
   while (f > prec)
@@ -2646,7 +2646,7 @@ polylogP(int64_t m, GEN x, int64_t prec)
     {
       GEN p2;
       shiftr_inplace(p1, 1); /* 2log|x| <= 0 */
-      constbern(m>>1);
+      constbern(m >> 1);
       p1 = sqrr(p1);
       p2 = shiftr(p1,-1);
       for (k = 2; k < m; k += 2)
@@ -2948,7 +2948,7 @@ inteta(GEN q)
     if (v <= 0) pari_err_DOMAIN("eta", "v_p(q)", "<=",gen_0,q);
     y = ser2pol_i(q, l); /* t_SER inefficient when input has low degree */
     n = degpol(y);
-    if (n <= (l>>2))
+    if (n <= (l >> 2))
     {
       GEN z = RgXn_eta(y, v, l-2);
       setvarn(z, varn(y)); return RgX_to_ser(z, l+v);

@@ -83,7 +83,7 @@ static void
 vecsmall_sortspec(GEN v, int64_t n, GEN w)
 {
   pari_sp ltop=avma;
-  int64_t nx=n>>1, ny=n-nx;
+  int64_t nx=n >> 1, ny=n-nx;
   int64_t m, ix, iy;
   GEN x, y;
   if (n<=2)
@@ -141,7 +141,7 @@ vecsmall_indexsortspec(GEN v, int64_t n)
                              : mkvecsmall3(3,2,1);
       }
   }
-  nx = n>>1; ny = n-nx;
+  nx = n >> 1; ny = n-nx;
   w = cgetg(n+1,t_VECSMALL);
   x = vecsmall_indexsortspec(v,nx);
   y = vecsmall_indexsortspec(v+nx,ny);
@@ -215,7 +215,7 @@ static int
 vecsmall_is1to1spec(GEN v, int64_t n, GEN w)
 {
   pari_sp ltop=avma;
-  int64_t nx=n>>1, ny=n-nx;
+  int64_t nx=n >> 1, ny=n-nx;
   int64_t m, ix, iy;
   GEN x, y;
   if (n<=2)

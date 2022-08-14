@@ -38,7 +38,7 @@ bnfisunit(GEN bnf, GEN x)
       int64_t s;
       if (typ(x) != t_INT || !is_pm1(x)) return cgetg(1,t_COL);
       s = signe(x); set_avma(av); v = zerocol(RU);
-      gel(v,RU) = utoi((s > 0)? 0: n>>1);
+      gel(v,RU) = utoi((s > 0)? 0: n >> 1);
       return v;
     }
     if (!isint1(Q_denom(x))) { set_avma(av); return cgetg(1,t_COL); }
@@ -102,7 +102,7 @@ bnfisunit(GEN bnf, GEN x)
     }
   }
   t = gsub(arg, t); /* = arg(the missing root of 1) */
-  pi2_sur_w = divru(mppi(prec), n>>1); /* 2pi / n */
+  pi2_sur_w = divru(mppi(prec), n >> 1); /* 2pi / n */
   e = umodiu(roundr(divrr(t, pi2_sur_w)), n);
   if (n > 2)
   {

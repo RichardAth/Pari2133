@@ -1561,7 +1561,7 @@ twist2(GEN c4, GEN c6, GEN disc, int64_t vg)
   int64_t v4, v6, vD;
 
   if (vg == 18) /* v4=6, v6=9, vD>=18; only case with t = 3 */
-    return (umodi2n(c6, 11)>>9) == 1 ? -8: 8; /* need C6 % 4 = 3 */
+    return (umodi2n(c6, 11) >> 9) == 1 ? -8: 8; /* need C6 % 4 = 3 */
 
   /* 100 = oo, any number >= 8 would do */
   v4 = signe(c4)? vali(c4): 100; if (v4 == 5) return 1;
@@ -1574,7 +1574,7 @@ twist2(GEN c4, GEN c6, GEN disc, int64_t vg)
   /* Now, d2 = 1 OR v(d2) = 3, t = 2 => v4 -= 2, v6 -= 3, vD -= 6 */
   if (v4 < 6 || v6 < 6) return 1; /* v(C4) >= 4, v(C6) >= 3 */
   vD = vali(disc);
-  if (v6==6 && vD==6 && (umodi2n(c6,8)>>6) == 1) return 8; /* C6 % 32 = 8 */
+  if (v6==6 && vD==6 && (umodi2n(c6,8) >> 6) == 1) return 8; /* C6 % 32 = 8 */
   return -8;
 }
 
@@ -1936,9 +1936,9 @@ ellmul_CM(GEN e, GEN P, GEN n)
 
   if (typ(N) != t_INT)
     pari_err_TYPE("ellmul (non integral CM exponent)",N);
-  ln = itos_or_0(shifti(addiu(N, 1UL), 3));
+  ln = itos_or_0(shifti(addiu(N, 1ULL), 3));
   if (!ln) pari_err_OVERFLOW("ellmul_CM [norm too large]");
-  vn = ((ln>>1)-4)>>2;
+  vn = ((ln >> 1)-4) >> 2;
   z1 = ellwpseries(e, 0, ln);
   z2 = ser_unscale(z1, n);
   p0 = gen_0; p1 = gen_1;

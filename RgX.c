@@ -1357,7 +1357,7 @@ RgXn_mul2(GEN f, GEN g, int64_t n)
   int64_t n0, n1;
   if (degpol(f) + degpol(g) < n) return RgX_mul(f,g);
   if (n < 80) return RgXn_mul_basecase(f,g,n);
-  n0 = n>>1; n1 = n-n0;
+  n0 = n >> 1; n1 = n-n0;
   RgX_even_odd(f, &fe, &fo);
   RgX_even_odd(g, &ge, &go);
   l = RgXn_mul(fe,ge,n1);
@@ -1417,7 +1417,7 @@ RgX_mulspec(GEN a, GEN b, int64_t na, int64_t nb)
   if (nb < __RgX_MUL_LIMIT) 
       return RgX_mulspec_basecase(a,b,na,nb, v);
   RgX_shift_inplace_init(v);
-  i = (na>>1); n0 = na-i; na = i;
+  i = (na >> 1); n0 = na-i; na = i;
   av = avma; a0 = a+n0; n0a = n0;
   while (n0a && isrationalzero(gel(a,n0a-1))) n0a--;
 
@@ -1452,7 +1452,7 @@ RgX_sqrspec_basecase_limb(GEN x, int64_t a, int64_t i)
 {
   pari_sp av = avma;
   GEN s = NULL;
-  int64_t j, l = (i+1)>>1;
+  int64_t j, l = (i+1) >> 1;
   for (j=a; j<l; j++)
   {
     GEN xj = gel(x,j), xx = gel(x,i-j);
@@ -1465,7 +1465,7 @@ RgX_sqrspec_basecase_limb(GEN x, int64_t a, int64_t i)
   if (s) s = gshift(s,1);
   if ((i&1) == 0)
   {
-    GEN t = gel(x, i>>1);
+    GEN t = gel(x, i >> 1);
     if (t) {
       t = gsqr(t);
       s = s? gadd(s, t): t;
@@ -1514,7 +1514,7 @@ RgXn_sqr2(GEN f, int64_t n)
   int64_t n0, n1;
   if (2*degpol(f) < n) return RgX_sqr_i(f);
   if (n < 80) return RgXn_sqr_basecase(f,n);
-  n0 = n>>1; n1 = n-n0;
+  n0 = n >> 1; n1 = n-n0;
   RgX_even_odd(f, &fe, &fo);
   l = RgXn_sqr(fe,n1);
   h = RgXn_sqr(fo,n0);
@@ -1542,7 +1542,7 @@ RgX_sqrspec(GEN a, int64_t na)
   if (na < __RgX_SQR_LIMIT) 
       return RgX_sqrspec_basecase(a, na, v);
   RgX_shift_inplace_init(v);
-  i = (na>>1); n0 = na-i; na = i;
+  i = (na >> 1); n0 = na-i; na = i;
   av = avma; a0 = a+n0; n0a = n0;
   while (n0a && isrationalzero(gel(a,n0a-1))) n0a--;
 
@@ -2548,7 +2548,7 @@ RgXn_reverse(GEN f, int64_t e)
     an = RgXn_powers(a, rt, n);
     if (n>1)
     {
-      int64_t n4 = (n2+1)>>1;
+      int64_t n4 = (n2+1) >> 1;
       GEN dfr = RgXn_red_shallow(df, n2);
       dfr = RgX_RgXnV_eval(dfr, RgXnV_red_shallow(an, n2), n2);
       u = RgX_shift(RgX_Rg_sub(RgXn_mul(W, dfr, n2), gen_1), -n4);
@@ -2748,7 +2748,7 @@ RgX_even_odd(GEN p, GEN *pe, GEN *po)
 
   if (n <= 0) { *pe = RgX_copy(p); *po = zeropol(v); return; }
 
-  n0 = (n>>1)+1; n1 = n+1 - n0; /* n1 <= n0 <= n1+1 */
+  n0 = (n >> 1)+1; n1 = n+1 - n0; /* n1 <= n0 <= n1+1 */
   p0 = cgetg(n0+2, t_POL); p0[1] = evalvarn(v)|evalsigne(1);
   p1 = cgetg(n1+2, t_POL); p1[1] = evalvarn(v)|evalsigne(1);
   for (i=0; i<n1; i++)

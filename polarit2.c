@@ -941,7 +941,7 @@ RgX_factor(GEN x, GEN dom)
       lx = lg(p1);
       for (r1 = 1; r1 < lx; r1++)
         if (typ(gel(p1,r1)) == t_COMPLEX) break;
-      lx=(r1+lx)>>1; p2=cgetg(lx,t_COL);
+      lx=(r1+lx) >> 1; p2=cgetg(lx,t_COL);
       for (i = 1; i < r1; i++)
         gel(p2,i) = deg1pol_shallow(gen_1, negr(gel(p1,i)), v);
       for (   ; i < lx; i++)
@@ -1210,7 +1210,7 @@ ulong
 Flv_factorback(GEN L, GEN e, ulong p)
 {
   int64_t i, l = lg(e);
-  ulong r = 1UL, ri = 1UL;
+  ulong r = 1ULL, ri = 1ULL;
   for (i = 1; i < l; i++)
   {
     int64_t c = e[i];
@@ -1220,7 +1220,7 @@ Flv_factorback(GEN L, GEN e, ulong p)
     else
       r = Fl_mul(r, Fl_powu(L[i],c,p), p);
   }
-  if (ri != 1UL) r = Fl_div(r, ri, p);
+  if (ri != 1ULL) r = Fl_div(r, ri, p);
   return r;
 }
 GEN

@@ -494,7 +494,7 @@ compute_t(GEN N, GEN *e, GEN *faet)
 static GEN
 computetabdl(ulong q)
 {
-  ulong g, a, i, qs2 = q>>1; /* (q-1)/2 */
+  ulong g, a, i, qs2 = q >> 1; /* (q-1)/2 */
   GEN T = cgetg(qs2+2,t_VECSMALL);
 
   g = pgener_Fl(q); a = 1;
@@ -511,7 +511,7 @@ computetabdl(ulong q)
 static GEN
 compute_g(ulong q)
 {
-  const ulong qs2 = q>>1; /* (q-1)/2 */
+  const ulong qs2 = q >> 1; /* (q-1)/2 */
   ulong x, a;
   GEN T = computetabdl(q); /* updated in place to save on memory */
   a = 0; /* dl[1] */
@@ -540,7 +540,7 @@ zv_to_ZX(GEN x)
 static GEN
 get_jac(GEN C, ulong q, int64_t pk, GEN tabg)
 {
-  ulong x, qs2 = q>>1; /* (q-1)/2 */
+  ulong x, qs2 = q >> 1; /* (q-1)/2 */
   GEN vpk = zero_zv(pk);
 
   for (x=2; x<=qs2; x++) vpk[ tabg[x]%pk + 1 ] += 2;
@@ -560,7 +560,7 @@ get_jac2(GEN N, ulong q, int64_t k, GEN *j2q, GEN *j3q)
   pk = 1ULL << k;;
   vpk = zero_zv(pk);
 
-  qs2 = q>>1; /* (q-1)/2 */
+  qs2 = q >> 1; /* (q-1)/2 */
 
   for (x=2; x<=qs2; x++) vpk[ (T[x]+T[x-1]+qs2)%pk + 1 ] += 2;
   vpk[ (T[x]+T[x-1]+qs2)%pk + 1 ]++;
@@ -574,7 +574,7 @@ get_jac2(GEN N, ulong q, int64_t k, GEN *j2q, GEN *j3q)
     for (x=1; x<=8; x++) v8[x] = 0;
     for (x=2; x<=qs2; x++) v8[ ((3*T[x]+T[x-1]+qs2)&7) + 1 ]++;
     for (   ; x<=q-1; x++) v8[ ((3*T[q-x]+T[q-x+1]-3*qs2)&7) + 1 ]++;
-    *j2q = RgX_inflate(ZX_sqr(u_red_cyclo2n_ip(v8,3)), pk>>3);
+    *j2q = RgX_inflate(ZX_sqr(u_red_cyclo2n_ip(v8,3)), pk >> 3);
     *j2q = red_cyclo2n_ip(*j2q, k);
   }
   for (i=1; i<=pk; i++) vpk[i] = 0;
@@ -655,7 +655,7 @@ filltabs(GEN C, GEN Cp, Red *R, int64_t p, int64_t pk, int64_t ltab)
   }
   else if (pk >= 8)
   {
-    int64_t LE = (pk>>2) + 1;
+    int64_t LE = (pk >> 2) + 1;
     GEN E = cgetg(LE, t_VECSMALL);
     for (i=1,j=0; i<pk; i++)
       if ((i%8)==1 || (i%8)==3) E[++j] = i;
@@ -700,7 +700,7 @@ filltabs(GEN C, GEN Cp, Red *R, int64_t p, int64_t pk, int64_t ltab)
   {
     int64_t s = vali(m); m = shifti(m,-s);
     tabt[e] = e==1? s: s + R->k;
-    taba[e] = signe(m)? ((mod2BIL(m) & R->mask)+1)>>1: 0;
+    taba[e] = signe(m)? ((mod2BIL(m) & R->mask)+1) >> 1: 0;
     m = shifti(m, -R->k);
   }
   setlg(taba, e); cache_aall(C) = taba;
@@ -720,7 +720,7 @@ calcglobs(Red *R, ulong t, int64_t *plpC, int64_t *pltab, GEN *pP)
   *pltab = (b/k)+2;
   R->k  = k;
   R->lv = 1LL << (k-1);
-  R->mask = (1UL << k) - 1;
+  R->mask = (1ULL << k) - 1;
 
   fat = factoru_pow(t);
   P = gel(fat,1);

@@ -169,7 +169,7 @@ FIXUP1(GEN M, GEN a, GEN b, int64_t m, int64_t t, GEN *ap, GEN *bp)
 
 static int64_t
 magic_threshold(GEN a)
-{ return (3+uexpi(a))>>1; }
+{ return (3+uexpi(a)) >> 1; }
 
 static GEN
 HGCD_basecase(GEN a, GEN b)

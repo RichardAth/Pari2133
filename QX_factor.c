@@ -225,7 +225,7 @@ nextK:
   if (DEBUGLEVEL > 3)
     err_printf("\n### K = %d, %Ps combinations\n", K,binomial(utoipos(lfamod), K));
   setlg(ind, K+1); ind[1] = 1;
-  Sbound = (ulong) ((K+1)>>1);
+  Sbound = (ulong) ((K+1) >> 1);
   i = 1; curdeg = deg[ind[1]];
   for(;;)
   { /* try all combinations of K factors */
@@ -1149,7 +1149,7 @@ ZX_gcd_all(GEN A, GEN B, GEN *Anew)
   av = avma;
   for (k = 1; ;k *= 2)
   {
-    gen_inccrt_i("ZX_gcd", worker, g, (k+1)>>1, 0, &S, &H, &mod, ZX_gcd_chinese, NULL);
+    gen_inccrt_i("ZX_gcd", worker, g, (k+1) >> 1, 0, &S, &H, &mod, ZX_gcd_chinese, NULL);
     gerepileall(av, 2, &H, &mod);
     Hp = ZX_to_Flx(H, pp);
     if (lgpol(Flx_rem(Ap, Hp, pp)) || lgpol(Flx_rem(Bp, Hp, pp))) continue;

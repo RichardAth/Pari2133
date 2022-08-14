@@ -507,8 +507,8 @@ ZX_eval2BILspec(GEN x, int64_t k, int64_t nx)
   GEN nz = cgetipos(2+lz);
   for(i=0; i < lz; i++)
   {
-    *int_W(pz,i) = 0UL;
-    *int_W(nz,i) = 0UL;
+    *int_W(pz,i) = 0ULL;
+    *int_W(nz,i) = 0ULL;
   }
   for(i=0, ki=0; i<nx; i++, ki+=k)
   {
@@ -585,7 +585,7 @@ ZX_sqrspec_basecase_limb(GEN x, int64_t a, int64_t i)
 {
   pari_sp av = avma;
   GEN s = gen_0;
-  int64_t j, l = (i+1)>>1;
+  int64_t j, l = (i+1) >> 1;
   for (j=a; j<l; j++)
   {
     GEN xj = gel(x,j), xx = gel(x,i-j);
@@ -595,7 +595,7 @@ ZX_sqrspec_basecase_limb(GEN x, int64_t a, int64_t i)
   s = shifti(s,1);
   if ((i&1) == 0)
   {
-    GEN t = gel(x, i>>1);
+    GEN t = gel(x, i >> 1);
     if (signe(t))
       s = addii(s, sqri(t));
   }

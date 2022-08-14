@@ -1025,7 +1025,7 @@ Fl_chinese_coprime(GEN a, ulong b, GEN q, ulong p, ulong qinv, GEN pq, GEN pq2)
 
   if (b == amod) return NULL;
   d = Fl_mul(Fl_sub(b, amod, p), qinv, p); /* != 0 */
-  if (d >= 1 + (p>>1))
+  if (d >= 1 + (p >> 1))
     ax = subii(a, mului(p-d, q));
   else
   {
@@ -1035,11 +1035,11 @@ Fl_chinese_coprime(GEN a, ulong b, GEN q, ulong p, ulong qinv, GEN pq, GEN pq2)
   return gerepileuptoint(av, ax);
 }
 GEN
-Z_init_CRT(ulong Hp, ulong p) { return stoi(Fl_center(Hp, p, p>>1)); }
+Z_init_CRT(ulong Hp, ulong p) { return stoi(Fl_center(Hp, p, p >> 1)); }
 GEN
 ZX_init_CRT(GEN Hp, ulong p, int64_t v)
 {
-  int64_t i, l = lg(Hp), lim = (int64_t)(p>>1);
+  int64_t i, l = lg(Hp), lim = (int64_t)(p >> 1);
   GEN H = cgetg(l, t_POL);
   H[1] = evalsigne(1) | evalvarn(v);
   for (i=2; i<l; i++)
@@ -1050,7 +1050,7 @@ ZX_init_CRT(GEN Hp, ulong p, int64_t v)
 GEN
 ZM_init_CRT(GEN Hp, ulong p)
 {
-  int64_t i,j, m, l = lg(Hp), lim = (int64_t)(p>>1);
+  int64_t i,j, m, l = lg(Hp), lim = (int64_t)(p >> 1);
   GEN c, cp, H = cgetg(l, t_MAT);
   if (l==1) return H;
   m = lgcols(Hp);
@@ -1135,7 +1135,7 @@ ZXM_init_CRT(GEN Hp, int64_t deg, ulong p)
 {
   int64_t i, j, k;
   GEN H;
-  int64_t m, l = lg(Hp), lim = (int64_t)(p>>1), n;
+  int64_t m, l = lg(Hp), lim = (int64_t)(p >> 1), n;
   H = cgetg(l, t_MAT);
   if (l==1) return H;
   m = lgcols(Hp);
@@ -1227,7 +1227,7 @@ static ulong
 Flx_resultant_all(GEN a, GEN b, int64_t *C0, int64_t *C1, GEN dglist, ulong p)
 {
   int64_t da,db,dc, ind;
-  ulong lb, res, g = 1UL, h = 1UL, ca = 1UL, cb = 1UL;
+  ulong lb, res, g = 1ULL, h = 1ULL, ca = 1ULL, cb = 1ULL;
   int s = 1;
   pari_sp av = avma;
 
@@ -2400,7 +2400,7 @@ QXQ_inv(GEN A, GEN B)
   for (k = 1; ;k *= 2)
   {
     GEN res, b, N, den;
-    gen_inccrt_i("QXQ_inv", worker, NULL, (k+1)>>1, 0, &S, &H, &mod,
+    gen_inccrt_i("QXQ_inv", worker, NULL, (k+1) >> 1, 0, &S, &H, &mod,
                  nxV_chinese_center, FpX_center);
     gerepileall(av2, 2, &H, &mod);
     b = sqrti(shifti(mod,-1));
@@ -2508,7 +2508,7 @@ QXQ_div(GEN A, GEN B, GEN C)
   for (k = 1; ;k *= 2)
   {
     GEN res, b, N, den;
-    gen_inccrt_i("QXQ_div", worker, NULL, (k+1)>>1, 0, &S, &H, &mod,
+    gen_inccrt_i("QXQ_div", worker, NULL, (k+1) >> 1, 0, &S, &H, &mod,
                  nxV_chinese_center, FpX_center);
     gerepileall(av2, 2, &H, &mod);
     b = sqrti(shifti(mod,-1));
@@ -2960,7 +2960,7 @@ ffinit_Artin_Schreier_2(int64_t l)
   setvarn(Q, v);
 
   /* x^4+x+1, irred over F_2, minimal polynomial of a root of Q */
-  T = mkvecsmalln(6,evalvarn(v),1UL,1UL,0UL,0UL,1UL);
+  T = mkvecsmalln(6,evalvarn(v),1ULL,1ULL,0ULL,0ULL,1ULL);
   /* Q = x^2 + x + a(y) irred. over K = F2[y] / (T(y))
    * ==> x^2 + x + a(y) b irred. over K for any root b of Q
    * ==> x^2 + x + (b^2+b)b */

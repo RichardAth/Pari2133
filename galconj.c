@@ -1027,7 +1027,7 @@ static GEN
 fixedfieldsympol(GEN O, ulong l)
 {
   pari_sp ltop=avma;
-  const int64_t n=(BITS_IN_LONG>>1)-1;
+  const int64_t n=(BITS_IN_LONG >> 1)-1;
   GEN NS = cgetg(n+1,t_MAT), sym = NULL, W = cgetg(n+1,t_VECSMALL);
   int64_t i, e=1;
   if (DEBUGLEVEL>=4)
@@ -1173,10 +1173,10 @@ galoisanalysis(GEN T, struct galois_analysis *ga, int64_t calcul_l, GEN bad)
   deg = Fp[np]; /* largest prime | n */
   plift = 0;
   nbtest = 0;
-  nbmax = 8+(n>>1);
+  nbmax = 8+(n >> 1);
   u_forprime_init(&S, n*maxss(expu(n)-3, 2), ULONG_MAX);
   av = avma;
-  while (!plift || (nbtest < nbmax && (nbtest <=8 || order < (n>>1)))
+  while (!plift || (nbtest < nbmax && (nbtest <=8 || order < (n >> 1)))
                 || ((n == 24 || n==36) && O[6] == 0 && O[4] == 0)
                 || ((group&ga_non_wss) && order == Fp[np]))
   {
@@ -1385,7 +1385,7 @@ a4galoisgen(struct galois_test *td)
         lswap(u[4],u[6]);
         if (!(a & 1))
         {
-          a = 4 - (a>>1);
+          a = 4 - (a >> 1);
           lswap(u[6], u[a]);
           lswap(u[4], u[a-2]);
         }
@@ -2132,7 +2132,7 @@ galoisfindfrobenius(GEN T, GEN L, GEN den, GEN bad, struct galois_frobenius *gf,
     /* The first prime degree is always divisible by deg, so we don't
      * have to worry about ext_2 being used before regular supersolvable*/
     if (!gmask) return gc_NULL(ltop);
-    if ((ga->group&ga_non_wss) && ++Try > ((3*n)>>1))
+    if ((ga->group&ga_non_wss) && ++Try > ((3*n) >> 1))
     {
       if (DEBUGLEVEL)
         pari_warn(warner,"Galois group probably not weakly super solvable");
@@ -3541,7 +3541,7 @@ cc_chartable(GEN cc)
   }
   f = znstar_conductor_bits(Flv_to_F2v(H));
   /* lift character table to Z[zeta_f] */
-  pov2 = p>>1;
+  pov2 = p >> 1;
   ct = cgetg(lcl, t_MAT);
   if (f == 1)
   { /* rational representation */

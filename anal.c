@@ -383,7 +383,7 @@ static const int64_t MAX_DIGITS  = 19;
 static const int64_t MAX_DIGITS  = 9;
 #endif
 
-static const int64_t MAX_XDIGITS = BITS_IN_LONG>>2;
+static const int64_t MAX_XDIGITS = BITS_IN_LONG >> 2;
 static const int64_t MAX_BDIGITS = BITS_IN_LONG;
 
 static int

@@ -107,7 +107,7 @@ __extension__ ({                                                        \
   const ulong u1 = ((hiremainder << norm) | (norm ? __a >> bits: 0));   \
   const ulong u0 = __a << norm;                                         \
   const ulong q = divll_pre_normalized(u1, u0, sn, ninv, &r);           \
-  hiremainder = r>>norm; q;                                             \
+  hiremainder = r >> norm; q;                                             \
               })
 
 #else /* __GNUC__ */
@@ -120,7 +120,7 @@ divll_pre(ulong a_lo, ulong n, ulong ninv, ulong *hiremainder)
   const ulong u1 = ((*hiremainder << norm) | (norm ? a_lo >> bits: 0));
   const ulong u0 = a_lo << norm;
   const ulong q  = divll_pre_normalized(u1, u0, sn, ninv, &r);
-  *hiremainder = r>>norm; return q;
+  *hiremainder = r >> norm; return q;
 }
 #endif /* __GNUC__ */
 

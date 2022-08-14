@@ -1054,7 +1054,7 @@ vecsmall_reverse(GEN A)
 INLINE void
 vecreverse_inplace(GEN y)
 {
-  int64_t l = lg(y), lim = l>>1, i;
+  int64_t l = lg(y), lim = l >> 1, i;
   for (i = 1; i <= lim; i++)
   {
     GEN z = gel(y,i);
@@ -1585,7 +1585,7 @@ ndec2prec(int64_t x) { return 2 + ndec2nlong(x); }
 INLINE int64_t
 ndec2nbits(int64_t x) { return ndec2nlong(x) << TWOPOTBITS_IN_LONG; }
 /* Fast implementation of ceil(x / (8*sizeof(int64_t))); typecast to (ulong)
- * to avoid overflow. Faster than 1 + ((x-1)>>TWOPOTBITS_IN_LONG)) :
+ * to avoid overflow. Faster than 1 + ((x-1) >> TWOPOTBITS_IN_LONG)) :
  *   addl, shrl instead of subl, sarl, addl */
 INLINE int64_t
 nbits2nlong(int64_t x) {
@@ -1708,7 +1708,7 @@ Fp_halve(GEN a, GEN p)
   return shifti(a,-1);
 }
 
-/* assume 0 <= u < p and ps2 = p>>1 */
+/* assume 0 <= u < p and ps2 = p >> 1 */
 INLINE GEN
 Fp_center(GEN u, GEN p, GEN ps2)
 { return abscmpii(u,ps2)<=0? icopy(u): subii(u,p); }
@@ -2505,7 +2505,7 @@ INLINE ulong
 F2x_coeff(GEN x,int64_t v)
 {
    ulong u=(ulong)x[2+divsBIL(v)];
-   return (u>>remsBIL(v))&1UL;
+   return (u >> remsBIL(v))&1ULL;
 }
 
 INLINE void

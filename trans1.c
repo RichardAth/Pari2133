@@ -773,14 +773,14 @@ GEN
 powrshalf(GEN x, int64_t s)
 {
   if (s & 1) return sqrtr(powrs(x, s));
-  return powrs(x, s>>1);
+  return powrs(x, s >> 1);
 }
 /* x^(s/2), assume x t_REAL */
 GEN
 powruhalf(GEN x, ulong s)
 {
   if (s & 1) return sqrtr(powru(x, s));
-  return powru(x, s>>1);
+  return powru(x, s >> 1);
 }
 /* x^(n/d), assume x t_REAL, return t_REAL */
 GEN
@@ -1372,7 +1372,7 @@ static GEN
 grootsof1_4(int64_t N, int64_t prec)
 {
   GEN z, RU = cgetg(N+1,t_COL), *v  = ((GEN*)RU) + 1;
-  int64_t i, N2 = (N>>1), N4 = (N>>2), N8 = (N>>3);
+  int64_t i, N2 = (N >> 1), N4 = (N >> 2), N8 = (N >> 3);
   /* z^N2 = -1, z^N4 = I; if z^k = a+I*b, then z^(N4-k) = I*conj(z) = b+a*I */
 
   v[0] = gen_1; v[1] = z = rootsof1u_cx(N, prec);
@@ -1398,7 +1398,7 @@ grootsof1(int64_t N, int64_t prec)
   if (N <= 0) pari_err_DOMAIN("rootsof1", "N", "<=", gen_0, stoi(N));
   if ((N & 3) == 0) return grootsof1_4(N, prec);
   if (N <= 2) return N == 1? mkcol(gen_1): mkcol2(gen_1, gen_m1);
-  k = (N+1)>>1;
+  k = (N+1) >> 1;
   RU = cgetg(N+1,t_COL);
   v  = ((GEN*)RU) + 1;
   v[0] = gen_1; v[1] = z = rootsof1u_cx(N, prec);
@@ -1505,7 +1505,7 @@ Zn_sqrt(GEN d, GEN fn)
       if (odd(v)) return NULL;
       bp = Zp_sqrt(r, p, e-v);
       if (!bp)    return NULL;
-      if (v) bp = mulii(bp, powiu(p, v>>1L));
+      if (v) bp = mulii(bp, powiu(p, v >> 1L));
     }
     mp = powiu(p, e);
     pr = mulii(m, mp);
@@ -1524,7 +1524,7 @@ sqrt_ser(GEN b, int64_t prec)
   ulong mask;
   GEN a, x, lta, ltx;
 
-  if (!signe(b)) return zeroser(vx, e>>1);
+  if (!signe(b)) return zeroser(vx, e >> 1);
   a = leafcopy(b);
   x = cgetg_copy(b, &lx);
   if (e & 1)

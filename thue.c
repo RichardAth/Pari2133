@@ -810,7 +810,7 @@ thueinit(GEN pol, int64_t flag, int64_t prec)
     double d, dr, dn = (double)n;
 
     if (dpol <= 2) pari_err_DOMAIN("thueinit", "P","=",pol,pol);
-    dr = (double)((s+n-2)>>1); /* s+t-1 */
+    dr = (double)((s+n-2) >> 1); /* s+t-1 */
     d = dn*(dn-1)*(dn-2);
     /* Guess precision by approximating Baker's bound. The guess is most of
      * the time not sharp, ie 10 to 30 decimal digits above what is _really_

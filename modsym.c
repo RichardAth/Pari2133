@@ -171,7 +171,7 @@ generatemsymbols(ulong N, ulong num, GEN divN)
   /* c = 1 first */
   gel(ret, ++curn) = mkvecsmall2(1,0);
   for (d = 2; d < N; d++)
-    if (ugcd(d,N) != 1UL)
+    if (ugcd(d,N) != 1ULL)
       gel(ret, ++curn) = mkvecsmall2(1,d);
   /* omit c = 1 (first) and c = N (last) */
   for (i=2; i < l; i++)
@@ -182,9 +182,9 @@ generatemsymbols(ulong N, ulong num, GEN divN)
     for (d0 = 2; d0 <= Novc; d0++)
     {
       ulong k, d = d0;
-      if (ugcd(d, Novc) == 1UL) continue;
+      if (ugcd(d, Novc) == 1ULL) continue;
       for (k = 0; k < c; k++, d += Novc)
-        if (ugcd(c,d) == 1UL)
+        if (ugcd(c,d) == 1ULL)
         {
           gel(ret, ++curn) = mkvecsmall2(c,d);
           break;
@@ -2426,7 +2426,7 @@ msatkinlehner(GEN W, int64_t Q, GEN H)
   if (Q <= 0) pari_err_DOMAIN("msatkinlehner","Q","<=",gen_0,stoi(Q));
   w = msatkinlehner_i(W,Q);
   w = endo_project(W,w,H);
-  if (k > 2 && Q != 1) w = RgM_Rg_div(w, powuu(Q,(k-2)>>1));
+  if (k > 2 && Q != 1) w = RgM_Rg_div(w, powuu(Q,(k-2) >> 1));
   return gerepilecopy(av, w);
 }
 
@@ -3291,7 +3291,7 @@ msfromell(GEN E0, int64_t sign)
   N = itou(NE); av2 = avma;
   W = gerepilecopy(av2, mskinit(N,2,0));
   star = msk_get_star(W);
-  (void)u_forprime_init(&Sl, 1UL<<29, ULONG_MAX);
+  (void)u_forprime_init(&Sl, 1ULL<<29, ULONG_MAX);
   /* loop for p <= count_Manin_symbols(N) / 6 would be enough */
   (void)u_forprime_init(&S, 2, ULONG_MAX);
   vT = cgetg(1, t_VEC);

@@ -364,7 +364,7 @@ FF_var(GEN x)
     return varn(gel(x,3));
   case t_FF_F2xq:
   default:
-    return gel(x,3)[1]>>VARNSHIFT;
+    return gel(x,3)[1] >> VARNSHIFT;
   }
 }
 

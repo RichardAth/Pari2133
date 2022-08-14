@@ -730,7 +730,7 @@ FpX_factorff(GEN P, GEN T, GEN p)
 static GEN
 FlxqXQ_halfFrobenius_i(GEN a, GEN xp, GEN Xp, GEN S, GEN T, ulong p)
 {
-  GEN ap2 = FlxqXQ_powu(a, p>>1, S, T, p);
+  GEN ap2 = FlxqXQ_powu(a, p >> 1, S, T, p);
   GEN V = FlxqXQ_autsum(mkvec3(xp, Xp, ap2), get_Flx_degree(T), S, T, p);
   return gel(V,3);
 }

@@ -700,7 +700,7 @@ GEN rtor(GEN x, int64_t prec) {
 
 ulong int_bit(GEN x, int64_t n) {
     int64_t r, q = dvmdsBIL(n, &r);
-    return q < lgefint(x) - 2 ? ((ulong)*int_W(x, q) >> r) & 1UL : 0;
+    return q < lgefint(x) - 2 ? ((ulong)*int_W(x, q) >> r) & 1ULL : 0;
 }
 
 /*******************************************************************/

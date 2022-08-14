@@ -517,7 +517,7 @@ pari_stackcheck_init(void *pari_stack_base)
 void
 pari_stackcheck_init(void *pari_stack_base)
 {
-  ulong size = 1UL << 21;
+  ulong size = 1ULL << 21;
   if (!pari_stack_base) { PARI_stack_limit = NULL; return; }
   if (size > (ulong)pari_stack_base)
     PARI_stack_limit = (void*)(((ulong)pari_stack_base) / 16);
@@ -2907,7 +2907,7 @@ getwalltime(void)
 GEN
 pari_version(void)
 {
-  const ulong mask = (1UL<<PARI_VERSION_SHIFT) - 1;
+  const ulong mask = (1ULL<<PARI_VERSION_SHIFT) - 1;
   ulong major, minor, patch, n = paricfg_version_code;
   patch = n & mask; n >>= PARI_VERSION_SHIFT;
   minor = n & mask; n >>= PARI_VERSION_SHIFT;

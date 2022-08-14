@@ -2109,12 +2109,12 @@ sqr_ser_part(GEN x, int64_t l1, int64_t l2)
   for (i=l1; i<=l2; i++)
   {
     p2[i] = !isrationalzero(gel(x,i)); if (p2[i]) mi = i;
-    p1=gen_0; av=avma; l=((i+1)>>1) - 1;
+    p1=gen_0; av=avma; l=((i+1) >> 1) - 1;
     for (j=i-mi; j<=minss(l,mi); j++)
       if (p2[j] && p2[i-j]) p1 = gadd(p1, gmul(gel(x,j),gel(x,i-j)));
     p1 = gshift(p1,1);
-    if ((i&1) == 0 && p2[i>>1])
-      p1 = gadd(p1, gsqr(gel(x,i>>1)));
+    if ((i&1) == 0 && p2[i >> 1])
+      p1 = gadd(p1, gsqr(gel(x,i >> 1)));
     gel(z,i) = gerepileupto(av,p1);
   }
   return Z;

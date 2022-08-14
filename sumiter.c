@@ -303,14 +303,14 @@ forfactored(GEN a, GEN b, GEN code)
   sb = signe(b);
   if (sa < 0)
   {
-    stop = forfactoredneg((sb < 0)? uel(b,2): 1UL, itou(a), code);
+    stop = forfactoredneg((sb < 0)? uel(b,2): 1ULL, itou(a), code);
     if (!stop && sb >= 0) stop = eval0(code);
-    if (!stop && sb > 0) forfactoredpos(1UL, b[2], code);
+    if (!stop && sb > 0) forfactoredpos(1ULL, b[2], code);
   }
   else
   {
     if (!sa) stop = eval0(code);
-    if (!stop && sb) forfactoredpos(sa? uel(a,2): 1UL, itou(b), code);
+    if (!stop && sb) forfactoredpos(sa? uel(a,2): 1ULL, itou(b), code);
   }
   pop_lex(1); set_avma(av);
 }
@@ -1168,7 +1168,7 @@ sumalt2(void *E, GEN (*eval)(void *, GEN), GEN a, int64_t prec)
 
   if (typ(a) != t_INT) pari_err_TYPE("sumalt",a);
   N = (int64_t)(0.307073*(prec2nbits(prec) + 5)); /*0.307073 > 1/log_2(\beta_B)*/
-  pol = ZX_div_by_X_1(polzag1(N,N>>1), &dn);
+  pol = ZX_div_by_X_1(polzag1(N,N >> 1), &dn);
   a = setloop(a);
   N = degpol(pol);
   s = gen_0;
@@ -1291,7 +1291,7 @@ sumpos2(void *E, GEN (*eval)(void *, GEN), GEN a, int64_t prec)
 
   if (odd(N)) N++; /* extra precision for free */
   S = sumpos_init(E, eval, a, N, prec);
-  pol = ZX_div_by_X_1(polzag1(N,N>>1), &dn);
+  pol = ZX_div_by_X_1(polzag1(N,N >> 1), &dn);
   s = gen_0;
   for (k=0; k<N; k++)
   {
@@ -1518,7 +1518,7 @@ static void
 FD(int64_t M, int64_t N2, GEN *pd, GEN *pa)
 {
   GEN d, a, b, W, F;
-  int64_t N = N2>>1, m, i;
+  int64_t N = N2 >> 1, m, i;
 
   F = cgetg(N2+2, t_VEC);
   a = cgetg(N2+2, t_VEC);

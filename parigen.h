@@ -51,7 +51,7 @@ typedef long long *GEN;
 #define EXTRAPRECWORD   1
 #define EXTRAPREC64    ((int64_t)(8/sizeof(int64_t)))
 #define HIGHBIT (1ULL << (BITS_IN_LONG-1))
-#define BITS_IN_HALFULONG (BITS_IN_LONG>>1)
+#define BITS_IN_HALFULONG (BITS_IN_LONG >> 1)
 
 #define LOWMASK ((1ULL<<BITS_IN_HALFULONG) - 1)
 #define HIGHMASK (~LOWMASK)

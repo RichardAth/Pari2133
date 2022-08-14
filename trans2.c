@@ -83,7 +83,7 @@ mpatan(GEN x)
     alpha = 1.65149612947 - e; /* log_2(Pi) - e */
   else
     alpha = log2(M_PI / atan(rtodbl(p1)));
-  beta = (double)(prec2nbits(l)>>1);
+  beta = (double)(prec2nbits(l) >> 1);
   delta = 1 + beta - alpha/2;
   if (delta <= 0) { n = 1; m = 0; }
   else
@@ -207,7 +207,7 @@ gasin(GEN x, int64_t prec)
       {
         GEN t = Pi2n(-1,prec);
         if (gsigne(gel(y,2)) < 0) setsigne(t, -1);
-        return gerepileupto(av, scalarser(t, varn(y), valp(p1)>>1));
+        return gerepileupto(av, scalarser(t, varn(y), valp(p1) >> 1));
       }
       p1 = gdiv(derivser(y), gsqrt(p1,prec));
       a = integser(p1);
@@ -252,7 +252,7 @@ gacos(GEN x, int64_t prec)
     case t_REAL: sx = signe(x);
       if (!sx) return acos0(expo(x));
       if (absrnz_equal1(x)) /* |x| = 1 */
-        return sx > 0? real_0_bit( -(bit_prec(x)>>1) ) : mppi(realprec(x));
+        return sx > 0? real_0_bit( -(bit_prec(x) >> 1) ) : mppi(realprec(x));
       if (expo(x) < 0) return mpacos(x);
 
       y = cgetg(3,t_COMPLEX); p1 = mpacosh(x);
@@ -272,7 +272,7 @@ gacos(GEN x, int64_t prec)
       if (lg(y) > 2)
       {
         p1 = gsubsg(1,gsqr(y));
-        if (gequal0(p1)) { set_avma(av); return zeroser(varn(y), valp(p1)>>1); }
+        if (gequal0(p1)) { set_avma(av); return zeroser(varn(y), valp(p1) >> 1); }
         p1 = integser(gdiv(gneg(derivser(y)), gsqrt(p1,prec)));
         /*y(t) = 1+O(t)*/
         if (gequal1(gel(y,2)) && !valp(y)) return gerepileupto(av, p1);
@@ -642,7 +642,7 @@ gasinh(GEN x, int64_t prec)
       {
         GEN t = PiI2n(-1,prec);
         if ( gsigne(imag_i(gel(y,2))) < 0 ) setsigne(gel(t,2), -1);
-        return gerepileupto(av, scalarser(t, varn(y), valp(p1)>>1));
+        return gerepileupto(av, scalarser(t, varn(y), valp(p1) >> 1));
       }
       p1 = gdiv(derivser(y), gsqrt(p1,prec));
       a = integser(p1);
@@ -723,7 +723,7 @@ gacosh(GEN x, int64_t prec)
         return gerepileupto(av, gadd(y, PiI2n(-1, prec)));
       }
       d = gsubgs(gsqr(y),1);
-      if (gequal0(d)) { set_avma(av); return zeroser(varn(y), valp(d)>>1); }
+      if (gequal0(d)) { set_avma(av); return zeroser(varn(y), valp(d) >> 1); }
       d = gdiv(derivser(y), gsqrt(d,prec));
       a = integser(d);
       if (v)

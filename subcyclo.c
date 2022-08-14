@@ -788,7 +788,7 @@ factor_Aurifeuille_aux(GEN A, int64_t Astar, int64_t n, GEN P,
 
   if ((n & 7) == 4)
   { /* A^* even */
-    GEN i = Fp_powu(z, n>>2, le), z2 = Fp_sqr(z, le);
+    GEN i = Fp_powu(z, n >> 2, le), z2 = Fp_sqr(z, le);
 
     invertible = stack_malloc(n); /* even indices unused */
     for (j = 1; j < n; j+=2) invertible[j] = 1;
@@ -807,8 +807,8 @@ factor_Aurifeuille_aux(GEN A, int64_t Astar, int64_t n, GEN P,
     powers = cgetg(maxjump+1, t_VEC); /* powers[k] = z^k, odd indices unused */
     gel(powers,2) = z2;
     for (k = 4; k <= maxjump; k+=2)
-      gel(powers,k) = odd(k>>1)? Fp_mul(gel(powers, k-2), z2, le)
-                               : Fp_sqr(gel(powers, k>>1), le);
+      gel(powers,k) = odd(k >> 1)? Fp_mul(gel(powers, k-2), z2, le)
+                               : Fp_sqr(gel(powers, k >> 1), le);
 
     if (Astar == 2)
     { /* important special case (includes A=2), split for efficiency */
@@ -892,7 +892,7 @@ factor_Aurifeuille_aux(GEN A, int64_t Astar, int64_t n, GEN P,
     gel(powers,1) = z;
     for (k = 2; k <= maxjump; k++)
       gel(powers,k) = odd(k)? Fp_mul(gel(powers, k-1), z, le)
-                            : Fp_sqr(gel(powers, k>>1), le);
+                            : Fp_sqr(gel(powers, k >> 1), le);
     av = avma;
     s = z; f = subii(a, s); lastj = 1;
     for(j = 2, k = 0; j < n; j++)
@@ -941,7 +941,7 @@ factor_Aurifeuille_prime(GEN p, int64_t d)
   GEN fd;
   int64_t pp;
   if ((d & 3) == 2) { d >>= 1; p = negi(p); }
-  fd = factoru(odd(d)? d: d>>2);
+  fd = factoru(odd(d)? d: d >> 2);
   pp = itos(p);
   Aurifeuille_init(p, d, fd, &S);
   return gerepileuptoint(av, factor_Aurifeuille_aux(p, pp, d, gel(fd,1), &S));
@@ -980,7 +980,7 @@ factor_Aurifeuille(GEN a, int64_t d)
     set_avma(av); return gen_1;
   }
   /* v_2(d) = 0 or 2. Kill 2 from factorization (minor efficiency gain) */
-  fd = factoru(odd(d)? d: d>>2); P = gel(fd,1); lP = lg(P);
+  fd = factoru(odd(d)? d: d >> 2); P = gel(fd,1); lP = lg(P);
   astar = sa;
   if (odd(va)) astar <<= 1;
   for (i = 1; i < lP; i++)

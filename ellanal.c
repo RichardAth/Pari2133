@@ -316,7 +316,7 @@ vecF(struct lcritical *C, GEN E)
     rbnd[l] = _sqrt(gel(bnd,l)) + 1;
     gel(Q, l) = mpexp(mulrr(PiN, gel(elh, l)));
   }
-  if (Ks && baby_size(rbnd, Ks, prec) > (Ks>>1))
+  if (Ks && baby_size(rbnd, Ks, prec) > (Ks >> 1))
     vec = vecF2_lk(E, bnd, rbnd, Q, elh, prec);
   else
     vec = vecF2_lk_bsgs(E, bnd, rbnd, Q, elh, N, prec);

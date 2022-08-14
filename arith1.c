@@ -567,10 +567,10 @@ carremod(ulong A)
     1,1,0,0,1,0,0,0,0,1, 1,0,0,0,1,0,1,0,0,0, 0,0,0,0,0,1,1,0,0,1,
     1,0,0,0,0,1,1,0,0,1, 1,0,0,0,0,0,0,0,0,1, 0,1,0,0,0,1,1,0,0,0, 0,1,0,0,1};
   const int carresmod11[]={1,1,0,1,1,1,0,0,0,1, 0};
-  return (carresmod64[A & 0x3fUL]
-    && carresmod63[A % 63UL]
-    && carresmod65[A % 65UL]
-    && carresmod11[A % 11UL]);
+  return (carresmod64[A & 0x3fULL]
+    && carresmod63[A % 63ULL]
+    && carresmod65[A % 65ULL]
+    && carresmod11[A % 11ULL]);
 }
 
 /* emulate Z_issquareall on single-word integers */
@@ -677,7 +677,7 @@ polissquareall(GEN x, GEN *pt)
     if (pt) {
       y = cgetg((lx+3) / 2, t_POL);
       for (i = 2; i < lx; i+=2)
-        if (!issquareall(gel(x,i), &gel(y, (i+2)>>1))) return gc_long(av,0);
+        if (!issquareall(gel(x,i), &gel(y, (i+2) >> 1))) return gc_long(av,0);
       y[1] = evalsigne(1) | evalvarn(varn(x));
       goto END;
     } else {
@@ -699,7 +699,7 @@ polissquareall(GEN x, GEN *pt)
     if (m != 1) y = RgX_inflate(y,m);
   }
 END:
-  if (v) y = RgX_shift_shallow(y, v>>1);
+  if (v) y = RgX_shift_shallow(y, v >> 1);
   *pt = gerepilecopy(av, y); return 1;
 }
 
@@ -1195,12 +1195,12 @@ Zn_quad_roots(GEN N, GEN B, GEN C)
     int64_t t2, s = E[i], t = Z_pvalrem(D, p, &D0), d = s - t;
     if (d <= 0)
     {
-      q = powiu(p, (s+1)>>1);
+      q = powiu(p, (s+1) >> 1);
       Q0 = mulii(Q0, q); continue;
     }
     /* d > 0 */
     if (odd(t)) return NULL;
-    t2 = t >> 1;
+    t2 = t  >>  1;
     if (i > 1)
     { /* p > 2 */
       if (kronecker(D0, p) == -1) return NULL;
@@ -2741,7 +2741,7 @@ ZV_producttree(GEN xa)
   int64_t m = n==1 ? 1: expu(n-1)+1;
   GEN T = cgetg(m+1, t_VEC), t;
   int64_t i, j, k;
-  t = cgetg(((n+1)>>1)+1, t_VEC);
+  t = cgetg(((n+1) >> 1)+1, t_VEC);
   if (typ(xa)==t_VECSMALL)
   {
     for (j=1, k=1; k<n; j++, k+=2)
@@ -2757,7 +2757,7 @@ ZV_producttree(GEN xa)
   {
     GEN u = gel(T, i-1);
     int64_t n = lg(u)-1;
-    t = cgetg(((n+1)>>1)+1, t_VEC);
+    t = cgetg(((n+1) >> 1)+1, t_VEC);
     for (j=1, k=1; k<n; j++, k+=2)
       gel(t, j) = mulii(gel(u, k), gel(u, k+1));
     if (k==n) gel(t, j) = gel(u, k);
@@ -3583,7 +3583,7 @@ Fp_select_red(GEN *y, ulong k, GEN N, int64_t lN, muldata *D, void **pt_E)
     D->mul = &_mul_remiibar;
     D->mul2 = &_mul2_remiibar;
     E->N = N;
-    E->s = 1+(expi(N)>>1);
+    E->s = 1+(expi(N) >> 1);
     E->iM = Fp_invmBarrett(N, E->s);
     *pt_E = (void*) E;
     return 0;
@@ -3708,7 +3708,7 @@ Fp_pow(GEN A, GEN K, GEN N)
   }
 
   /* TODO: Move this out of here and use for general modular computations */
-  use_montgomery = Fp_select_red(&y, 0UL, N, lN, &D, &E);
+  use_montgomery = Fp_select_red(&y, 0ULL, N, lN, &D, &E);
   if (base_is_2)
     y = gen_pow_fold_i(y, K, E, D.sqr, D.mul2);
   else
@@ -4144,7 +4144,7 @@ check_kernel(int64_t nbg, int64_t N, int64_t prmax, GEN C, GEN M, GEN p, GEN m)
         f++;
     }
     if (DEBUGLEVEL) timer_printf(&ti,"found %ld/%ld logs", f, nbg);
-    if(f > (nbg>>1)) return gerepileupto(av, K);
+    if(f > (nbg >> 1)) return gerepileupto(av, K);
     for(i=1; i<=nbcol; i++)
     {
       int64_t a = 1+random_Fl(lM);
@@ -5490,7 +5490,7 @@ quadunit(GEN x)
   pol = quadpoly(x);
   sqd = sqrti(x); av2 = avma;
   a = shifti(addui(r,sqd),-1);
-  f = zerovec(2+(expi(x)>>1));
+  f = zerovec(2+(expi(x) >> 1));
   gel(f,1) = a;
   u = stoi(r); v = gen_2;
   for(;;)

@@ -3348,7 +3348,7 @@ ZM_ker_i(GEN A)
   {
     pari_timer ti;
     GEN H, Hr;
-    gen_inccrt_i("ZM_ker", worker, NULL, (k+1)>>1, 0,
+    gen_inccrt_i("ZM_ker", worker, NULL, (k+1) >> 1, 0,
                  &S, &HD, &mod, ZM_ker_chinese, NULL);
     gerepileall(av, 2, &HD, &mod);
     H = gel(HD, 1); if (lg(H) == 1) return H;
@@ -3587,7 +3587,7 @@ RgM_deplin_FpM(GEN x, GEN p)
   default:
     x = Flm_ker_sp(x,pp,1);
     if (!x) return gc_NULL(av);
-    x = Flv_center(x, pp, pp>>1);
+    x = Flv_center(x, pp, pp >> 1);
     x = zc_to_ZC(x);
     break;
   }
@@ -4631,7 +4631,7 @@ ZabM_inv_ratlift(GEN M, GEN P, int64_t n, GEN *pden)
 {
   pari_sp av2, av = avma;
   GEN q, H;
-  ulong m = LONG_MAX>>1;
+  ulong m = LONG_MAX >> 1;
   ulong p= 1 + m - (m % n);
   int64_t lM = lg(M);
   if (lM == 1) { *pden = gen_1; return cgetg(1,t_MAT); }
@@ -4703,7 +4703,7 @@ ZabM_ker(GEN M, GEN P, int64_t n)
   pari_sp av2, av = avma;
   pari_timer ti;
   GEN q, H, D;
-  ulong m = LONG_MAX>>1;
+  ulong m = LONG_MAX >> 1;
   ulong p= 1 + m - (m % n);
   av2 = avma;
   H = NULL; D = NULL;
@@ -4747,7 +4747,7 @@ GEN
 ZabM_indexrank(GEN M, GEN P, int64_t n)
 {
   pari_sp av = avma;
-  ulong m = LONG_MAX>>1;
+  ulong m = LONG_MAX >> 1;
   ulong p = 1+m-(m%n), D = degpol(P);
   int64_t lM = lg(M), lmax = 0, c = 0;
   GEN v;
@@ -5309,7 +5309,7 @@ det_develop(GEN M, int64_t max, double bound)
     case 1: return gcopy(gcoeff(M,1,1));
     case 2: return RgM_det2(M);
   }
-  if (max > ((n+2)>>1)) max = (n+2)>>1;
+  if (max > ((n+2) >> 1)) max = (n+2) >> 1;
   for (j = 1; j <= n; j++)
   {
     pari_sp av2 = avma;
@@ -5460,7 +5460,7 @@ ZM_det(GEN M)
     Dp = Flm_det_sp(ZM_to_Flm(M, p), p);
     set_avma(av);
     if (!Dp) return gen_0;
-    return (Dp <= (p>>1))? utoipos(Dp): utoineg(p - Dp);
+    return (Dp <= (p >> 1))? utoipos(Dp): utoineg(p - Dp);
   }
   q = gen_1; Dp = 1;
   init_modular_big(&S);

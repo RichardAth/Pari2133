@@ -93,7 +93,7 @@ maptomat_shallow(GEN T)
 static void
 treemap_i_r(GEN t, int64_t i, int64_t a, int64_t c, GEN p, GEN M)
 {
-  int64_t b = (a+c)>>1;
+  int64_t b = (a+c) >> 1;
   GEN x = mkvec2(gcopy(gmael(M, 1, p[b])), gcopy(gmael(M, 2, p[b])));
   if (a == c)
     gel(t, i) = mkvec2(x, mkvecsmall3(0, 0, 1));

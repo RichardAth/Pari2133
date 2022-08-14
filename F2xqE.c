@@ -510,7 +510,7 @@ Z2x_rshift(GEN y, int64_t x)
   int64_t i, l;
   if (!x) return pol0_Flx(y[1]);
   z = cgetg_copy(y, &l); z[1] = y[1];
-  for(i=2; i<l; i++) z[i] = y[i]>>x;
+  for(i=2; i<l; i++) z[i] = y[i] >> x;
   return Flx_renormalize(z, l);
 }
 
@@ -525,7 +525,7 @@ gen_Z2x_Dixon(GEN F, GEN V, int64_t N, void *E, GEN lin(void *E, GEN F, GEN d, i
   ulong q = 1ULL <<N;
   if (N == 1) return invl(E, V);
   V = Flx_red(V, q);
-  N2 = (N + 1)>>1; M = N - N2;
+  N2 = (N + 1) >> 1; M = N - N2;
   F = FlxT_red(F, q);
   VN2 = gen_Z2x_Dixon(F, V, N2, E, lin, invl);
   bil = lin(E, F, VN2, N);
@@ -556,7 +556,7 @@ gen_Z2X_Dixon(GEN F, GEN V, int64_t N, void *E,
     return Flx_to_ZX(gen_Z2x_Dixon(ZXT_to_FlxT(F,q), ZX_to_Flx(V,q),N,E,lins,invls));
   }
   V = ZX_remi2n(V, N);
-  n = (N + 1)>>1; m = N - n;
+  n = (N + 1) >> 1; m = N - n;
   F = ZXT_remi2n(F, N);
   Xn = gen_Z2X_Dixon(F, V, n, E, lin, lins, invls);
   FXn = lin(E, F, Xn, N);
@@ -756,7 +756,7 @@ F2xq_elltrace_Harley(GEN a6, GEN T2)
   pari_timer ti;
   GEN T, sqx;
   GEN x, x2, t;
-  int64_t n = F2x_degree(T2), N = ((n + 1)>>1) + 2;
+  int64_t n = F2x_degree(T2), N = ((n + 1) >> 1) + 2;
   int64_t ispcyc;
   if (n==1) return gen_m1;
   if (n==2) return F2x_degree(a6) ? gen_1 : stoi(-3);

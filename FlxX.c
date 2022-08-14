@@ -1079,7 +1079,7 @@ FlxqX_halfgcd_basecase(GEN a, GEN b, GEN T, ulong p)
   pari_sp av=avma;
   GEN u,u1,v,v1;
   int64_t vx = varn(a);
-  int64_t n = lgpol(a)>>1;
+  int64_t n = lgpol(a) >> 1;
   u1 = v = pol_0(vx);
   u = v1 = pol1_FlxX(vx, get_Flx_var(T));
   while (lgpol(b)>n)
@@ -1154,7 +1154,7 @@ FlxqX_halfgcd_split(GEN x, GEN y, GEN T, ulong p)
   pari_sp av=avma;
   GEN R, S, V;
   GEN y1, r, q;
-  int64_t l = lgpol(x), n = l>>1, k;
+  int64_t l = lgpol(x), n = l >> 1, k;
   int64_t vT = get_Flx_var(T);
   if (lgpol(y)<=n) return matid2_FlxXM(varn(x),vT);
   R = FlxqX_halfgcd(FlxX_shift(x,-n,vT),FlxX_shift(y,-n,vT), T, p);
@@ -1167,7 +1167,7 @@ FlxqX_halfgcd_split(GEN x, GEN y, GEN T, ulong p)
 }
 
 /* Return M in GL_2(Fp[X]) such that:
-if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a)>>1) >degpol(b')
+if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a) >> 1) >degpol(b')
 */
 
 static GEN
@@ -1224,7 +1224,7 @@ FlxqX_gcd(GEN x, GEN y, GEN T, ulong p)
   while (lg(y) > __FlxqX_GCD_LIMIT)
   {
     GEN c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r = FlxqX_rem(x, y, T, p);
       x = y; y = r;
@@ -1268,7 +1268,7 @@ FlxqX_extgcd_halfgcd(GEN x, GEN y, GEN T, ulong p, GEN *ptu, GEN *ptv)
   while (lg(y) > __FlxqX_EXTGCD_LIMIT)
   {
     GEN M, c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r, q = FlxqX_divrem(x, y, T, p, &r);
       x = y; y = r;

@@ -76,7 +76,7 @@ polchebyshev1_eval(int64_t n, GEN x)
   if (n==1) return gcopy(x);
   av = avma;
   v = u_lvalrem(n, 2, (ulong*)&n);
-  polchebyshev1_eval_aux((n+1)>>1, x, &t1, &t2);
+  polchebyshev1_eval_aux((n+1) >> 1, x, &t1, &t2);
   if (n != 1) t2 = gsub(gmul(gmul2n(t1,1), t2), x);
   for (i = 1; i <= v; i++) t2 = gadd(gmul2n(gsqr(t2), 1), gen_m1);
   return gerepileupto(av, t2);
@@ -141,7 +141,7 @@ polchebyshev2_eval(int64_t n, GEN x)
   }
   if (n==0) return neg ? gen_m1: gen_1;
   av = avma;
-  polchebyshev2_eval_aux(n>>1, x, &u1, &u2);
+  polchebyshev2_eval_aux(n >> 1, x, &u1, &u2);
   mu1 = gneg(u1);
   if (odd(n)) u2 = gmul(gmul2n(u2,1), gadd(gmul(x,u2), mu1));
   else        u2 = gmul(gadd(u2,u1), gadd(u2,mu1));
@@ -1064,7 +1064,7 @@ stirling2(ulong n, ulong m)
   if (m==n) return gen_1;
   /* k = 0 */
   bmk = gen_1; s  = powuu(m, n);
-  for (k = 1; k <= ((m-1)>>1); ++k)
+  for (k = 1; k <= ((m-1) >> 1); ++k)
   { /* bmk = binomial(m, k) */
     GEN c, kn, mkn;
     bmk = diviuexact(mului(m-k+1, bmk), k);
@@ -1440,7 +1440,7 @@ gen_sortspec_uniq(GEN v, int64_t n, void *E, int (*cmp)(void*,GEN,GEN))
         return mkvecsmall2(3,1);
       }
   }
-  NX = nx = n>>1; ny = n-nx;
+  NX = nx = n >> 1; ny = n-nx;
   av = avma;
   x = gen_sortspec_uniq(v,   nx,E,cmp); nx = lg(x)-1;
   y = gen_sortspec_uniq(v+NX,ny,E,cmp); ny = lg(y)-1;
@@ -1491,7 +1491,7 @@ gen_sortspec(GEN v, int64_t n, void *E, int (*cmp)(void*,GEN,GEN))
                                               : mkvecsmall3(3,2,1);
       }
   }
-  nx = n>>1; ny = n-nx;
+  nx = n >> 1; ny = n-nx;
   w = cgetg(n+1,t_VECSMALL);
   x = gen_sortspec(v,   nx,E,cmp);
   y = gen_sortspec(v+nx,ny,E,cmp);
@@ -1748,7 +1748,7 @@ key_search(GEN T, GEN x, GEN code)
   l = 1; x = closure_callgen1(code, x);
   do
   {
-    i = (l+u)>>1; s = lexcmp(x, closure_callgen1(code, gel(T,i)));
+    i = (l+u) >> 1; s = lexcmp(x, closure_callgen1(code, gel(T,i)));
     if (!s) return i;
     if (s<0) u=i-1; else l=i+1;
   } while (u>=l);
@@ -1826,7 +1826,7 @@ tablesearch(GEN T, GEN x, int (*cmp)(GEN,GEN))
 
   while (u>=l)
   {
-    i = (l+u)>>1; s = cmp(x, gel(T,i));
+    i = (l+u) >> 1; s = cmp(x, gel(T,i));
     if (!s) return i;
     if (s<0) u=i-1; else l=i+1;
   }
@@ -1843,7 +1843,7 @@ gen_search(GEN T, GEN x, int64_t flag, void *data, int (*cmp)(void*,GEN,GEN))
   l = 1;
   do
   {
-    i = (l+u)>>1; s = cmp(data, x, gel(T,i));
+    i = (l+u) >> 1; s = cmp(data, x, gel(T,i));
     if (!s) return flag? 0: i;
     if (s<0) u=i-1; else l=i+1;
   } while (u>=l);
@@ -1860,7 +1860,7 @@ zv_search(GEN T, int64_t x)
   int64_t l = 1, u = lg(T)-1;
   while (u>=l)
   {
-    int64_t i = (l+u)>>1;
+    int64_t i = (l+u) >> 1;
     if (x < T[i]) u = i-1;
     else if (x > T[i]) l = i+1;
     else return i;

@@ -765,7 +765,7 @@ isprimitive(GEN nf)
   else
   { /* q = 2 */
     ep = itos(gel(fa,1));
-    if ((ep>>1) >= p) return 0; /* 2 | d_K ==> 4 | d_K */
+    if ((ep >> 1) >= p) return 0; /* 2 | d_K ==> 4 | d_K */
     i = 2;
   }
   l = lg(fa);
@@ -795,7 +795,7 @@ regulatorbound(GEN bnf)
 
   dK = absi_shallow(nf_get_disc(nf));
   nf_get_sign(nf, &R1, &R2); R = R1+R2-1;
-  c1 = (!R2 && N<12)? int2n(N & (~1UL)): powuu(N,N);
+  c1 = (!R2 && N<12)? int2n(N & (~1ULL)): powuu(N,N);
   if (cmpii(dK,c1) <= 0) return dft_bound();
 
   p1 = sqrr(glog(gdiv(dK,c1),DEFAULTPREC));
@@ -914,7 +914,7 @@ compute_M0(GEN M_star,int64_t N)
   M0 = NULL; m1 = N/3;
   for (n1=1; n1<=m1; n1++) /* 1 <= n1 <= n2 <= n3 < N */
   {
-    m2 = (N-n1)>>1;
+    m2 = (N-n1) >> 1;
     for (n2=n1; n2<=m2; n2++)
     {
       pari_sp av = avma; n3=N-n1-n2;

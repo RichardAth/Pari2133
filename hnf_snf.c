@@ -319,7 +319,7 @@ hnfspec_i(GEN mat0, GEN perm, GEN* ptdep, GEN* ptB, GEN* ptC, int64_t k0)
    * operations in T. Leave the rows 1..lk0 alone [up to k0, coefficient
    * explosion, between k0+1 and lk0, row is 0] */
   s = 0;
-  while (lig > lk0 && col && s < (int64_t)(HIGHBIT>>1))
+  while (lig > lk0 && col && s < (int64_t)(HIGHBIT >> 1))
   {
     for (i=lig; i>lk0; i--)
       if (count(mat,perm[i],col,&n) > 0) break;
@@ -1650,7 +1650,7 @@ reverse_rows(GEN A)
   {
     GEN c = gel(A,j);
     /* start at (h-1) >>1 : if h = 2i even, no need to swap c[i] and itself */
-    for (i=(h-1)>>1; i; i--) swap(gel(c,i), gel(c,h-i));
+    for (i=(h-1) >> 1; i; i--) swap(gel(c,i), gel(c,h-i));
   }
   return A;
 }

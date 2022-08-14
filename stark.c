@@ -60,7 +60,7 @@ static GEN
 CharEval(GEN chi, GEN logelt)
 {
   ulong n = CharEval_n(chi, logelt), d = chi_get_deg(chi);
-  int64_t nn = Fl_center(n,d,d>>1);
+  int64_t nn = Fl_center(n,d,d >> 1);
   GEN x = gel(chi,2);
   x = gpowgs(x, labs(nn));
   if (nn < 0) x = conj_i(x);
@@ -2829,7 +2829,7 @@ quadhilbertimag(GEN D)
   h = lg(L)-1;
   if ((1LL << vals(h)) == h) /* power of 2 */
   { /* check whether > |Cl|/2 elements have order <= 2 ==> 2-elementary */
-    int64_t lim = (h>>1) + 1;
+    int64_t lim = (h >> 1) + 1;
     for (i=1; i <= lim; i++)
       if (!uhasexp2(gel(L,i))) break;
     if (i > lim) return GenusFieldQuadImag(D);
@@ -3184,7 +3184,7 @@ compocyclo(GEN nf, int64_t m, int64_t d)
   p2 = polcyclo(m,0);
   if (d==1) return do_compo(p1,p2);
 
-  ell = m&1 ? m : (m>>2);
+  ell = m&1 ? m : (m >> 2);
   if (absequalui(ell,D)) /* ell = |D| */
   {
     p2 = gcoeff(nffactor(nf,p2),1,1);

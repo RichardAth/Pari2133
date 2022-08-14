@@ -603,7 +603,7 @@ get_Fl_threshold(ulong p, int64_t mul, int64_t mul2)
 }
 
 #define BITS_IN_QUARTULONG (BITS_IN_HALFULONG >> 1)
-#define QUARTMASK ((1UL<<BITS_IN_QUARTULONG)-1UL)
+#define QUARTMASK ((1ULL<<BITS_IN_QUARTULONG)-1ULL)
 #define LLQUARTWORD(x) ((x) & QUARTMASK)
 #define HLQUARTWORD(x) (((x) >> BITS_IN_QUARTULONG) & QUARTMASK)
 #define LHQUARTWORD(x) (((x) >> (2*BITS_IN_QUARTULONG)) & QUARTMASK)
@@ -616,12 +616,12 @@ maxbitcoeffpol(ulong p, int64_t n)
   /* only do expensive bit-packing if it saves at least 1 limb */
   if (b <= BITS_IN_QUARTULONG)
   {
-    if (nbits2nlong(n*b) == (n + 3)>>2)
+    if (nbits2nlong(n*b) == (n + 3) >> 2)
       b = BITS_IN_QUARTULONG;
   }
   else if (b <= BITS_IN_HALFULONG)
   {
-    if (nbits2nlong(n*b) == (n + 1)>>1)
+    if (nbits2nlong(n*b) == (n + 1) >> 1)
       b = BITS_IN_HALFULONG;
   }
   else
@@ -703,7 +703,7 @@ static GEN
 Flx_to_int_halfspec(GEN a, int64_t na)
 {
   int64_t j;
-  int64_t n = (na+1)>>1UL;
+  int64_t n = (na+1) >> 1ULL;
   GEN V = cgetipos(2+n);
   GEN w;
   for (w = int_LSW(V), j=0; j+1<na; j+=2, w=int_nextW(w))
@@ -740,7 +740,7 @@ static GEN
 Flx_to_int_quartspec(GEN a, int64_t na)
 {
   int64_t j;
-  int64_t n = (na+3)>>2UL;
+  int64_t n = (na+3) >> 2UL;
   GEN V = cgetipos(2+n);
   GEN w;
   for (w = int_LSW(V), j=0; j+3<na; j+=4, w=int_nextW(w))
@@ -794,7 +794,7 @@ Flx_eval2BILspec(GEN x, int64_t k, int64_t l)
   int64_t i, lz = k*l, ki;
   GEN pz = cgetipos(2+lz);
   for (i=0; i < lz; i++)
-    *int_W(pz,i) = 0UL;
+    *int_W(pz,i) = 0ULL;
   for (i=0, ki=0; i<l; i++, ki+=k)
     *int_W(pz,ki) = x[i];
   return int_normalize(pz,0);
@@ -960,7 +960,7 @@ Flx_mulspec(GEN a, GEN b, ulong p, int64_t na, int64_t nb)
   }
   if (nb < get_Fl_threshold(p, __Flx_MUL_KARATSUBA_LIMIT, __Flx_MUL2_KARATSUBA_LIMIT))
     return Flx_shiftip(av,Flx_mulspec_basecase(a,b,p,na,nb), v);
-  i=(na>>1); n0=na-i; na=i;
+  i=(na >> 1); n0=na-i; na=i;
   a0=a+n0; n0a=n0;
   while (n0a && !a[n0a-1]) n0a--;
 
@@ -1015,16 +1015,16 @@ Flx_sqrspec_basecase(GEN x, ulong p, int64_t nx)
     z[0] = x[0]*x[0]%p;
     for (i=1; i<nx; i++)
     {
-      p1 = Flx_mullimb_ok(x+i,x,p,0, (i+1)>>1);
+      p1 = Flx_mullimb_ok(x+i,x,p,0, (i+1) >> 1);
       p1 <<= 1;
-      if ((i&1) == 0) p1 += x[i>>1] * x[i>>1];
+      if ((i&1) == 0) p1 += x[i >> 1] * x[i >> 1];
       z[i] = p1 % p;
     }
     for (  ; i<nz; i++)
     {
-      p1 = Flx_mullimb_ok(x+i,x,p,i-nx+1, (i+1)>>1);
+      p1 = Flx_mullimb_ok(x+i,x,p,i-nx+1, (i+1) >> 1);
       p1 <<= 1;
-      if ((i&1) == 0) p1 += x[i>>1] * x[i>>1];
+      if ((i&1) == 0) p1 += x[i >> 1] * x[i >> 1];
       z[i] = p1 % p;
     }
   }
@@ -1034,16 +1034,16 @@ Flx_sqrspec_basecase(GEN x, ulong p, int64_t nx)
     z[0] = Fl_sqr_pre(x[0], p, pi);
     for (i=1; i<nx; i++)
     {
-      p1 = Flx_mullimb(x+i,x,p,pi,0, (i+1)>>1);
+      p1 = Flx_mullimb(x+i,x,p,pi,0, (i+1) >> 1);
       p1 = Fl_add(p1, p1, p);
-      if ((i&1) == 0) p1 = Fl_add(p1, Fl_sqr_pre(x[i>>1], p, pi), p);
+      if ((i&1) == 0) p1 = Fl_add(p1, Fl_sqr_pre(x[i >> 1], p, pi), p);
       z[i] = p1;
     }
     for (  ; i<nz; i++)
     {
-      p1 = Flx_mullimb(x+i,x,p,pi,i-nx+1, (i+1)>>1);
+      p1 = Flx_mullimb(x+i,x,p,pi,i-nx+1, (i+1) >> 1);
       p1 = Fl_add(p1, p1, p);
-      if ((i&1) == 0) p1 = Fl_add(p1, Fl_sqr_pre(x[i>>1], p, pi), p);
+      if ((i&1) == 0) p1 = Fl_add(p1, Fl_sqr_pre(x[i >> 1], p, pi), p);
       z[i] = p1;
     }
   }
@@ -1111,7 +1111,7 @@ Flx_sqrspec(GEN a, ulong p, int64_t na)
   }
   if (na < get_Fl_threshold(p, __Flx_SQR_KARATSUBA_LIMIT, __Flx_SQR2_KARATSUBA_LIMIT))
     return Flx_shiftip(av, Flx_sqrspec_basecase(a,p,na), v);
-  i=(na>>1); n0=na-i; na=i;
+  i=(na >> 1); n0=na-i; na=i;
   a0=a+n0; n0a=n0;
   while (n0a && !a[n0a-1]) n0a--;
 
@@ -1146,7 +1146,7 @@ Flx_powu(GEN x, ulong n, ulong p)
   m = n; z = x;
   for (;;)
   {
-    if (m&1UL) y = Flx_mul(y,z, p);
+    if (m&1ULL) y = Flx_mul(y,z, p);
     m >>= 1; if (!m) return y;
     z = Flx_sqr(z, p);
   }
@@ -1341,7 +1341,7 @@ Flx_rem_basecase(GEN x, GEN y, ulong p)
   dz = dx-dy; if (dz < 0) return Flx_copy(x);
   x += 2; y += 2;
   inv = y[dy];
-  if (inv != 1UL) inv = Fl_inv(inv,p);
+  if (inv != 1ULL) inv = Fl_inv(inv,p);
   for (dy1=dy-1; dy1>=0 && !y[dy1]; dy1--);
 
   c = cgetg(dy+3, t_VECSMALL); c[1]=vs; c += 2; av=avma;
@@ -1411,7 +1411,7 @@ Flx_divrem_basecase(GEN x, GEN y, ulong p, GEN *pr)
   if (!dy)
   {
     if (pr && pr != ONLY_DIVIDES) *pr = pol0_Flx(sv);
-    if (y[2] == 1UL) return Flx_copy(x);
+    if (y[2] == 1ULL) return Flx_copy(x);
     return Flx_Fl_mul(x, Fl_inv(y[2], p), p);
   }
   dx = degpol(x);
@@ -1426,7 +1426,7 @@ Flx_divrem_basecase(GEN x, GEN y, ulong p, GEN *pr)
   y += 2;
   z = cgetg(dz + 3, t_VECSMALL); z[1] = sv; z += 2;
   inv = uel(y, dy);
-  if (inv != 1UL) inv = Fl_inv(inv,p);
+  if (inv != 1ULL) inv = Fl_inv(inv,p);
   for (dy1=dy-1; dy1>=0 && !y[dy1]; dy1--);
 
   if (SMALL_ULONG(p))
@@ -1764,7 +1764,7 @@ Flx_integ(GEN x, ulong p)
   y = cgetg(lx+1, t_VECSMALL); y[1] = x[1];
   uel(y,2) = 0;
   for (i=3; i<=lx; i++)
-    uel(y,i) = uel(x,i-1) ? Fl_div(uel(x,i-1), (i-2)%p, p): 0UL;
+    uel(y,i) = uel(x,i-1) ? Fl_div(uel(x,i-1), (i-2)%p, p): 0ULL;
   return Flx_renormalize(y, lx+1);;
 }
 
@@ -1832,7 +1832,7 @@ Flx_halfgcd_basecase(GEN a, GEN b, ulong p)
   pari_sp av=avma;
   GEN u,u1,v,v1;
   int64_t vx = a[1];
-  int64_t n = lgpol(a)>>1;
+  int64_t n = lgpol(a) >> 1;
   u1 = v = pol0_Flx(vx);
   u = v1 = pol1_Flx(vx);
   while (lgpol(b)>n)
@@ -1917,7 +1917,7 @@ Flx_halfgcd_split(GEN x, GEN y, ulong p)
   pari_sp av=avma;
   GEN R, S, V;
   GEN y1, r, q;
-  int64_t l = lgpol(x), n = l>>1, k;
+  int64_t l = lgpol(x), n = l >> 1, k;
   if (lgpol(y)<=n) return matid2_FlxM(x[1]);
   R = Flx_halfgcd(Flx_shift(x,-n),Flx_shift(y,-n),p);
   V = FlxM_Flx_mul2(R,x,y,p); y1 = gel(V,2);
@@ -1929,7 +1929,7 @@ Flx_halfgcd_split(GEN x, GEN y, ulong p)
 }
 
 /* Return M in GL_2(Fl[X]) such that:
-if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a)>>1) >degpol(b')
+if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a) >> 1) >degpol(b')
 */
 
 static GEN
@@ -1991,7 +1991,7 @@ Flx_gcd(GEN x, GEN y, ulong p)
   while (lgpol(y) >= lim)
   {
     GEN c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r = Flx_rem(x, y, p);
       x = y; y = r;
@@ -2086,7 +2086,7 @@ Flx_extgcd_halfgcd(GEN x, GEN y, ulong p, GEN *ptu, GEN *ptv)
   while (lgpol(y) >= lim)
   {
     GEN M, c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r, q = Flx_divrem(x, y, p, &r);
       x = y; y = r;
@@ -2124,7 +2124,7 @@ ulong
 Flx_resultant(GEN a, GEN b, ulong p)
 {
   int64_t da,db,dc,cnt;
-  ulong lb, res = 1UL;
+  ulong lb, res = 1ULL;
   pari_sp av;
   GEN c;
 
@@ -2159,7 +2159,7 @@ ulong
 Flx_extresultant(GEN a, GEN b, ulong p, GEN *ptU, GEN *ptV)
 {
   GEN z,q,u,v, x = a, y = b;
-  ulong lb, res = 1UL;
+  ulong lb, res = 1ULL;
   pari_sp av = avma;
   int64_t dx, dy, dz;
   int64_t vs=a[1];
@@ -2266,7 +2266,7 @@ Flv_prod_pre(GEN x, ulong p, ulong pi)
   pari_sp ltop = avma;
   GEN v;
   int64_t i,k,lx = lg(x);
-  if (lx == 1) return 1UL;
+  if (lx == 1) return 1ULL;
   if (lx == 2) return uel(x,1);
   v = cgetg(1+(lx << 1), t_VECSMALL);
   k = 1;
@@ -2428,7 +2428,7 @@ Flv_producttree(GEN xa, GEN s, ulong p, int64_t vs)
   {
     GEN u = gel(T, i-1);
     int64_t n = lg(u)-1;
-    GEN t = cgetg(((n+1)>>1)+1, t_VEC);
+    GEN t = cgetg(((n+1) >> 1)+1, t_VEC);
     for (j=1, k=1; k<n; j++, k+=2)
       gel(t, j) = Flx_mul(gel(u, k), gel(u, k+1), p);
     gel(T, i) = t;
@@ -3048,7 +3048,7 @@ Fl_Flxq_log(ulong a, GEN g, GEN o, GEN T, ulong p)
   pari_sp av = avma;
   GEN q,n_q,ord,ordp, op;
 
-  if (a == 1UL) return gen_0;
+  if (a == 1ULL) return gen_0;
   /* p > 2 */
 
   ordp = utoi(p - 1);
@@ -3084,7 +3084,7 @@ Flxq_easylog(void* E, GEN a, GEN g, GEN ord)
   if (Flx_equal(a,g)) return gen_1;
   if (!degpol(a))
     return Fl_Flxq_log(uel(a,2), g, ord, T, p);
-  if (typ(ord)!=t_INT || d <= 4 || d == 6 || abscmpiu(ord,1UL<<27)<0)
+  if (typ(ord)!=t_INT || d <= 4 || d == 6 || abscmpiu(ord,1ULL<<27)<0)
     return NULL;
   return Flxq_log_index(a, g, ord, T, p);
 }
@@ -3373,7 +3373,7 @@ gener_Flxq(GEN T, ulong p, GEN *po)
     {
       ulong t = Flxq_norm(g, T, p);
       if (t == 1 || !is_gener_Fl(t, p, p_1, L)) continue;
-      tt = Flxq_powu(g, p_1>>1, T, p);
+      tt = Flxq_powu(g, p_1 >> 1, T, p);
     }
     for (i = 1; i < j; i++)
     {
@@ -3611,7 +3611,7 @@ newtonlogint(ulong n, ulong pp)
   while (n > pp)
   {
     s += ulogint(n, pp);
-    n = (n+1)>>1;
+    n = (n+1) >> 1;
   }
   return s;
 }
@@ -3717,7 +3717,7 @@ Fl_Xp1_powu(ulong n, ulong p, int64_t v)
   Flv_inv_inplace(V, p); /* could restrict to odd integers in [3,d] */
   C = cgetg(n+3, t_VECSMALL);
   C[1] = v;
-  uel(C,2) = 1UL;
+  uel(C,2) = 1ULL;
   uel(C,3) = n%p;
   uel(C,4) = Fl_mul(odd(n)? n: n-1, n >> 1, p);
     /* binom(n,k) = binom(n,k-1) * (n-k+1) / k */
@@ -3802,7 +3802,7 @@ zl_Xp1_powu(ulong n, ulong p, ulong q, int64_t e, int64_t vs)
   Flv_inv_inplace(V, q);
   C = cgetg(n+3, t_VECSMALL);
   C[1] = vs;
-  uel(C,2) = 1UL;
+  uel(C,2) = 1ULL;
   uel(C,3) = n%q;
   v = u_lvalrem(n, p, &c);
   for (k = 2; k <= d; k++)

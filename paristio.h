@@ -395,7 +395,7 @@ extern char *current_psfile, *pari_datadir;
 #  define gc_needed(av,n) (avma < (pari_sp)stack_lim(av,n))
 #endif
 
-#define stack_lim(av,n) (pari_mainstack->bot+(((av)-pari_mainstack->bot)>>(n)))
+#define stack_lim(av,n) (pari_mainstack->bot+(((av)-pari_mainstack->bot) >> (n)))
 
 #ifndef SIG_IGN
 #  define SIG_IGN (void(*)())1

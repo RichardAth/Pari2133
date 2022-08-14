@@ -31,15 +31,15 @@ int bfffo(ulong x);
 /**                                                                   **/
 /***********************************************************************/
 
-/* return (n>>(i+1-l)) & ((1<<l)-1) */
+/* return (n >> (i+1-l)) & ((1<<l)-1) */
 static ulong
 int_block(GEN n, int64_t i, int64_t l)
 {
   int64_t q = divsBIL(i), r = remsBIL(i)+1, lr;
   GEN nw = int_W(n, q);
   ulong w = (ulong) *nw, w2;
-  if (r>=l) return (w>>(r-l))&((1UL<<l)-1);
-  w &= (1UL<<r)-1; lr = l-r;
+  if (r>=l) return (w >> (r-l))&((1ULL<<l)-1);
+  w &= (1ULL<<r)-1; lr = l-r;
   w2 = (ulong) *int_precW(nw); w2 >>= (BITS_IN_LONG-lr);
   return (w<<lr)|w2;
 }
@@ -60,8 +60,8 @@ sliding_window_powu(GEN x, ulong n, int64_t e, void *E, GEN (*sqr)(void*,GEN),
   while (l>=0)
   {
     if (e > l+1) e = l+1;
-    w = (n>>(l+1-e)) & ((1UL<<e)-1); v = vals(w); l-=e;
-    tw = gel(tab, 1+(w>>(v+1)));
+    w = (n >> (l+1-e)) & ((1ULL<<e)-1); v = vals(w); l-=e;
+    tw = gel(tab, 1+(w >> (v+1)));
     if (z)
     {
       for (i=1; i<=e-v; i++) z = sqr(E, z);
@@ -99,7 +99,7 @@ sliding_window_pow(GEN x, GEN n, int64_t e, void *E, GEN (*sqr)(void*,GEN),
   {
     if (e > l+1) e = l+1;
     w = int_block(n,l,e); v = vals(w); l-=e;
-    tw = gel(tab, 1+(w>>(v+1)));
+    tw = gel(tab, 1+(w >> (v+1)));
     if (z)
     {
       for (i=1; i<=e-v; i++) z = sqr(E, z);
@@ -308,7 +308,7 @@ gen_pow_table(GEN R, GEN n, void *E, GEN (*one)(void*), GEN (*mul)(void*,GEN,GEN
     if (int_bit(n, i)==0) { i++; continue; }
     if (i+e-1>l) e = l+1-i;
     w = int_block(n,i+e-1,e);
-    tw = gmael(R, 1+(w>>1), i+1);
+    tw = gmael(R, 1+(w >> 1), i+1);
     z = mul(E, z, tw);
     i += e;
   }
@@ -326,7 +326,7 @@ gen_powers(GEN x, int64_t l, int use_sqr, void *E, GEN (*sqr)(void*,GEN),
   gel(V,3) = sqr(E,x);
   if (use_sqr)
     for(i = 4; i < l+2; i++)
-      gel(V,i) = (i&1)? sqr(E,gel(V, (i+1)>>1))
+      gel(V,i) = (i&1)? sqr(E,gel(V, (i+1) >> 1))
                       : mul(E,gel(V, i-1),x);
   else
     for(i = 4; i < l+2; i++)
@@ -348,7 +348,7 @@ producttree_scheme(int64_t n)
   {
     for(j=1, k=1; j<=l; j++, k+=2)
     {
-      int64_t vj = v[j], v2 = vj>>1;
+      int64_t vj = v[j], v2 = vj >> 1;
       w[k]    = vj-v2;
       w[k+1]  = v2;
     }

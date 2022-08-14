@@ -625,7 +625,7 @@ BLS_test(GEN N, GEN f)
 static GEN
 BPSW_try_PL(GEN N)
 {
-  ulong B = minuu(1UL<<19, maxprime());
+  ulong B = minuu(1ULL<<19, maxprime());
   GEN E, p, U, F, N_1 = subiu(N,1);
   GEN fa = absZ_factor_limit_strict(N_1, B, &U), P = gel(fa,1);
 

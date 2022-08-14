@@ -113,7 +113,7 @@ INLINE void
 xmpn_mirror(mp_limb_t *x, int64_t n)
 {
   int64_t i;
-  for(i=0;i<(n>>1);i++)
+  for(i=0;i<(n >> 1);i++)
   {
     ulong m=x[i];
     x[i]=x[n-1-i];
@@ -753,7 +753,7 @@ divrr_with_gmp(GEN x, GEN y)
 #endif
     
   /*Round up: This is not exactly correct we should test 2*r>z*/
-  if (uel(r,lly-1) > (uel(z,lly-1)>>1))
+  if (uel(r,lly-1) > (uel(z,lly-1) >> 1))
     mpn_add_1(q,q,lw+1,1);  /* add 1 to q*/
  
   xmpn_mirrorcopy(RLIMBS(w),q,lw);
@@ -850,7 +850,7 @@ divri_with_gmp(GEN x, GEN y)
   mpn_tdiv_qr(q,r,0,u,lu,z,lly);
 
   /*Round up: This is not exactly correct we should test 2*r>z*/
-  if (uel(r,lly-1) > (uel(z,lly-1)>>1))
+  if (uel(r,lly-1) > (uel(z,lly-1) >> 1))
     mpn_add_1(q,q,llx+1,1);
 
   xmpn_mirrorcopy(RLIMBS(w),q,llx);
@@ -1045,7 +1045,7 @@ divrr(GEN x, GEN y)
   }
   /* i = lr-1 */
   /* round correctly */
-  if (uel(r1,1) > (y0>>1))  {
+  if (uel(r1,1) > (y0 >> 1))  {
     j=i; 
     do uel(r,--j)++; 
     while (j && !r[j]);
@@ -1515,7 +1515,7 @@ remi2n(GEN x, int64_t n)
   xd = x + (2 + k);
   /* x = |k|...|1|#|... : copy the last l bits of # and the first k words
    *              ^--- initial xd  */
-  hi = ((ulong)*xd) & ((1UL<<l)-1); /* last l bits of # = top bits of result */
+  hi = ((ulong)*xd) & ((1ULL<<l)-1); /* last l bits of # = top bits of result */
   if (!hi)
   { /* strip leading zeroes from result */
     xd--; while (k && !*xd) { k--; xd--; }
@@ -1571,7 +1571,7 @@ sqrtr_abs(GEN a)
 {
   GEN res;
   mp_limb_t *b, *c;
-  int64_t l = RNLIMBS(a), e = expo(a), er = e>>1;
+  int64_t l = RNLIMBS(a), e = expo(a), er = e >> 1;
   int64_t n;
   res = cgetr(2 + l);
   res[1] = evalsigne(1) | evalexpo(er);

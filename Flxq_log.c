@@ -24,7 +24,7 @@ static int64_t
 Flx_cindex(GEN P, ulong p)
 {
   int64_t d = degpol(P), i;
-  ulong s = 0, p2 = (p-1)>>1;
+  ulong s = 0, p2 = (p-1) >> 1;
   for (i = 0; i <= d; ++i)
   {
     ulong x = P[d-i+2];
@@ -40,7 +40,7 @@ static void
 Flx_cnext(GEN t, ulong p)
 {
   int64_t i;
-  int64_t p2 = p>>1;
+  int64_t p2 = p >> 1;
   for(i=2;;i++)
     if (t[i]==p2)
       t[i]=0;
@@ -104,7 +104,7 @@ cindex_Flx(int64_t c, int64_t d, ulong p, int64_t v)
   for (i = 0; i <= d; ++i)
   {
     ulong x = c%p;
-    P[i+2] = (x&1) ? p-1-(x>>1) : x>>1;
+    P[i+2] = (x&1) ? p-1-(x >> 1) : x >> 1;
     c/=p;
   }
   return Flx_renormalize(P, d+3);

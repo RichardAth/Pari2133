@@ -1562,7 +1562,7 @@ init_red_mod_units(GEN bnf, int64_t prec)
     gel(p1,RU) = gen_0; if (mpcmp(s1,s) > 0) s = s1;
   }
   s = gsqrt(gmul2n(s,RU),prec);
-  if (expo(s) < 27) s = utoipos(1UL << 27);
+  if (expo(s) < 27) s = utoipos(1ULL << 27);
   return mkvec2(mat, s);
 }
 

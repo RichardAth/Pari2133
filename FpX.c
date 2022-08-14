@@ -576,7 +576,7 @@ FpX_halfgcd_basecase(GEN a, GEN b, GEN p)
   pari_sp av=avma;
   GEN u,u1,v,v1;
   int64_t vx = varn(a);
-  int64_t n = lgpol(a)>>1;
+  int64_t n = lgpol(a) >> 1;
   u1 = v = pol_0(vx);
   u = v1 = pol_1(vx);
   while (lgpol(b)>n)
@@ -654,7 +654,7 @@ FpX_halfgcd_split(GEN x, GEN y, GEN p)
   pari_sp av=avma;
   GEN R, S, V;
   GEN y1, r, q;
-  int64_t l = lgpol(x), n = l>>1, k;
+  int64_t l = lgpol(x), n = l >> 1, k;
   if (lgpol(y)<=n) return matid2_FpXM(varn(x));
   R = FpX_halfgcd(FpX_shift(x,-n), FpX_shift(y,-n), p);
   V = FpXM_FpX_mul2(R,x,y,p); y1 = gel(V,2);
@@ -666,7 +666,7 @@ FpX_halfgcd_split(GEN x, GEN y, GEN p)
 }
 
 /* Return M in GL_2(Fp[X]) such that:
-if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a)>>1) >degpol(b')
+if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a) >> 1) >degpol(b')
 */
 
 static GEN
@@ -738,7 +738,7 @@ FpX_gcd(GEN x, GEN y, GEN p)
   while (lg(y) > __FpX_GCD_LIMIT)
   {
     GEN c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r = FpX_rem(x, y, p);
       x = y; y = r;
@@ -806,7 +806,7 @@ FpX_extgcd_halfgcd(GEN x, GEN y, GEN p, GEN *ptu, GEN *ptv)
   while (lg(y) > __FpX_EXTGCD_LIMIT)
   {
     GEN M, c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r, q = FpX_divrem(x, y, p, &r);
       x = y; y = r;
@@ -1454,7 +1454,7 @@ FpXV_producttree_dbl(GEN t, int64_t n, GEN p)
   {
     GEN u = gel(T, i-1);
     int64_t n = lg(u)-1;
-    GEN t = cgetg(((n+1)>>1)+1, t_VEC);
+    GEN t = cgetg(((n+1) >> 1)+1, t_VEC);
     for (j=1, k=1; k<n; j++, k+=2)
       gel(t, j) = FpX_mul(gel(u, k), gel(u, k+1), p);
     gel(T, i) = t;

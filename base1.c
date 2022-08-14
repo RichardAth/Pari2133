@@ -1356,7 +1356,7 @@ get_roots(GEN x, int64_t r1, int64_t prec)
   {
     int64_t n = degpol(x);
     z = (r1 == n)? ZX_realroots_irred(x, prec): QX_complex_roots(x,prec);
-    ru = (n+r1)>>1;
+    ru = (n+r1) >> 1;
   }
   for (i=r1+1; i<=ru; i++) gel(z,i) = gel(z, (i<<1)-r1);
   z[0]=evaltyp(t_VEC)|evallg(ru+1); return z;
@@ -1665,7 +1665,7 @@ nfmaxord_to_nf(nfmaxord_t *S, GEN ro, int64_t prec)
   make_M_G(&F, 0);
 
   gel(nf,1) = S->T;
-  gel(nf,2) = mkvec2s(S->r1, (n - S->r1)>>1);
+  gel(nf,2) = mkvec2s(S->r1, (n - S->r1) >> 1);
   gel(nf,3) = S->dK;
   gel(nf,4) = S->index;
   gel(nf,5) = mat;
@@ -2588,7 +2588,7 @@ chk_gen_init(FP_chk_fun *chk, GEN R, GEN U)
 {
   CG_data *d = (CG_data*)chk->data;
   GEN P, V, D, inv, bound, S, M;
-  int64_t N = lg(U)-1, r1 = d->r1, r2 = (N-r1)>>1;
+  int64_t N = lg(U)-1, r1 = d->r1, r2 = (N-r1) >> 1;
   int64_t i, j, prec, firstprim = 0, skipfirst = 0;
   pari_sp av;
 

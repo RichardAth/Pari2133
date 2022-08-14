@@ -45,7 +45,7 @@ GEN
 FpC_center(GEN x, GEN p, GEN pov2)
 { pari_APPLY_type(t_COL, Fp_center(gel(x,i), p, pov2)) }
 
-/* assume 0 <= u < p and ps2 = p>>1 */
+/* assume 0 <= u < p and ps2 = p >> 1 */
 INLINE void
 Fp_center_inplace(GEN u, GEN p, GEN ps2)
 { if (abscmpii(u,ps2) > 0) subiiz(u,p,u); }

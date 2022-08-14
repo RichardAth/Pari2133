@@ -90,7 +90,7 @@ F2x_to_Flx(GEN x)
   z[1] = x[1];
   for (i=2, k=2; i<lx; i++)
     for (j=0; j<BITS_IN_LONG && k<l; j++,k++)
-      z[k] = (x[i]>>j)&1UL;
+      z[k] = (x[i] >> j)&1ULL;
   return z;
 }
 
@@ -142,7 +142,7 @@ Flx_to_F2x(GEN x)
     {
       j=0; z[++k] = 0;
     }
-    if (x[i]&1UL)
+    if (x[i]&1ULL)
       z[k] |= 1ULL <<j;
   }
   return F2x_renormalize(z,l);
@@ -280,7 +280,7 @@ F2x_1_add(GEN y)
   lz=lg(y);
   z=cgetg(lz,t_VECSMALL);
   z[1] = y[1];
-  z[2] = y[2]^1UL;
+  z[2] = y[2]^1ULL;
   for(i=3;i<lz;i++)
     z[i] = y[i];
   if (lz==3) z = F2x_renormalize(z,lz);
@@ -297,14 +297,14 @@ F2x_addshiftipspec(GEN x, GEN y, int64_t ny, ulong db)
     ulong r=0, yi;
     for(i=0; i<ny-3; i+=4)
     {
-      yi = uel(y,i);   x[i]   ^= (yi<<db)|r; r = yi>>dc;
-      yi = uel(y,i+1); x[i+1] ^= (yi<<db)|r; r = yi>>dc;
-      yi = uel(y,i+2); x[i+2] ^= (yi<<db)|r; r = yi>>dc;
-      yi = uel(y,i+3); x[i+3] ^= (yi<<db)|r; r = yi>>dc;
+      yi = uel(y,i);   x[i]   ^= (yi<<db)|r; r = yi >> dc;
+      yi = uel(y,i+1); x[i+1] ^= (yi<<db)|r; r = yi >> dc;
+      yi = uel(y,i+2); x[i+2] ^= (yi<<db)|r; r = yi >> dc;
+      yi = uel(y,i+3); x[i+3] ^= (yi<<db)|r; r = yi >> dc;
     }
     for(  ; i<ny; i++)
     {
-      ulong yi = uel(y,i); x[i] ^= (yi<<db)|r; r = yi>>dc;
+      ulong yi = uel(y,i); x[i] ^= (yi<<db)|r; r = yi >> dc;
     }
     if (r) x[i] ^= r;
   }
@@ -332,14 +332,14 @@ F2x_addshiftip(GEN x, GEN y, ulong d)
 static GEN
 F2x_mul1(ulong x, ulong y)
 {
-  ulong x1=(x&HIGHMASK)>>BITS_IN_HALFULONG;
+  ulong x1=(x&HIGHMASK) >> BITS_IN_HALFULONG;
   ulong x2=x&LOWMASK;
-  ulong y1=(y&HIGHMASK)>>BITS_IN_HALFULONG;
+  ulong y1=(y&HIGHMASK) >> BITS_IN_HALFULONG;
   ulong y2=y&LOWMASK;
   ulong r1,r2,rr;
   GEN z;
   ulong i;
-  rr=r1=r2=0UL;
+  rr=r1=r2=0ULL;
   if (x2)
     for(i=0;i<BITS_IN_HALFULONG;i++)
       if (x2&(1ULL <<i))
@@ -355,7 +355,7 @@ F2x_mul1(ulong x, ulong y)
         rr^=y2<<i;
       }
   r2^=(rr&LOWMASK)<<BITS_IN_HALFULONG;
-  r1^=(rr&HIGHMASK)>>BITS_IN_HALFULONG;
+  r1^=(rr&HIGHMASK) >> BITS_IN_HALFULONG;
   z=cgetg((r1?4:3),t_VECSMALL);
   z[2]=r2;
   if (r1) z[3]=r1;
@@ -451,7 +451,7 @@ F2x_to_int(GEN a, int64_t na, int64_t da, int64_t bs)
         *zs = 0;
         m -= BIL;
       }
-      *zs |= ((a[i]>>j)&1UL)<<m;
+      *zs |= ((a[i] >> j)&1ULL)<<m;
     }
   return int_normalize(z,0);
 }
@@ -476,7 +476,7 @@ int_to_F2x(GEN x, int64_t d, int64_t bs)
         xs = int_nextW(xs);
         m -= BIL;
       }
-      if ((*xs>>m)&1UL)
+      if ((*xs >> m)&1ULL)
         z[i]|=1ULL <<j;
     }
   }
@@ -516,7 +516,7 @@ F2x_mulspec(GEN a, GEN b, int64_t na, int64_t nb)
     return F2x_shiftip(av, F2x_mulspec_basecase(a, b, na, nb), v);
   if (nb >= __F2x_MUL_MULII_LIMIT)
     return F2x_shiftip(av, F2x_mulspec_mulii(a, b, na, nb), v);
-  i=(na>>1); n0=na-i; na=i;
+  i=(na >> 1); n0=na-i; na=i;
   a0=a+n0; n0a=n0;
   while (n0a && !a[n0a-1]) n0a--;
 
@@ -565,16 +565,16 @@ F2x_sqr(GEN x)
   z = cgetg(lz, t_VECSMALL); z[1]=x[1];
   for (j=2,jj=2;j<lx;j++,jj++)
   {
-    ulong x1=((ulong)x[j]&HIGHMASK)>>BITS_IN_HALFULONG;
+    ulong x1=((ulong)x[j]&HIGHMASK) >> BITS_IN_HALFULONG;
     ulong x2=(ulong)x[j]&LOWMASK;
     z[jj]=0;
     if (x2)
       for(i=0,ii=0;i<BITS_IN_HALFULONG;i+=4,ii+=8)
-        z[jj]|=sq[(x2>>i)&15UL]<<ii;
+        z[jj]|=sq[(x2 >> i)&15UL]<<ii;
     z[++jj]=0;
     if (x1)
       for(i=0,ii=0;i<BITS_IN_HALFULONG;i+=4,ii+=8)
-        z[jj]|=sq[(x1>>i)&15UL]<<ii;
+        z[jj]|=sq[(x1 >> i)&15UL]<<ii;
   }
   return F2x_renormalize(z, lz);
 }
@@ -604,7 +604,7 @@ F2x_sqrt(GEN x)
 {
   const ulong sq[]={0,1,4,5,2,3,6,7,8,9,12,13,10,11,14,15};
   int64_t i,ii,j,jj;
-  int64_t lx=lg(x), lz=2+((lx-1)>>1);
+  int64_t lx=lg(x), lz=2+((lx-1) >> 1);
   GEN z;
   z = cgetg(lz, t_VECSMALL); z[1]=x[1];
   for (j=2,jj=2;jj<lz;j++,jj++)
@@ -614,7 +614,7 @@ F2x_sqrt(GEN x)
     if (x2)
       for(i=0,ii=0;ii<BITS_IN_HALFULONG;i+=8,ii+=4)
       {
-        ulong rl = (x2>>i)&15UL, rh = (x2>>(i+4))&15UL;
+        ulong rl = (x2 >> i)&15UL, rh = (x2 >> (i+4))&15UL;
         z[jj]|=sq[rl|(rh<<1)]<<ii;
       }
     if (j<lx)
@@ -623,7 +623,7 @@ F2x_sqrt(GEN x)
       if (x2)
         for(i=0,ii=0;ii<BITS_IN_HALFULONG;i+=8,ii+=4)
         {
-          ulong rl = (x2>>i)&15UL, rh = (x2>>(i+4))&15UL;
+          ulong rl = (x2 >> i)&15UL, rh = (x2 >> (i+4))&15UL;
           z[jj]|=(sq[rl|(rh<<1)]<<ii)<<BITS_IN_HALFULONG;
         }
     }
@@ -644,7 +644,7 @@ F2x_shiftneg(GEN y, ulong d)
     ulong r=0;
     for(i=lx-1; i>=2; i--)
     {
-      x[i] = (((ulong)y[i+dl])>>db)|r;
+      x[i] = (((ulong)y[i+dl]) >> db)|r;
       r = ((ulong)y[i+dl])<<dc;
     }
   }
@@ -668,7 +668,7 @@ F2x_shiftpos(GEN y, ulong d)
     for(i=2; i<ly; i++)
     {
       x[i+dl] = (((ulong)y[i])<<db)|r;
-      r = ((ulong)y[i])>>dc;
+      r = ((ulong)y[i]) >> dc;
     }
     x[i+dl] = r;
   }
@@ -684,13 +684,13 @@ F2x_shift(GEN y, int64_t d)
   return d<0 ? F2x_shiftneg(y,-d): F2x_shiftpos(y,d);
 }
 
-#define F2x_recip2(pk,m) u = ((u&m)<<pk)|((u&(~m))>>pk);
+#define F2x_recip2(pk,m) u = ((u&m)<<pk)|((u&(~m)) >> pk);
 #define F2x_recipu(pk) F2x_recip2(pk,((~0ULL)/((1ULL<<pk)+1)))
 
 static ulong
 F2x_recip1(ulong u)
 {
-  u = (u<<BITS_IN_HALFULONG)|(u>>BITS_IN_HALFULONG);
+  u = (u<<BITS_IN_HALFULONG)|(u >> BITS_IN_HALFULONG);
 #ifdef LONG_IS_64BIT
   F2x_recipu(16);
 #endif
@@ -732,7 +732,7 @@ F2xn_red(GEN f, int64_t n)
   g[1] = f[1];
   for (i=2; i<l; i++)
     uel(g,i) = uel(f,i);
-  if (db) uel(g,l-1) = uel(f,l-1)&((1UL<<db)-1);
+  if (db) uel(g,l-1) = uel(f,l-1)&((1ULL <<db)-1);
   return F2x_renormalize(g, l);
 }
 
@@ -744,23 +744,23 @@ F2xn_inv_basecase1(ulong x)
 {
   ulong u, v, w;
   int64_t i;
-  u = x>>1;
-  v = (u&1UL)|2UL;
-  w = u&v; w ^= w >> 1; v = (w&1UL)|(v<<1);
-  w = u&v; w ^= w >> 2; w ^= w >> 1; v = (w&1UL)|(v<<1);
-  w = u&v; w ^= w >> 2; w ^= w >> 1; v = (w&1UL)|(v<<1);
+  u = x >> 1;
+  v = (u&1ULL)|2UL;
+  w = u&v; w ^= w >> 1; v = (w&1ULL)|(v<<1);
+  w = u&v; w ^= w >> 2; w ^= w >> 1; v = (w&1ULL)|(v<<1);
+  w = u&v; w ^= w >> 2; w ^= w >> 1; v = (w&1ULL)|(v<<1);
   for (i=1;i<=4;i++)
-   { w = u&v; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1UL)|(v<<1); }
+   { w = u&v; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1ULL)|(v<<1); }
   for (i=1;i<=8;i++)
-   { w = u&v; w ^= w >> 8; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1UL)|(v<<1); }
+   { w = u&v; w ^= w >> 8; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1ULL)|(v<<1); }
   for (i=1;i<=16;i++)
-   { w = u&v; w ^= w >> 16; w ^= w >> 8; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1UL)|(v<<1); }
+   { w = u&v; w ^= w >> 16; w ^= w >> 8; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1; v = (w&1ULL)|(v<<1); }
 #ifdef LONG_IS_64BIT
   for (i=1; i<=32; i++)
    { w = u&v; w ^= w >> 32; w ^= w >> 16; w ^= w >> 8; w ^= w >> 4; w ^= w >> 2; w ^= w >> 1;
-   v = (w&1UL)|(v<<1); }
+   v = (w&1ULL)|(v<<1); }
 #endif
-  return (F2x_recip1(v)<<1)|1UL;
+  return (F2x_recip1(v)<<1)|1ULL;
 }
 
 static GEN
@@ -922,7 +922,7 @@ F2x_even_odd(GEN p, GEN *pe, GEN *po)
 
   if (n <= 0) { *pe = F2x_copy(p); *po = pol0_F2x(p[1]); return; }
 
-  n0 = (n>>1)+1; n1 = n+1 - n0; /* n1 <= n0 <= n1+1 */
+  n0 = (n >> 1)+1; n1 = n+1 - n0; /* n1 <= n0 <= n1+1 */
   p0 = zero_zv(nbits2lg(n0+1)-1); p0[1] = p[1];
   p1 = zero_zv(nbits2lg(n1+1)-1); p1[1] = p[1];
   for (i=0; i<n1; i++)
@@ -941,7 +941,7 @@ F2x_deriv(GEN z)
   const ulong mask = ULONG_MAX/3UL;
   int64_t i,l = lg(z);
   GEN x = cgetg(l, t_VECSMALL); x[1] = z[1];
-  for (i=2; i<l; i++) x[i] = (((ulong)z[i])>>1)&mask;
+  for (i=2; i<l; i++) x[i] = (((ulong)z[i]) >> 1)&mask;
   return F2x_renormalize(x,l);
 }
 
@@ -996,7 +996,7 @@ F2x_halfgcd_i(GEN a, GEN b)
   pari_sp av=avma;
   GEN u,u1,v,v1;
   int64_t vx = a[1];
-  int64_t n = (F2x_degree(a)+1)>>1;
+  int64_t n = (F2x_degree(a)+1) >> 1;
   u1 = v = pol0_F2x(vx);
   u = v1 = pol1_F2x(vx);
   while (F2x_degree(b)>=n)
@@ -1334,7 +1334,7 @@ F2xq_log_Coppersmith_d(GEN W, GEN g, int64_t r, int64_t n, GEN T, GEN mo)
   int64_t dg = F2x_degree(g), k = r-1, m = maxss((dg-k)/2,0);
   int64_t i, j, l = dg-m, N;
   GEN v = cgetg(k+m+1,t_MAT);
-  int64_t h = dT>>n, d = dT-(h<<n);
+  int64_t h = dT >> n, d = dT-(h<<n);
   GEN p1 = pol1_F2x(vT);
   GEN R = F2x_add(F2x_shift(p1, dT), T);
   GEN z = F2x_rem(F2x_shift(p1, h), g);
@@ -1514,7 +1514,7 @@ static GEN
 F2xq_log_Coppersmith(int64_t nbrel, int64_t r, int64_t n, GEN T)
 {
   int64_t dT = get_F2x_degree(T), vT = get_F2x_var(T);
-  int64_t h = dT>>n, d = dT-(h<<n);
+  int64_t h = dT >> n, d = dT-(h<<n);
   GEN R = F2x_add(F2x_shift(pol1_F2x(vT), dT), T);
   GEN u = mkF2(0,vT);
   int64_t rel = 1, nbtest = 0;
@@ -1542,15 +1542,15 @@ F2xq_log_Coppersmith(int64_t nbrel, int64_t r, int64_t n, GEN T)
       {
         if (rel>nbrel) break;
         gel(M,rel++) = gel(L,j);
-        if (DEBUGLEVEL && (rel&511UL)==0)
-          err_printf("%ld%%[%ld] ",rel*100/nbrel,i);
+        if (DEBUGLEVEL && (rel&511ULL)==0)
+          err_printf("%lld%%[%lld] ",rel*100/nbrel,i);
       }
     }
     if (rel>nbrel) stop=1;
     i++;
   }
   mt_queue_end(&pt);
-  if (DEBUGLEVEL) err_printf(": %ld tests\n", nbtest);
+  if (DEBUGLEVEL) err_printf(": %lld tests\n", nbtest);
   return M;
 }
 
@@ -1601,7 +1601,7 @@ F2xq_log_index(GEN a0, GEN b0, GEN m, GEN T0)
   int64_t n = F2x_degree(T0), r = (int64_t) (sqrt((double) 2*n))-(n>100);
   GEN T = smallirred_F2x(n,T0[1]);
   int64_t d = 2, r2 = 3*r/2, d2 = 2;
-  int64_t N = (1UL<<(r+1))-1UL;
+  int64_t N = (1ULL<<(r+1))-1ULL;
   int64_t nbi = itos(ffsumnbirred(gen_2, r)), nbrel=nbi*5/4;
   if (DEBUGLEVEL)
   {
@@ -1999,11 +1999,11 @@ F2x_slice(GEN x, int64_t n, int64_t d)
   if (ib)
   {
     ulong i, ic = BITS_IN_LONG-ib;
-    ulong r = uel(x,2+il)>>ib;
+    ulong r = uel(x,2+il) >> ib;
     for(i=0; i<dl; i++)
     {
       uel(t,2+i) = (uel(x,3+il+i)<<ic)|r;
-      r = uel(x,3+il+i)>>ib;
+      r = uel(x,3+il+i) >> ib;
     }
     if (db)
       uel(t,2+i) = (uel(x,3+il+i)<<ic)|r;
@@ -2014,7 +2014,7 @@ F2x_slice(GEN x, int64_t n, int64_t d)
     for(i=2; i<lN; i++)
       uel(t,i) = uel(x,il+i);
   }
-  if (db) uel(t,lN-1) &= (1UL<<db)-1;
+  if (db) uel(t,lN-1) &= (1ULL <<db)-1;
   return F2x_renormalize(t, lN);
 }
 
@@ -2521,7 +2521,7 @@ F2xqX_halfgcd_basecase(GEN a, GEN b, GEN T)
   pari_sp av=avma;
   GEN u,u1,v,v1;
   int64_t vx = varn(a);
-  int64_t n = lgpol(a)>>1;
+  int64_t n = lgpol(a) >> 1;
   u1 = v = pol_0(vx);
   u = v1 = pol1_F2xX(vx, get_F2x_var(T));
   while (lgpol(b)>n)
@@ -2596,7 +2596,7 @@ F2xqX_halfgcd_split(GEN x, GEN y, GEN T)
   pari_sp av=avma;
   GEN R, S, V;
   GEN y1, r, q;
-  int64_t l = lgpol(x), n = l>>1, k;
+  int64_t l = lgpol(x), n = l >> 1, k;
   if (lgpol(y)<=n) return matid2_F2xXM(varn(x),get_F2x_var(T));
   R = F2xqX_halfgcd(RgX_shift_shallow(x,-n),RgX_shift_shallow(y,-n), T);
   V = F2xqXM_F2xqX_mul2(R,x,y, T); y1 = gel(V,2);
@@ -2608,7 +2608,7 @@ F2xqX_halfgcd_split(GEN x, GEN y, GEN T)
 }
 
 /* Return M in GL_2(Fp[X]) such that:
-if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a)>>1) >degpol(b')
+if [a',b']~=M*[a,b]~ then degpol(a')>= (lgpol(a) >> 1) >degpol(b')
 */
 
 static GEN
@@ -2664,7 +2664,7 @@ F2xqX_gcd(GEN x, GEN y, GEN T)
   while (lg(y) > __F2xqX_GCD_LIMIT)
   {
     GEN c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r = F2xqX_rem(x, y, T);
       x = y; y = r;
@@ -2708,7 +2708,7 @@ F2xqX_extgcd_halfgcd(GEN x, GEN y, GEN T,  GEN *ptu, GEN *ptv)
   while (lg(y) > __F2xqX_EXTGCD_LIMIT)
   {
     GEN M, c;
-    if (lgpol(y)<=(lgpol(x)>>1))
+    if (lgpol(y)<=(lgpol(x) >> 1))
     {
       GEN r, q = F2xqX_divrem(x, y, T, &r);
       x = y; y = r;

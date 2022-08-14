@@ -374,7 +374,7 @@ Flx_cubic_root(GEN ff, ulong p)
   else
   {
     pari_sp av = avma;
-    GEN S1 = mkvecsmall2(Fl_halve(S, p), Fl_halve(1UL, p));
+    GEN S1 = mkvecsmall2(Fl_halve(S, p), Fl_halve(1ULL, p));
     GEN vS1 = Fl2_sqrtn_pre(S1, utoi(3), D, p, pi, NULL);
     ulong Sa;
     if (!vS1) return p; /*0 solutions, p%3==2*/
@@ -714,7 +714,7 @@ static int
 Flx_is_totally_split_i(GEN f, ulong p)
 {
   GEN F = Flx_Frobenius(f, p);
-  return degpol(F)==1 && uel(F,2)==0UL && uel(F,3)==1UL;
+  return degpol(F)==1 && uel(F,2)==0ULL && uel(F,3)==1ULL;
 }
 int
 Flx_is_totally_split(GEN f, ulong p)
@@ -1353,7 +1353,7 @@ split_Flx_cut_out_roots(struct split_t *S, GEN f, ulong p)
   if (!d) return 1;
   if ((p >> 4) <= (ulong)d)
   { /* small p; split directly using x^((p-1)/2) +/- 1 */
-    GEN xt = ((ulong)d < (p>>1))? Flx_rem(monomial_Flx(1, p>>1, g[1]), g, p)
+    GEN xt = ((ulong)d < (p >> 1))? Flx_rem(monomial_Flx(1, p >> 1, g[1]), g, p)
                                 : NULL;
     split_squares(S, g, p, xt);
     split_nonsquares(S, g, p, xt);
@@ -2032,7 +2032,7 @@ Flx_edf_simple(GEN Tp, GEN XP, int64_t d, ulong p, GEN V, int64_t idx)
   GEN T, f, ff;
   ulong p2;
   if (r==1) { gel(V, idx) = Tp; return; }
-  p2 = p>>1;
+  p2 = p >> 1;
   T = Flx_get_red(Tp, p);
   XP = Flx_rem(XP, T, p);
   while (1)
@@ -2068,7 +2068,7 @@ Flx_edf_rec(GEN T, GEN XP, GEN hp, GEN t, int64_t d, ulong p, GEN V, int64_t idx
   GEN Tp = get_Flx_mod(T);
   int64_t n = degpol(hp), vT = Tp[1];
   GEN u1, u2, f1, f2;
-  ulong p2 = p>>1;
+  ulong p2 = p >> 1;
   GEN R, h;
   h = Flx_get_red(hp, p);
   t = Flx_rem(t, T, p);

@@ -3250,7 +3250,7 @@ GEN
 gtocolrev0(GEN x, int64_t n)
 {
   GEN y = gtocol0(x, -n);
-  int64_t ly = lg(y), lim = ly>>1, i;
+  int64_t ly = lg(y), lim = ly >> 1, i;
   for (i = 1; i <= lim; i++) swap(gel(y,i), gel(y,ly-i));
   return y;
 }

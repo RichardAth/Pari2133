@@ -271,7 +271,7 @@ mulrrz_3end(GEN z, int64_t sz, int64_t ez, ulong garde)
   }
   else
   {
-    uel(z,2) = (uel(z,2)<<1) | (garde>>(BITS_IN_LONG-1));
+    uel(z,2) = (uel(z,2)<<1) | (garde >> (BITS_IN_LONG-1));
     if (garde & (1ULL <<(BITS_IN_LONG-2)))
     {
       uel(z,2)++; /* round properly, z2+1 can overflow */
@@ -487,7 +487,7 @@ mulir(GEN x, GEN y)
     int64_t lz = lg(y), lx = lgefint(x);
     GEN hi, z = cgetr(lz);
     pari_sp av = avma;
-    if (lx < (lz>>1) || (lx < lz && lz > __MULRR_MULII_LIMIT))
+    if (lx < (lz >> 1) || (lx < lz && lz > __MULRR_MULII_LIMIT))
     { /* size mantissa of x < half size of mantissa z, or lx < lz so large
        * that mulrr will call mulii anyway: mulii */
       x = itor(x, lx);
@@ -584,9 +584,9 @@ vals(ulong z)
   z += z << 6;
   z ^= z << 16; /* or  z -= z<<16 */
 #ifdef LONG_IS_64BIT
-  return s + tab[(z&0xffffffff)>>26];
+  return s + tab[(z&0xffffffff) >> 26];
 #else
-  return tab[z>>26];
+  return tab[z >> 26];
 #endif
 }
 

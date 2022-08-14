@@ -1439,7 +1439,7 @@ select_classpoly_prime_pool(double min_bits, double delta, classgp_pcp_t G)
        *   H(-v^2 D) < vH(-D) (11 log(log(v + 4))^2)
        * This last term is v * hurwitz * hurwitz_ratio_bound. */
       max_p = z * v * hurwitz * hurwitz_ratio_bound;
-      t_max = 2.0 * sqrt(mindd((1ULL << (BITS_IN_LONG-2)) - (m_vsqr_D>>2), max_p));
+      t_max = 2.0 * sqrt(mindd((1ULL << (BITS_IN_LONG-2)) - (m_vsqr_D >> 2), max_p));
       t = t_min[v]; if ((t & 1) != (m_vsqr_D & 1)) t++;
       p = (t * t + m_vsqr_D) >> 2;
       ires0 = ires;
@@ -1958,7 +1958,7 @@ polclass0(int64_t D, int64_t inv, int64_t xvar, GEN *db)
       if (!(u % L)) polmodular_db_add_level(db, L, INV_J);
   }
   for (i = 0; vfactors; ++i) {
-    if (vfactors & 1UL)
+    if (vfactors & 1ULL)
       polmodular_db_add_level(db, SMALL_PRIMES[i], INV_J);
     vfactors >>= 1;
   }

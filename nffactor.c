@@ -1384,7 +1384,7 @@ bestlift_init(int64_t a, GEN nf, GEN C, nflift_t *L)
   }
   timer_start(&ti);
   if (!a) a = (int64_t)bestlift_bound(C, d, alpha, p, f);
-  for (;; set_avma(av), a += (a==1)? 1: (a>>1)) /* roughly a *= 1.5 */
+  for (;; set_avma(av), a += (a==1)? 1: (a >> 1)) /* roughly a *= 1.5 */
   {
     GEN B, q = powiu(p,a), Tq = FpXQ_powu(T, a, FpX_red(nf_get_pol(nf), q), q);
     if (DEBUGLEVEL>2) err_printf("exponent %ld\n",a);
@@ -2125,7 +2125,7 @@ nfrootsof1(GEN nf)
       vnf = vals(nfdegree);
       v = vali(disc);
       for (k = minss(LE[i], vnf+1); k >= 1; k--)
-        if (v >= nfdegree*(k-1)) { nbguessed >>= LE[i]-k; LE[i] = k; break; }
+        if (v >= nfdegree*(k-1)) { nbguessed  >>= LE[i]-k; LE[i] = k; break; }
       /* N.B the test above always works for k = 1: LE[i] >= 1 */
     }
     else

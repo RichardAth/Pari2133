@@ -56,7 +56,7 @@ listconcat(GEN A, GEN B)
   l1 = lg(L1);
   lx = l1-1 + lg(L2);
   z = cgetg(3, t_LIST);
-  z[1] = 0UL;
+  z[1] = 0ULL;
   list_data(z) = L = cgetg(lx, t_VEC);
   L2 -= l1-1;
   for (i=1; i<l1; i++) gel(L,i) = gclone(gel(L1,i));
