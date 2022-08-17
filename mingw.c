@@ -166,14 +166,18 @@ win32_set_pdf_viewer(void)
     char str[512], *buf;
     int status;
     DWORD L = SZ;
+    DWORD type;
 
-    (void)RegOpenKeyExA(HKEY_CLASSES_ROOT, key, 0, KEY_READ, &handle);
-    status = RegQueryValueEx(handle, NULL, 0, NULL, (LPBYTE)str, &L);
-    RegCloseKey(handle);
-    if (status) return;
-    buf = malloc(strlen(str)+16); /*must not be freed*/
-    sprintf_s(buf, strlen(str)+16, "GP_PDF_VIEWER=%s",str);
-    _putenv(buf);
+    LSTATUS rv = RegOpenKeyExA(HKEY_CLASSES_ROOT, key, 0, KEY_READ, &handle);
+    if (rv == ERROR_SUCCESS) {
+        status = RegQueryValueExA(handle, NULL, 0, &type, (LPBYTE)str, &L);
+        RegCloseKey(handle);
+        if (status != ERROR_SUCCESS) 
+            return;
+        buf = malloc(strlen(str) + 16); /*must not be freed*/
+        sprintf_s(buf, strlen(str) + 16, "GP_PDF_VIEWER=%s", str);
+        _putenv(buf);
+    }
   }
 }
 

@@ -247,9 +247,11 @@ START:
 #ifdef READLINE
   GP_DATA->use_readline = stdin_isatty;
 #endif
-  if (!is_interactive()) GP_DATA->breakloop = 0;
+  if (!is_interactive()) 
+      GP_DATA->breakloop = 0;
   if (initrc) gp_initrc(p_A);
-  for ( ; i < argc; i++) pari_stack_pushp(p_A, pari_strdup(argv[i]));
+  for ( ; i < argc; i++) 
+      pari_stack_pushp(p_A, pari_strdup(argv[i]));
 
   /* override the values from gprc */
   if (p) (void)sd_primelimit(p, d_INITRC);

@@ -48,5 +48,6 @@ entree functions_default[]={
 {"threadsize",0,(void*)sd_threadsize,21,"",""},
 {"threadsizemax",0,(void*)sd_threadsizemax,21,"",""},
 {"timer",0,(void*)sd_timer,21,"",""},
+{"docpath",0,(void*)sd_docpath,21,"",""},
 {NULL,0,NULL,0,NULL,NULL} /* sentinel */
 };

@@ -446,15 +446,27 @@ mulrr(GEN x, GEN y)
   int64_t flag, ly, lz, sx, sy;
   GEN z;
 
-  if (x == y) return sqrr(x);
-  sx = signe(x); if (!sx) return real_0_bit(expo(x) + expo(y));
-  sy = signe(y); if (!sy) return real_0_bit(expo(x) + expo(y));
-  if (sy < 0) sx = -sx;
+  if (x == y) 
+      return sqrr(x);
+  sx = signe(x); 
+  if (!sx) 
+      return real_0_bit(expo(x) + expo(y));
+  sy = signe(y); 
+  if (!sy) 
+      return real_0_bit(expo(x) + expo(y));
+  if (sy < 0) 
+      sx = -sx;
   lz = lg(x);
   ly = lg(y);
-  if (lz > ly) { lz = ly; swap(x, y); flag = 1; } else flag = (lz != ly);
+  if (lz > ly) { 
+      lz = ly; 
+      swap(x, y); 
+      flag = 1; 
+  } 
+  else 
+      flag = (lz != ly);
   z = cgetr(lz);
-  mulrrz_i(z, x,y, lz,flag, sx);
+  mulrrz_i(z, x, y, lz, flag, sx);
   return z;
 }
 

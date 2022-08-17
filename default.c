@@ -444,7 +444,7 @@ sd_colors(const char *v, int64_t flag)
         sprintf_s(t, sizeof(s), "no");
       else
       {
-        decode_color(n,col);
+        decode_color(n, col);
         if (n & (1LL<<12))
         {
           if (col[0])
@@ -821,11 +821,16 @@ sd_PATH(const char *v, int64_t flag, const char* s, gp_path *p)
     pari_printf("   %s = \"%s\"\n", s, p->PATH);
   return gnil;
 }
-GEN
-sd_path(const char *v, int64_t flag)
+
+GEN sd_path(const char *v, int64_t flag)
 { return sd_PATH(v, flag, "path", GP_DATA->path); }
-GEN
-sd_sopath(char *v, int flag)
+
+GEN sd_docpath(const char* v, int64_t flag)
+{
+    return sd_PATH(v, flag, "docpath", GP_DATA->docpath);
+}
+
+GEN sd_sopath(char *v, int flag)
 { return sd_PATH(v, flag, "sopath", GP_DATA->sopath); }
 
 static const char *DFT_PRETTYPRINTER = "tex2mail -TeX -noindent -ragged -by_par";
@@ -890,6 +895,7 @@ GEN
 setdefault(const char *s, const char *v, int64_t flag)
 {
   entree *ep;
+  char vcopy[256];
   if (!s)
   { /* list all defaults */
     pari_stack st;
@@ -898,7 +904,8 @@ setdefault(const char *s, const char *v, int64_t flag)
     pari_stack_init(&st, sizeof(*L), (void**)&L);
     defaults_list(&st);
     qsort (L, st.n, sizeof(*L), compare_name);
-    for (i = 0; i < st.n; i++) (void)call_f2(L[i], NULL, d_ACKNOWLEDGE);
+    for (i = 0; i < st.n; i++) 
+        (void)call_f2(L[i], NULL, d_ACKNOWLEDGE);
     pari_stack_delete(&st);
     return gnil;
   }
@@ -908,9 +915,19 @@ setdefault(const char *s, const char *v, int64_t flag)
     pari_err(e_MISC,"unknown default: %s",s);
     return NULL; /* LCOV_EXCL_LINE */
   }
-  return call_f2(ep, v, flag);
-}
+  for (int i = 0; ; i++) {
+      if (v[i] != '^')
+          vcopy[i] = v[i];
+      else
+          vcopy[i] = ' ';  /* translate ^to space */
+      if (v[i] == '\0')
+          break;
+  }
+  return call_f2(ep, vcopy, flag);
 
+ 
+
+}
 GEN
 default0(const char *a, const char *b) { return setdefault(a,b, b? d_SILENT: d_RETURN); }
 
@@ -948,15 +965,17 @@ init_pp(gp_data *D)
   p->file = NULL;
 }
 
-static char *
-init_help(void)
-{
-  char *h = os_getenv("GPHELP");
-  if (!h) h = (char*)paricfg_gphelp;
+static char * init_help(void) {
 #ifdef _WIN32
   win32_set_pdf_viewer();
+  char *h = os_getenv("GP_PDF_VIEWER");
+#else
+  char* h = os_getenv("GPHELP");
 #endif
-  if (h) h = pari_strdup(h);
+  if (!h) 
+      h = (char*)paricfg_gphelp;
+  if (h) 
+      h = pari_strdup(h);
   return h;
 }
 
@@ -990,7 +1009,7 @@ default_gp_data(void)
   static gp_data __GPDATA, *D = &__GPDATA;
   static gp_hist __HIST;
   static gp_pp   __PP;
-  static gp_path __PATH, __SOPATH;
+  static gp_path __PATH, __SOPATH, __DOCPATH;
   static pari_timer __T, __Tw;
 
   D->flags       = 0;
@@ -1015,6 +1034,7 @@ default_gp_data(void)
   D->pp   = &__PP;
   D->path = &__PATH;
   D->sopath=&__SOPATH;
+  D->docpath = &__DOCPATH;
   init_fmt(D);
   init_hist(D, 5000, 0);
   init_path(D->path, pari_default_path());

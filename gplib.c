@@ -300,7 +300,7 @@ Extended help (if available):\n\
   ??             (opens the full user's manual in a dvi previewer)\n\
   ??  tutorial / refcard / libpari (tutorial/reference card/libpari manual)\n\
   ??  refcard-ell (or -lfun/-mf/-nf: specialized reference card)\n\
-  ??  keyword    (int64_t help text about \"keyword\" from the user's manual)\n\
+  ??  keyword    (long help text about \"keyword\" from the user's manual)\n\
   ??? keyword    (a propos: list of related functions).");
 }
 
@@ -422,7 +422,8 @@ filter_quotes(const char *s)
       case '"' : t = _cat(t, DOUBQUOTE); break;
       default: *t++ = s[i];
     }
-  *t = 0; return str;
+  *t = 0; 
+  return str;
 }
 
 static int
@@ -436,13 +437,15 @@ external_help(const char *s, int num)
   char buf[256], *str;
   const char *opt = "", *ar = "";
   char *t, *help = GP_DATA->help;
+  int qflag = 0;  /* set to 1 to indicate that path ends with a " */
   pariFILE *z;
   FILE *f;
 #ifdef __EMSCRIPTEN__
   pari_emscripten_help(s);
 #endif
 
-  if (!has_ext_help()) pari_err(e_MISC,"no external help program");
+  if (!has_ext_help()) 
+      pari_err(e_MISC,"no external help program");
   t = filter_quotes(s);
   if (num < 0)
     opt = "-k";
@@ -454,18 +457,41 @@ external_help(const char *s, int num)
     const char *basedir = win32_basedir();
     help = stack_sprintf("%c:& cd %s & %s", *basedir, basedir, help+1);
   }
-#endif
+  str = stack_sprintf("\"\"%s\" \"%s", help, GP_DATA->docpath->PATH);
+ 
+  if (t[0] == '\0') 
+      strcat(str, "users.pdf");
+  else {
+      strcat(str, t);
+      strcat(str, ".pdf");
+  }
+  strcat(str, "\"\"");  /* append 2 " character */
+ 
+  int rv = system(str);
+  if (rv == -1) {
+      printf("cannot display help file. Error %d \n", errno);
+  }
+  else if ((rv != 0) && (rv !=1))
+      printf("cannot display help file. system return code = %d \n", rv);
+  
+#else
   str = stack_sprintf("%s -fromgp %s %c%s%s%c",
                       help, opt, SHELL_Q, t, ar, SHELL_Q);
-  z = try_pipe(str,0); f = z->file;
+  z = try_pipe(str,0); 
+  f = z->file;
   pari_free(t);
   while (fgets(buf, numberof(buf), f))
   {
-    if (!strncmp("ugly_kludge_done",buf,16)) break;
+    if (!strncmp("ugly_kludge_done",buf,16)) 
+        break;
     pari_puts(buf);
-    if (nl_read(buf) && ++li > nbli) { pari_hit_return(); li = 0; }
+    if (nl_read(buf) && ++li > nbli) { 
+        pari_hit_return(); 
+        li = 0; 
+    }
   }
   pari_fclose(z);
+#endif
 }
 
 const char **
@@ -944,7 +970,8 @@ parse_key_val(char *src, char **ps, char **pt)
   if (*t != '=') err_gprc("missing '='",t,src);
   s_end = t;
   t++;
-  if (*t == '"') (void)pari_translate_string(t, t, src);
+  if (*t == '"') 
+      (void)pari_translate_string(t, t, src);
   *s_end = 0; *ps = src; *pt = t;
 }
 
@@ -1002,9 +1029,13 @@ gp_initrc(pari_stack *p_A)
       else
       { /* set default */
         parse_key_val(s, &s,&t);
-        (void)setdefault(s,t,d_INITRC);
+        (void)setdefault(s, t, d_INITRC);
       }
     }
+  }
+  /* kludge; only needed if docpath not specified in gprc file */
+  if (GP_DATA->docpath->PATH == NULL) {
+      setdefault("docpath", "C:\\Program Files (x86)\\Pari64-2-13-2\\doc\\", d_INITRC);
   }
   pari_stack_delete(&s_env);
   pop_buffer();

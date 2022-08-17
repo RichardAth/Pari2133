@@ -22,10 +22,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 //#include "mpi.h"
 #include "paripriv.h"
 
-typedef ulong pari_sp;
-extern GEN gen_0;
-extern ulong avma;
-extern ulong overflow;
+//typedef ulong pari_sp;
+//extern GEN gen_0;
+//extern ulong avma;
+
 int bfffo(ulong x);
 
 
@@ -50,7 +50,8 @@ addsi_sign(int64_t x, GEN y, int64_t sy)
 
   if (!x) return icopy_sign(y, sy);
   if (!sy) return stoi(x);
-  if (x<0) { sx=-1; x=-x; } else sx=1;
+  if (x<0) { sx=-1; x=-x; } 
+  else sx=1;
   if (sx==sy)
   {
     z = adduispec(x,y+2, lgefint(y)-2);

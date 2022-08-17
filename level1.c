@@ -223,6 +223,7 @@ int64_t evalprecp(int64_t x) {
     return v;
 }
 
+/* reads from global varpriority */
 int varncmp(int64_t x, int64_t y) {
     if (varpriority[x] < varpriority[y]) 
         return  1;

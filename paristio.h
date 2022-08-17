@@ -339,7 +339,7 @@ enum { DO_MATCHED_INSERT = 2, DO_ARGS_COMPLETE = 4 };
 typedef struct {
   gp_hist *hist;
   gp_pp *pp;
-  gp_path *path, *sopath;
+  gp_path *path, *sopath, *docpath;
   pariout_t *fmt;
   ulong lim_lines, flags, linewrap, readline_state, echo;
   int breakloop, recover, use_readline;
