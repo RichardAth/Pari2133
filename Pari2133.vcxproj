@@ -303,6 +303,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="..\src\language\init.h" />
+    <ClInclude Include="default.h" />
     <ClInclude Include="divll_pre.h" />
     <ClInclude Include="int.h" />
     <ClInclude Include="mpqs.h" />

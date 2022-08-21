@@ -32,6 +32,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "../systems/emscripten/emscripten.h"
 #endif
 
+#ifdef _WIN32
+/* return 1 for valid name of pdf in doc folder otherwise 0 */
+static int ok_pdf(char* s);
+#endif
+
 /********************************************************************/
 /**                                                                **/
 /**                            STRINGS                             **/
@@ -437,8 +442,10 @@ external_help(const char *s, int num)
   char buf[256], *str;
   const char *opt = "", *ar = "";
   char *t, *help = GP_DATA->help;
-  int qflag = 0;  /* set to 1 to indicate that path ends with a " */
-  pariFILE *z;
+#ifdef _WIN32
+  char* acrobat = GP_DATA->acrobatpath->PATH;
+#endif
+   pariFILE *z;
   FILE *f;
 #ifdef __EMSCRIPTEN__
   pari_emscripten_help(s);
@@ -452,46 +459,54 @@ external_help(const char *s, int num)
   else if (t[strlen(t)-1] != '@')
     ar = stack_sprintf("@%d",num);
 #ifdef _WIN32
-  if (*help == '@')
+  if (ok_pdf(s)|| s[0] == '\0') {
+      str = stack_sprintf("\"%s %s", acrobat, GP_DATA->docpath->PATH);
+      if (str[strlen(str) - 1] == '"')
+          str[strlen(str) - 1] = '\0';   /* if last char is a " remove it */
+      if (t[0] == '\0')
+          strcat(str, "users.pdf");
+      else {
+          strcat(str, t);
+          strcat(str, ".pdf");
+      }
+      strcat(str, "\"\"");  /* append 2 " character */
+
+      int rv = system(str);
+      if (rv == -1) {
+          printf("cannot display help file. Error %d \n", errno);
+      }
+      else if ((rv != 0) && (rv != 1))
+          printf("cannot display help file. system return code = %d \n", rv);
+  }
+  else 
+#endif
   {
-    const char *basedir = win32_basedir();
-    help = stack_sprintf("%c:& cd %s & %s", *basedir, basedir, help+1);
-  }
-  str = stack_sprintf("\"\"%s\" \"%s", help, GP_DATA->docpath->PATH);
- 
-  if (t[0] == '\0') 
-      strcat(str, "users.pdf");
-  else {
-      strcat(str, t);
-      strcat(str, ".pdf");
-  }
-  strcat(str, "\"\"");  /* append 2 " character */
- 
-  int rv = system(str);
-  if (rv == -1) {
-      printf("cannot display help file. Error %d \n", errno);
-  }
-  else if ((rv != 0) && (rv !=1))
-      printf("cannot display help file. system return code = %d \n", rv);
-  
-#else
+#ifdef _WIN32
+      if (*help == '@') {
+          /* 1st char of help is '@'*/
+          const char* basedir = win32_basedir();
+          /* replace 1st character @ of help text with "C:& CD <basedir> & <rest of help text>*/
+          help = stack_sprintf("%c:& cd %s & %s", *basedir, basedir, help + 1);
+      }
+#endif
   str = stack_sprintf("%s -fromgp %s %c%s%s%c",
-                      help, opt, SHELL_Q, t, ar, SHELL_Q);
-  z = try_pipe(str,0); 
+      help, opt, SHELL_Q, t, ar, SHELL_Q);
+  z = try_pipe(str, 0);
   f = z->file;
   pari_free(t);
   while (fgets(buf, numberof(buf), f))
   {
-    if (!strncmp("ugly_kludge_done",buf,16)) 
-        break;
-    pari_puts(buf);
-    if (nl_read(buf) && ++li > nbli) { 
-        pari_hit_return(); 
-        li = 0; 
-    }
+      if (!strncmp("ugly_kludge_done", buf, 16))
+          break;
+      pari_puts(buf);
+      if (nl_read(buf) && ++li > nbli) {
+          pari_hit_return();
+          li = 0;
+      }
   }
   pari_fclose(z);
-#endif
+
+  }
 }
 
 const char **
@@ -524,23 +539,62 @@ gphelp_keyword_list(void)
   "Ldata",
   "Linit",
   NULL};
+
   return L;
 }
 
+/* return 3 for operator or section number or recognised keyword, 2 for type name,  
+otherwise 0 */
 static int
 ok_external_help(char **s)
 {
-  const char **L;
+  char **L;
+  char* Ls;
   int64_t n;
-  if (!**s) return 1;
-  if (!isalpha((int)**s)) return 3; /* operator or section number */
-  if (!strncmp(*s,"t_",2)) { *s += 2; return 2; } /* type name */
+  if (!**s) 
+      return 1;    /* **s = NULL */
+  if (!isalpha((int)**s)) 
+      return 3;     /* operator or section number */
+  if (strncmp(*s, "t_",2) == 0) { 
+      *s += 2; 
+      return 2; /* type name */
+  } 
 
   L = gphelp_keyword_list();
-  for (n=0; L[n]; n++)
-    if (!strcmp(*s,L[n])) return 3;
+  for (n = 0; Ls = L[n]; n++) {
+      int rv = strcmp(*s, Ls); 
+      if (rv == 0)
+          return 3;    /* recognised keyword */
+  }
   return 0;
 }
+
+#ifdef _WIN32
+/* return 1 for valid name of pdf in doc folder otherwise 0 */
+static int ok_pdf(char* s) {
+    static const char* pdf[] = {
+      "develop",
+      "INSTALL",
+      "libpari",
+      "parallel",
+      "refcard",
+      "refcard-ell",
+      "refcard-lfun",
+      "refcard-mf",
+      "refcard-nf",
+      "tutorial",
+      "tutorial-mf",
+      "users",
+      NULL };
+    int64_t n;
+    for (n = 0; pdf[n] != NULL; n++) {
+        int rv = strcmp(pdf[n], s);
+        if (rv == 0)
+            return 1;
+    }
+    return 0;
+}
+#endif
 
 static void
 cut_trailing_garbage(char *s)
@@ -594,8 +648,14 @@ help(const char *s0, int flag)
   entree *ep;
   char *s = get_sep(s0);
 
-  if (isdigit((int)*s)) { digit_help(s,flag); return; }
-  if (flag & h_APROPOS) { external_help(s,-1); return; }
+  if (isdigit((int)*s)) { 
+      digit_help(s,flag); 
+      return; 
+  }
+  if (flag & h_APROPOS) { 
+      external_help(s, -1); 
+      return; 
+  }
   /* Get meaningful answer on '\ps 5' (e.g. from <F1>) */
   if (*s == '\\' && isalpha((int)*(s+1)))
   { char *t = s+1; pari_skip_alpha(&t); *t = '\0'; }
@@ -617,7 +677,11 @@ help(const char *s0, int flag)
     cut_trailing_garbage(t);
   }
 
-  if (long_help && (n = ok_external_help(&s))) { external_help(s,n); return; }
+  if (long_help && (n = ok_external_help(&s))) { 
+      /* n= 3 for operator or section number or recognised keyword, 2 for type name,  */
+      external_help(s, n); 
+      return; 
+  }
   switch (*s)
   {
     case '*' : commands(-1); return;
@@ -629,9 +693,9 @@ help(const char *s0, int flag)
   if (!ep)
   {
     if (pari_is_default(s))
-      default_help(s,flag);
+      default_help(s, flag);
     else if (long_help)
-      external_help(s,3);
+      external_help(s, 3);
     else if (!cb_pari_whatnow || !cb_pari_whatnow(pariOut, s,1))
       simple_help(s,"unknown identifier");
     return;
@@ -994,7 +1058,8 @@ gp_initrc(pari_stack *p_A)
     char *nexts, *s, *t;
     if (setjmp(env[s_env.n-1])) err_printf("...skipping line %ld.\n", c);
     c++;
-    if (!get_line_from_file(NULL,&F,file)) break;
+    if (!get_line_from_file(NULL,&F,file)) 
+        break;
     s = b->buf;
     if (*s == '#')
     { /* preprocessor directive */
@@ -1023,7 +1088,9 @@ gp_initrc(pari_stack *p_A)
       { /* read file */
         s += 4;
         t = (char*)pari_malloc(strlen(s) + 1);
-        if (*s == '"') (void)pari_translate_string(s, t, s-4); else strcpy(t,s);
+        if (*s == '"') 
+            (void)pari_translate_string(s, t, s-4); 
+        else strcpy(t,s);
         pari_stack_pushp(p_A,t);
       }
       else
@@ -1033,10 +1100,15 @@ gp_initrc(pari_stack *p_A)
       }
     }
   }
+#ifdef _WIN32
   /* kludge; only needed if docpath not specified in gprc file */
   if (GP_DATA->docpath->PATH == NULL) {
-      setdefault("docpath", "C:\\Program Files (x86)\\Pari64-2-13-2\\doc\\", d_INITRC);
+      setdefault("docpath", "\"C:\\Program Files (x86)\\Pari64-2-13-2\\doc\\\"", d_INITRC);
   }
+ /* if (GP_DATA->acrobatpath->PATH == NULL) {
+      setdefault("acrobat", "C:\\Program Files\\Adobe\\Acrobat DC\\Acrobat\\Acrobat.exe", d_INITRC);
+  }*/
+#endif
   pari_stack_delete(&s_env);
   pop_buffer();
   if (!(GP_DATA->flags & gpd_QUIET)) err_printf("GPRC Done.\n\n");

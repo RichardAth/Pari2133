@@ -154,16 +154,17 @@ win32_set_codepage(void)
   SetConsoleOutputCP( GetACP() );
 }
 
-void
+char *
 win32_set_pdf_viewer(void)
 {
   char *s = getenv("GP_PDF_VIEWER");
+  char* buf = s;
   if (!s)
   {
     HKEY handle;
     const char *key = "AcroExch.Document\\shell\\open\\command";
     const long SZ = 512;
-    char str[512], *buf;
+    char str[512];
     int status;
     DWORD L = SZ;
     DWORD type;
@@ -173,12 +174,19 @@ win32_set_pdf_viewer(void)
         status = RegQueryValueExA(handle, NULL, 0, &type, (LPBYTE)str, &L);
         RegCloseKey(handle);
         if (status != ERROR_SUCCESS) 
-            return;
+            return NULL;
+        /* str now contains the text from the registry key */
         buf = malloc(strlen(str) + 16); /*must not be freed*/
+        if (str[0] = '"') {
+             char *cp = strchr(str + 1, '"');
+            if (cp != NULL)
+                cp[1] = '\0';   /* replace char after 2nd " with null terminator */
+        }
         sprintf_s(buf, strlen(str) + 16, "GP_PDF_VIEWER=%s", str);
         _putenv(buf);
     }
   }
+  return buf;
 }
 
 extern int win32ctrlc, win32alrm;

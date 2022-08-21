@@ -18,7 +18,7 @@ void win32_ansi_fputs(const char* s, void* f);
 int win32_terminal_width(void);
 int win32_terminal_height(void);
 void win32_set_codepage(void);
-void win32_set_pdf_viewer(void);
+char *win32_set_pdf_viewer(void);
 void win32_alarm(unsigned int s);
 long win32_timer(void);
 long win32_nbthreads(void);

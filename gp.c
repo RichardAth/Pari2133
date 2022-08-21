@@ -178,8 +178,8 @@ record_default(pari_stack *s_P, char *ab)
   P[n].key = k;
   P[n].val = v;
 }
-static void
-read_opt(pari_stack *p_A, int64_t argc, char **argv)
+
+static void read_opt(pari_stack *p_A, int64_t argc, char **argv)
 {
   pair_t *P;
   pari_stack s_P; /* key / value to record default() settings */
@@ -201,65 +201,120 @@ read_opt(pari_stack *p_A, int64_t argc, char **argv)
 START:
     switch(*t++)
     {
-      case 'p': p = read_arg(&i,t,argc,argv); break;
-      case 's': s = read_arg(&i,t,argc,argv); break;
+      case 'p': 
+          p = read_arg(&i, t, argc, argv); 
+          break;
+
+      case 's': 
+          s = read_arg(&i, t, argc, argv); 
+          break;
+
       case 'e':
-        f |= gpd_EMACS; if (*t) goto START;
+        f |= gpd_EMACS; 
+        if (*t) 
+            goto START;
         break;
+
       case 'q':
-        f |= gpd_QUIET; if (*t) goto START;
+        f |= gpd_QUIET; 
+        if (*t) 
+            goto START;
         break;
+
       case 't':
-        f |= gpd_TEST; if (*t) goto START;
+        f |= gpd_TEST; 
+        if (*t) 
+            goto START;
         break;
+
       case 'f':
-        initrc = 0; if (*t) goto START;
+        initrc = 0; 
+        if (*t) 
+            goto START;
         break;
+
       case 'D':
-        if (*t || i == argc) usage(argv[0]);
+        if (*t || i == argc) 
+            usage(argv[0]);
         record_default(&s_P, argv[i++]);
         break;
+
       case '-':
-        if (strcmp(t, "version-short") == 0) { print_shortversion(); exit(0); }
+        if (strcmp(t, "version-short") == 0) { 
+            print_shortversion(); 
+            exit(0); 
+        }
         if (strcmp(t, "version") == 0) {
-          init_trivial_stack(); pari_print_version();
-          free_trivial_stack(); exit(0);
+          init_trivial_stack(); 
+          pari_print_version();
+          free_trivial_stack(); 
+          exit(0);
         }
         if (strcmp(t, "default") == 0) {
           if (i == argc) usage(argv[0]);
           record_default(&s_P, argv[i++]);
           break;
         }
-        if (strcmp(t, "texmacs") == 0) { f |= gpd_TEXMACS; break; }
-        if (strcmp(t, "emacs") == 0) { f |= gpd_EMACS; break; }
-        if (strcmp(t, "test") == 0) { f |= gpd_TEST; initrc = 0; break; }
-        if (strcmp(t, "quiet") == 0) { f |= gpd_QUIET; break; }
-        if (strcmp(t, "fast") == 0) { initrc = 0; break; }
-        if (strncmp(t, "primelimit",10) == 0) {p = read_arg_equal(&i,t+10,argc,argv); break; }
-        if (strncmp(t, "stacksize",9) == 0) {s = read_arg_equal(&i,t+9,argc,argv); break; }
+        if (strcmp(t, "texmacs") == 0) { 
+            f |= gpd_TEXMACS; 
+            break; 
+        }
+        if (strcmp(t, "emacs") == 0) { 
+            f |= gpd_EMACS; 
+            break; 
+        }
+        if (strcmp(t, "test") == 0) { 
+            f |= gpd_TEST; 
+            initrc = 0; 
+            break; 
+        }
+        if (strcmp(t, "quiet") == 0) { 
+            f |= gpd_QUIET; 
+            break; 
+        }
+        if (strcmp(t, "fast") == 0) { 
+            initrc = 0; 
+            break; 
+        }
+        if (strncmp(t, "primelimit", 10) == 0) {
+            p = read_arg_equal(&i, t+10, argc, argv); 
+            break; 
+        }
+        if (strncmp(t, "stacksize",9) == 0) {
+            s = read_arg_equal(&i, t+9, argc, argv); 
+            break; 
+        }
+
        /* fall through */
       default:
         usage(argv[0]);
     }
   }
-  if (f & gpd_TEST) stdin_isatty = 0;
+
+  if (f & gpd_TEST) 
+      stdin_isatty = 0;
   GP_DATA->flags = f;
 #ifdef READLINE
   GP_DATA->use_readline = stdin_isatty;
 #endif
   if (!is_interactive()) 
       GP_DATA->breakloop = 0;
-  if (initrc) gp_initrc(p_A);
+  if (initrc) 
+      gp_initrc(p_A);
   for ( ; i < argc; i++) 
       pari_stack_pushp(p_A, pari_strdup(argv[i]));
 
   /* override the values from gprc */
-  if (p) (void)sd_primelimit(p, d_INITRC);
-  if (s) (void)sd_parisize(s, d_INITRC);
+  if (p) 
+      (void)sd_primelimit(p, d_INITRC);
+  if (s) 
+      (void)sd_parisize(s, d_INITRC);
+
   for (i = 0; i < s_P.n; i++) {
     setdefault(P[i].key, P[i].val, d_INITRC);
     free((void*)P[i].key);
   }
+
   pari_stack_delete(&s_P);
   pari_outfile = stdout;
 }

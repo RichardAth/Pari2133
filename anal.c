@@ -149,32 +149,37 @@ initep(const char *name, int64_t len)
 }
 
 /* Look for s of length len in T; if 'insert', insert if missing */
-static entree *
-findentry(const char *s, int64_t len, entree **T, int insert)
-{
+static entree * findentry(const char *s, int64_t len, entree **T, int insert) {
   ulong hash = hash_str_len(s, len);
   entree *ep;
   for (ep = T[hash % functions_tblsz]; ep; ep = ep->next)
-    if (ep->hash == hash)
-    {
+    if (ep->hash == hash)  {
       const char *t = ep->name;
-      if (!strncmp(t, s, len) && !t[len]) return ep;
+      if (!strncmp(t, s, len) && !t[len]) 
+          return ep;
     }
   /* not found */
-  if (insert) { ep = initep(s,len); insertep(ep, T, hash); }
+  if (insert) { 
+      ep = initep(s, len); 
+      insertep(ep, T, hash); 
+  }
   return ep;
 }
-entree *
-pari_is_default(const char *s)
-{ return findentry(s, strlen(s), defaults_hash, 0); }
-entree *
-is_entry(const char *s)
-{ return findentry(s, strlen(s), functions_hash, 0); }
-entree *
-fetch_entry_raw(const char *s, int64_t len)
-{ return findentry(s, len, functions_hash, 1); }
-entree *
-fetch_entry(const char *s) { return fetch_entry_raw(s, strlen(s)); }
+entree * pari_is_default(const char *s) { 
+    return findentry(s, strlen(s), defaults_hash, 0); 
+}
+
+entree * is_entry(const char *s) { 
+    return findentry(s, strlen(s), functions_hash, 0); 
+}
+
+entree * fetch_entry_raw(const char *s, int64_t len) {
+    return findentry(s, len, functions_hash, 1); 
+}
+
+entree * fetch_entry(const char *s) { 
+    return fetch_entry_raw(s, strlen(s)); 
+}
 
 /*******************************************************************/
 /*                                                                 */
@@ -1048,9 +1053,12 @@ fetch_user_var(const char *s)
   int64_t v;
   switch (EpVALENCE(ep))
   {
-    case EpVAR: return varn((GEN)initial_value(ep));
-    case EpNEW: break;
-    default: pari_err(e_MISC, "%s already exists with incompatible valence", s);
+    case EpVAR: 
+        return varn((GEN)initial_value(ep));
+    case EpNEW: 
+        break;
+    default: 
+        pari_err(e_MISC, "%s already exists with incompatible valence", s);
   }
   v = pari_var_create(ep);
   ep->valence = EpVAR;

@@ -65,15 +65,17 @@ file, then include this .obj or .dll file when linking GP.
 This .obj or .dll can also be linked into any program that uses parilib functions.
 
 currently some of the extended help functions in GP do not work. 
-The ?? command to open the users.pdf file, and the  
-??  tutorial / refcard / libpari (tutorial/reference card/libpari manual) should
-work provided that acrobat reader and the pdf files are installed in the expected
-places. The paths can be specified in the gprc.txt file
+I cannot get the perl script to work. As a workaround the ?? command to open the 
+users.pdf file, and the ??  tutorial / refcard / libpari 
+(tutorial/reference card/libpari manual) should work provided that Acrobat Reader 
+and the pdf files are installed in the expected places. The paths can be 
+specified in the gprc.txt file.
 e.g 
-docpath = C:\Program^Files(x86)\Pari64-2-13-2\doc\
-help = C:\Program^Files\Adobe\Acrobat^DC\Acrobat\Acrobat.exe
+docpath = "C:\Program Files(x86)\Pari64-2-13-2\doc\"
+acrobat = "C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe"
 
-Note that in the gprc.txt spaces in the path names must be replaced with ^ 
-characters. GP translates ^ back to a space.
+Note that in the gprc.txt spaces in the path names require that the path name be
+enclosed with quotes " "
+
 
 I am not aware of any other problems.

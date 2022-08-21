@@ -413,6 +413,7 @@ GEN
 sd_colors(const char *v, int64_t flag)
 {
   int64_t c,l;
+ 
   if (v && !(GP_DATA->flags & (gpd_EMACS|gpd_TEXMACS)))
   {
     pari_sp av = avma;
@@ -433,11 +434,12 @@ sd_colors(const char *v, int64_t flag)
     for (c=c_ERR; c < c_LAST; c++) gp_colors[c] = gp_get_color(&s);
     set_avma(av);
   }
+
   if (flag == d_ACKNOWLEDGE || flag == d_RETURN)
   {
-    char s[128], *t = s;
-    int64_t col[3], n;
-    for (*t=0,c=c_ERR; c < c_LAST; c++)
+      char s[128], *t = s;
+      int64_t col[3], n;
+     for (*t=0, c=c_ERR; c < c_LAST; c++)
     {
       n = gp_colors[c];
       if (n == c_NONE)
@@ -448,17 +450,18 @@ sd_colors(const char *v, int64_t flag)
         if (n & (1LL<<12))
         {
           if (col[0])
-            sprintf_s(t, sizeof(s), "[%lld,,%lld]",col[1],col[0]);
+            sprintf_s(t, sizeof(s)-(t-s), "[%lld,,%lld]", col[1], col[0]);
           else
-            sprintf_s(t, sizeof(s),"%lld",col[1]);
+            sprintf_s(t, sizeof(s) - (t - s),"%lld",col[1]);
         }
         else
-          sprintf_s(t, sizeof(s),"[%lld,%lld,%lld]",col[1],col[2],col[0]);
+          sprintf_s(t, sizeof(s) - (t - s),"[%lld,%lld,%lld]",col[1],col[2],col[0]);
+      }
+
+      if (c < c_LAST - 1) { 
+          strcat_s(t, sizeof(s) - (t - s), ", ");
       }
       t += strlen(t);
-      if (c < c_LAST - 1) { 
-          *t++=','; 
-          *t++=' '; }
     }
     if (flag==d_RETURN) 
         return strtoGENstr(s);
@@ -825,11 +828,16 @@ sd_PATH(const char *v, int64_t flag, const char* s, gp_path *p)
 GEN sd_path(const char *v, int64_t flag)
 { return sd_PATH(v, flag, "path", GP_DATA->path); }
 
+#ifdef _WIN32
 GEN sd_docpath(const char* v, int64_t flag)
 {
     return sd_PATH(v, flag, "docpath", GP_DATA->docpath);
 }
-
+GEN sd_acrobatpath(const char* v, int64_t flag)
+{
+    return sd_PATH(v, flag, "acrobat", GP_DATA->acrobatpath);
+}
+#endif
 GEN sd_sopath(char *v, int flag)
 { return sd_PATH(v, flag, "sopath", GP_DATA->sopath); }
 
@@ -895,7 +903,7 @@ GEN
 setdefault(const char *s, const char *v, int64_t flag)
 {
   entree *ep;
-  char vcopy[256];
+
   if (!s)
   { /* list all defaults */
     pari_stack st;
@@ -915,18 +923,7 @@ setdefault(const char *s, const char *v, int64_t flag)
     pari_err(e_MISC,"unknown default: %s",s);
     return NULL; /* LCOV_EXCL_LINE */
   }
-  for (int i = 0; ; i++) {
-      if (v[i] != '^')
-          vcopy[i] = v[i];
-      else
-          vcopy[i] = ' ';  /* translate ^to space */
-      if (v[i] == '\0')
-          break;
-  }
-  return call_f2(ep, vcopy, flag);
-
- 
-
+  return call_f2(ep, v, flag);
 }
 GEN
 default0(const char *a, const char *b) { return setdefault(a,b, b? d_SILENT: d_RETURN); }
@@ -966,14 +963,13 @@ init_pp(gp_data *D)
 }
 
 static char * init_help(void) {
+    char* h = os_getenv("GPHELP");
+    if (!h) 
+        h = (char*)paricfg_gphelp;
 #ifdef _WIN32
   win32_set_pdf_viewer();
-  char *h = os_getenv("GP_PDF_VIEWER");
-#else
-  char* h = os_getenv("GPHELP");
 #endif
-  if (!h) 
-      h = (char*)paricfg_gphelp;
+ 
   if (h) 
       h = pari_strdup(h);
   return h;
@@ -1009,7 +1005,7 @@ default_gp_data(void)
   static gp_data __GPDATA, *D = &__GPDATA;
   static gp_hist __HIST;
   static gp_pp   __PP;
-  static gp_path __PATH, __SOPATH, __DOCPATH;
+  static gp_path __PATH, __SOPATH, __DOCPATH, __ACROBATPATH;
   static pari_timer __T, __Tw;
 
   D->flags       = 0;
@@ -1048,5 +1044,10 @@ default_gp_data(void)
   D->help = init_help();
   D->readline_state = DO_ARGS_COMPLETE;
   D->histfile = NULL;
+#ifdef _WIN32
+#pragma warning (disable: 4996)
+  D->acrobatpath = &__ACROBATPATH;
+  D->acrobatpath->PATH = getenv("GP_PDF_VIEWER");
+#endif
   return D;
 }

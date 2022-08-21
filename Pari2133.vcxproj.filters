@@ -539,5 +539,8 @@
     <ClInclude Include="tune.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="default.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
 </Project>

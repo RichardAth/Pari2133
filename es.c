@@ -103,16 +103,17 @@ filtre0(filtre_t *F)
   const char *s = F->s;
   char c, *t = F->t;
 
-  if (F->more_input == 1) F->more_input = 0;
-  while ((c = *s++))
-  {
-    if (F->in_string)
-    {
+  if (F->more_input == 1) 
+      F->more_input = 0;
+
+  while ((c = *s++)) {
+    if (F->in_string)   {
       *t++ = c; /* copy verbatim */
-      switch(c)
-      {
+
+      switch(c)   {
         case '\\': /* in strings, \ is the escape character */
-          if (*s) *t++ = *s++;
+          if (*s) 
+              *t++ = *s++;
           break;
 
         case '"': F->in_string = 0;
@@ -142,8 +143,12 @@ filtre0(filtre_t *F)
     }
 
     /* weed out comments and spaces */
-    if (c=='\\' && *s=='\\') { F->in_comment = ONE_LINE_COMMENT; continue; }
-    if (isspace((int)c)) continue;
+    if (c=='\\' && *s=='\\') { 
+        F->in_comment = ONE_LINE_COMMENT; 
+        continue; 
+    }
+    if (isspace((int)c)) 
+        continue;
     *t++ = c;
     switch(c)
     {
@@ -3621,7 +3626,8 @@ try_pipe(const char *cmd, int fl)
     }
     f = cmd;
   }
-  if (!file) pari_err(e_MISC,"[pipe:] '%s' failed",cmd);
+  if (!file) 
+      pari_err(e_MISC,"[pipe:] '%s' failed",cmd);
   return newfile(file, f, mf_PIPE|flag);
 #endif
 }

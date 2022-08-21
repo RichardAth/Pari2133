@@ -2938,7 +2938,10 @@ GEN sd_output(const char *v, int64_t flag);
 GEN sd_parisize(const char *v, int64_t flag);
 GEN sd_parisizemax(const char *v, int64_t flag);
 GEN sd_path(const char *v, int64_t flag);
+#ifdef _WIN32
 GEN sd_docpath(const char* v, int64_t flag);
+GEN sd_acrobatpath(const char* v, int64_t flag);
+#endif
 GEN sd_plothsizes(const char *v, int64_t flag);
 GEN sd_prettyprinter(const char *v, int64_t flag);
 GEN sd_primelimit(const char *v, int64_t flag);
