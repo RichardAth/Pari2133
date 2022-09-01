@@ -14,27 +14,27 @@ with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
 
-#if defined(INLINE) && defined(__GNUC__) && !defined(DISABLE_INLINE)
-INLINE ulong /* precompute inverse of n */
-get_Fl_red(ulong n)
-{
-  LOCAL_HIREMAINDER;
-  n <<= bfffo(n);
-  hiremainder = ~n;
-  return divll(~0ULL, n);
-}
-#else
-INLINE ulong /* precompute inverse of n */
-get_Fl_red(ulong n)
-{
-  ulong q, hiremainder;
-  n <<= bfffo(n);
-  hiremainder = ~n;
-  q = divll(~0ULL, n, &hiremainder);
-  
-  return q;
-}
-#endif
+//#if defined(INLINE) && defined(__GNUC__) && !defined(DISABLE_INLINE)
+//INLINE ulong /* precompute inverse of n */
+//get_Fl_red(ulong n)
+//{
+//  LOCAL_HIREMAINDER;
+//  n <<= bfffo(n);
+//  hiremainder = ~n;
+//  return divll(~0ULL, n);
+//}
+//#else
+//INLINE ulong /* precompute inverse of n */
+//get_Fl_red(ulong n)
+//{
+//  ulong q, hiremainder;
+//  n <<= bfffo(n);
+//  hiremainder = ~n;
+//  q = divll(~0ULL, n, &hiremainder);
+//  
+//  return q;
+//}
+//#endif
 
 INLINE ulong /* requires u1 <= n, n normalised */
 divll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv, ulong *pt_r)
@@ -72,7 +72,7 @@ remll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv)
   return r < n ? r : r - n;
 }
 
-INLINE ulong /* reduce <a_hi, a_lo> mod n */
+ulong /* reduce <a_hi, a_lo> mod n */
 remll_pre(ulong a_hi, ulong a_lo, ulong n, ulong ninv)
 {
   int norm = bfffo(n);

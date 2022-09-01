@@ -3627,7 +3627,7 @@ try_pipe(const char *cmd, int fl)
     f = cmd;
   }
   if (!file) 
-      pari_err(e_MISC,"[pipe:] '%s' failed",cmd);
+      pari_err(e_MISC,"[pipe:] '%s' failed errno = %d", cmd, errno);
   return newfile(file, f, mf_PIPE|flag);
 #endif
 }

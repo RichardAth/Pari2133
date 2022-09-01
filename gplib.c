@@ -34,8 +34,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
 #ifdef _WIN32
 /* return 1 for valid name of pdf in doc folder otherwise 0 */
-static int ok_pdf(char* s);
+static int ok_pdf(const char* s);
 #endif
+
+enum { h_REGULAR = 0, h_LONG = 1, h_APROPOS = 2, h_RL = 4 };
 
 /********************************************************************/
 /**                                                                **/
@@ -548,8 +550,8 @@ otherwise 0 */
 static int
 ok_external_help(char **s)
 {
-  char **L;
-  char* Ls;
+  const char **L;
+  const char* Ls;
   int64_t n;
   if (!**s) 
       return 1;    /* **s = NULL */
@@ -571,7 +573,7 @@ ok_external_help(char **s)
 
 #ifdef _WIN32
 /* return 1 for valid name of pdf in doc folder otherwise 0 */
-static int ok_pdf(char* s) {
+static int ok_pdf(const char* s) {
     static const char* pdf[] = {
       "develop",
       "INSTALL",
@@ -893,29 +895,29 @@ gprc_get(void)
   {
     int free_it = 0;
     const char *home = get_home(&free_it);
-    char *str, *s, c;
+    char *str, *str2, c;
     int64_t l;
     l = strlen(home); c = home[l-1];
     /* + "/gprc.txt" + \0*/
     str = strcpy((char*)pari_malloc(l+10), home);
     if (free_it) pari_free((void*)home);
-    s = str + l;
-    if (c != '/' && c != '\\') *s++ = '/';
+    str2 = str + l;
+    if (c != '/' && c != '\\') *str2++ = '/';
 #ifndef _WIN32
     strcpy(s, ".gprc");
 #else
-    strcpy(s, "gprc.txt");
+    strcpy(str2, "gprc.txt");
 #endif
     f = gprc_chk(str); /* in $HOME */
-    if (!f) f = gprc_chk(s); /* in . */
+    if (!f) f = gprc_chk(str2); /* in . */
 #ifndef _WIN32
     if (!f) f = gprc_chk("/etc/gprc");
 #else
     if (!f)  /* in basedir */
     {
       const char *basedir = win32_basedir();
-      char *t = (char *) pari_malloc(strlen(basedir)+strlen(s)+2);
-      sprintf(t, "%s/%s", basedir, s);
+      char *t = (char *) pari_malloc(strlen(basedir)+strlen(str2)+2);
+      sprintf(t, "%s/%s", basedir, str2);
       f = gprc_chk(t); free(t);
     }
 #endif
@@ -1288,7 +1290,8 @@ get_line_from_file(const char *prompt, filtre_t *F, FILE *file)
   }
   s = F->buf->buf;
   /* don't log if from gprc or empty input */
-  if (*s && prompt && GP_DATA->echo != 2) gp_echo_and_log(prompt, s);
+  if (*s && prompt && GP_DATA->echo != 2) 
+      gp_echo_and_log(prompt, s);
   return 1;
 }
 
@@ -1429,7 +1432,10 @@ closure_alarmer(GEN C, int64_t s)
 {
   struct pari_evalstate state;
   VOLATILE GEN x;
-  if (!s) { pari_alarm(0); return closure_evalgen(C); }
+  if (!s) { 
+      pari_alarm(0); 
+      return closure_evalgen(C); 
+  }
   evalstate_save(&state);
 #if !defined(HAS_ALARM) && !defined(_WIN32)
   pari_err(e_ARCH,"alarm");
@@ -1899,7 +1905,8 @@ escape(const char *tch, int ismain)
     case 'e':
       s = get_sep(s);
       if (!*s) s = (GP_DATA->echo)? "0": "1";
-      (void)sd_echo(s,d_ACKNOWLEDGE); break;
+      (void)sd_echo(s,d_ACKNOWLEDGE); 
+      break;
     case 'g':
       switch (*s)
       {

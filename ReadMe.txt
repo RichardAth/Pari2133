@@ -12,6 +12,12 @@ with the Microsoft linker.
 
 To download Pari/GP go to http://pari.math.u-bordeaux.fr/download.html
 
+There are a number of reference manuals in PDF format that can be downloaded.
+The most importand (and by far the largest!) are users.pdf and libpari.pdf
+
+users.pdf is mainly targeted at users of GP, whereas parilib.pdf explains
+how to use the pari library from a C program.
+
 Many changes to the source code were needed to compile with Visual Studio:
 
 In Visual Studio C a 'long' is 32 bits and in GCC a long is 64 bits. The trick
@@ -51,11 +57,11 @@ _addcarry_u64           (function addmul)
 
 Notes on building:
 
-To build GP separately from PariLib compile only the following elements in GP:
+To build GP separately from PariLib compile and linkonly the following elements 
+in GP:
 
 emacs.c
 gp.c
-gplib.c
 texmacs.c
 whatnow.c
 
@@ -63,6 +69,9 @@ Compile and link all the other source elements separately into a .obj or .dll
 file, then include this .obj or .dll file when linking GP.
 
 This .obj or .dll can also be linked into any program that uses parilib functions.
+
+When using GP it is important that the gprc.txt file is set up. By default GP 
+expects this file to be in the same folder as the gp.exe file.
 
 currently some of the extended help functions in GP do not work. 
 I cannot get the perl script to work. As a workaround the ?? command to open the 
@@ -74,8 +83,26 @@ e.g
 docpath = "C:\Program Files(x86)\Pari64-2-13-2\doc\"
 acrobat = "C:\Program Files\Adobe\Acrobat DC\Acrobat\Acrobat.exe"
 
-Note that in the gprc.txt spaces in the path names require that the path name be
+Note that in the gprc.txt file spaces in a path name require that the path name be
 enclosed with quotes " "
 
 
 I am not aware of any other problems.
+
+Pari GP comand line:
+Usage: <path>\PariGp.exe [options] [GP files]
+Available Command line options for GP:
+  [-f,--fast]           Fast start: do not read .gprc
+  [-q,--quiet]          Quiet mode: do not print banner and history numbers
+  [-s stacksize]        Start with the PARI stack of given size (in bytes)
+  [--default key=val]   Execute default(key,val) on startup
+  [--emacs]             Run as if in Emacs shell
+  [--help]              Print this message
+  [--test]              Test mode. No history, wrap long lines (bench only)
+  [--texmacs]           Run as if using TeXmacs frontend
+  [--version]           Output version info and exit
+  [--version-short]     Output version number and exit
+  
+  Defaults set in the command line by --default over-ride settings in the gprc file.
+
+  Quiet mode can only be set from the command line, not by default() or \d.

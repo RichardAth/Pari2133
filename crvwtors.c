@@ -17,9 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "int.h"
 #include "parisys.h"
 
-ulong /* precompute inverse of n */
-get_Fl_red(ulong n);
-
 /* In the database, the curve X1(N) is given by the bivariate
  * polynomial X.  The degree of X in its main variable is at least
  * the degree of its secondary variable, except for N = 6, 7, 8, 9,

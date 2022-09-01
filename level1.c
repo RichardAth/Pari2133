@@ -1409,24 +1409,24 @@ remll_pre_normalized(ulong u1, ulong u0, ulong n, ulong ninv) {
     return r < n ? r : r - n;
 }
 
-ulong /* reduce <a_hi, a_lo> mod n */
-remll_pre(ulong a_hi, ulong a_lo, ulong n, ulong ninv) {
-    int norm = bfffo(n);
-    int bits = BITS_IN_LONG - norm;
-    ulong sn = n << norm;
-    if (a_hi >= n) /* reduce a_hi first */
-    {
-        const ulong u1 = norm ? a_hi >> bits : 0;
-        const ulong u0 = a_hi << norm;
-        a_hi = remll_pre_normalized(u1, u0, sn, ninv) >> norm;
-    }
-    /* now reduce <a_hi, a_lo> */
-    {
-        const ulong u1 = ((a_hi << norm) | (norm ? a_lo >> bits : 0));
-        const ulong u0 = a_lo << norm;
-        return remll_pre_normalized(u1, u0, sn, ninv) >> norm;
-    }
-}
+//INLINE ulong /* reduce <a_hi, a_lo> mod n */
+//remll_pre(ulong a_hi, ulong a_lo, ulong n, ulong ninv) {
+//    int norm = bfffo(n);
+//    int bits = BITS_IN_LONG - norm;
+//    ulong sn = n << norm;
+//    if (a_hi >= n) /* reduce a_hi first */
+//    {
+//        const ulong u1 = norm ? a_hi >> bits : 0;
+//        const ulong u0 = a_hi << norm;
+//        a_hi = remll_pre_normalized(u1, u0, sn, ninv) >> norm;
+//    }
+//    /* now reduce <a_hi, a_lo> */
+//    {
+//        const ulong u1 = ((a_hi << norm) | (norm ? a_lo >> bits : 0));
+//        const ulong u0 = a_lo << norm;
+//        return remll_pre_normalized(u1, u0, sn, ninv) >> norm;
+//    }
+//}
 
 ulong remlll_pre(ulong u2, ulong u1, ulong u0, ulong n, ulong ninv) {
     u1 = remll_pre(u2, u1, n, ninv);

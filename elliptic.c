@@ -23,10 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
 #undef coordch
 
-/* external */
-ulong /* precompute inverse of n */
-get_Fl_red(ulong n);
-
 /* Transforms a curve E into short Weierstrass form E' modulo p.
    Returns a vector, the first two entries of which are a4' and a6'.
    The third entry is a vector describing the isomorphism E' \to E.

@@ -161,19 +161,19 @@ tm_handle_command(const char *s)
 
 /****/
 
-int
+static int
 tm_is_interactive(void) { return 0; }
 
 static int tm_is_waiting = 0;
 /* tell TeXmacs GP will start outputing data */
-void
+static void
 tm_start_output(void)
 {
   if (!tm_is_waiting) { printf("%cverbatim:",DATA_BEGIN); fflush(stdout); }
   tm_is_waiting = 1;
 }
 /* tell TeXmacs GP is done and is waiting for new data */
-void
+static void
 tm_end_output(void)
 {
   if (tm_is_waiting) { printf("%c", DATA_END); fflush(stdout); }

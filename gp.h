@@ -29,6 +29,8 @@ GEN dbg_err(void);
 void gp_quit(int64_t exitcode);
 void pari_breakpoint(void);
 int  whatnow(PariOUT *out, const char *s, int silent);
+void gp_load_gprc(void);
+int tex2mail_output(GEN z, int64_t n);
 
 extern void (*cb_gp_output)(GEN z);
 extern void (*cb_pari_end_output)(void);

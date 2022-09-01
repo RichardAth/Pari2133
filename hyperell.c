@@ -21,10 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 #include "int.h"
 
-/* external */
-ulong /* precompute inverse of n */
-get_Fl_red(ulong n);
-
 /* Implementation of Kedlaya Algorithm for counting point on hyperelliptic
 curves by Bill Allombert based on a GP script by Bernadette Perrin-Riou.
 

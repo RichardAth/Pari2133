@@ -16,11 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 #include "int.h"
 
-/* extern */
-ulong /* precompute inverse of n */
-get_Fl_red(ulong n);
-
-extern ulong overflow;
+//extern ulong overflow;
 //extern ulong hiremainder;
 
 #define LOCAL_HIREMAINDER ulong hiremainder = 0

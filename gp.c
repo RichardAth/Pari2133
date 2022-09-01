@@ -300,7 +300,7 @@ START:
   if (!is_interactive()) 
       GP_DATA->breakloop = 0;
   if (initrc) 
-      gp_initrc(p_A);
+      gp_initrc(p_A);     /* process gprc file */
   for ( ; i < argc; i++) 
       pari_stack_pushp(p_A, pari_strdup(argv[i]));
 
@@ -624,7 +624,7 @@ main(int argc, char **argv)
 #endif
   stdin_isatty = pari_stdin_isatty();
   pari_init_defaults();
-  //pari_library_path = DL_DFLT_NAME;
+  pari_library_path = DL_DFLT_NAME;
   pari_stack_init(&s_A,sizeof(*A),(void**)&A);
   /* must be defined here in case an error is raised in pari_init_opts, e.g.
    * when parsing function prototypes */
