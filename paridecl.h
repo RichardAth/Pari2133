@@ -2968,6 +2968,71 @@ PARILIB_API GEN     ecppexport(GEN cert, int64_t flag);
 PARILIB_API int64_t    ecppisvalid(GEN cert);
 PARILIB_API int64_t    isprimeECPP(GEN N);
 
+/* buffers */
+typedef struct Buffer {
+    char* buf;
+    ulong len;
+    jmp_buf env;
+} Buffer;
+Buffer* new_buffer(void);
+void delete_buffer(Buffer* b);
+void fix_buffer(Buffer* b, int64_t newlbuf);
+
+typedef struct {
+    const char* s; /* source */
+    char* t, * end; /* target, last char read */
+    int in_string, in_comment, more_input, wait_for_brace;
+    Buffer* buf;
+} filtre_t;
+
+
+
+/* gplib.c */
+GEN  gp_alarm(int64_t s, GEN code);
+void gp_allocatemem(GEN z);
+GEN  gp_input(void);
+PARILIB_API GEN  strtime(int64_t t);
+GEN sd_breakloop(const char* v, int64_t flag);
+GEN sd_echo(const char* v, int64_t flag);
+GEN sd_graphcolormap(const char* v, int64_t flag);
+GEN sd_graphcolors(const char* v, int64_t flag);
+GEN sd_help(const char* v, int64_t flag);
+GEN sd_histfile(const char* v, int64_t flag);
+GEN sd_lines(const char* v, int64_t flag);
+GEN sd_linewrap(const char* v, int64_t flag);
+GEN sd_prompt(const char* v, int64_t flag);
+GEN sd_prompt_cont(const char* v, int64_t flag);
+GEN sd_psfile(const char* v, int64_t flag);
+GEN sd_readline(const char* v, int64_t flag);
+GEN sd_recover(const char* v, int64_t flag);
+GEN sd_timer(const char* v, int64_t flag);
+GEN sd_plothsizes(const char* v, int64_t flag);
+PARILIB_API int get_line_from_file(const char* prompt, filtre_t* F, FILE* file);
+PARILIB_API void pari_alarm(int64_t s);                 /* called from gp.c */
+PARILIB_API int  gp_meta(const char* buf, int ismain);        /* called from gp.c */
+PARILIB_API void pari_print_version(void);                    /* called from gp.c */
+void gp_alarm_handler(int sig);
+PARILIB_API void gp_initrc(pari_stack* p_A);                  /* called from gp.c */
+PARILIB_API int gp_read_line(filtre_t* F, const char* PROMPT);    /* called from gp.c */
+PARILIB_API void parse_key_val(char* src, char** ps, char** pt);     /* called from gp.c */
+PARILIB_API void pari_skip_space(char** s);
+PARILIB_API void pari_skip_alpha(char** s);
+void pari_init_buffers(void);
+PARILIB_API void pop_buffer(void);                  /* called from gp.c */
+PARILIB_API void kill_buffers_upto(Buffer* B);               /* called from gp.c */
+PARILIB_API void kill_buffers_upto_including(Buffer* B);     /* called from gp.c */
+PARILIB_API int  gp_handle_exception(int64_t numerr);        /* called from gp.c */
+PARILIB_API void pari_hit_return(void);                     /* called from gp.c */
+void print_fun_list(char** list, int64_t nbli);
+PARILIB_API void pari_center(const char* s);                /* called from gp.c */
+const char** gphelp_keyword_list(void);
+PARILIB_API int64_t pari_community(void);                   /* called from gp.c */
+void gp_help(const char* s, int64_t flag);
+PARILIB_API const char* gp_format_time(int64_t delay);      /* called from gp.c */
+PARILIB_API Buffer* filtered_buffer(filtre_t* F);     /* called from gp.c */
+PARILIB_API const char* gp_format_prompt(const char* p);
+void gp_echo_and_log(const char* prompt, const char* s);
+PARILIB_API void gp_sigint_fun(void);               /* called from gp.c */
 
 
 /* dirichlet.c */
@@ -5339,7 +5404,7 @@ PARILIB_API int64_t addll(ulong a, ulong b, ulong *overflow);
 PARILIB_API int64_t addllx(ulong a, ulong b, ulong *overflow);
 PARILIB_API int64_t subll(ulong __arg1, ulong __arg2, ulong *overflow);
 PARILIB_API int64_t subllx(ulong a, ulong b, ulong *overflow);
-PARILIB_API int64_t addmul(ulong x, ulong y, ulong *hiremainder);
+int64_t addmul(ulong x, ulong y, ulong *hiremainder);
 PARILIB_API int64_t mulll(ulong x, ulong y, ulong* hireaminder);
 PARILIB_API ulong  Fl_add(ulong a, ulong b, ulong p);
 PARILIB_API ulong  Fl_addmul_pre(ulong x0, ulong x1, ulong y0, ulong p, ulong pi);
@@ -6288,3 +6353,7 @@ INLINE void    pari_err_TYPE(const char *f, GEN x);
 INLINE void    pari_err_TYPE2(const char *f, GEN x, GEN y);
 INLINE void    pari_err_VAR(const char *f, GEN x, GEN y);
 INLINE void    pari_err_ROOTS0(const char *f);
+
+/* miscellaneous */
+PARILIB_API int bfffo(ulong x);
+PARILIB_API int64_t divll(ulong x, ulong y, ulong* hiremainder);

@@ -32,6 +32,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include <memory.h>
 #include <ctype.h>
 
+/* definition below is required when parilib is built as a .dll file
+otherwise comment it out and replace with"#DEFINE PARILIB_API " */
+#ifdef _WIN32
+#ifdef PARILIBDLL_EXPORTS
+#define PARILIB_API __declspec(dllexport)
+#else
+#ifdef _LIB
+#define PARILIB_API
+#else
+#define PARILIB_API __declspec(dllimport)
+#endif
+#endif
+#else
+#define PARILIB_API
+#endif
+
 #include "parisys.h"
 #include "parigen.h"
 #include "paricast.h"
@@ -39,18 +55,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paricom.h"
 #include "parierr.h"
 BEGINEXTERN
-
-/* definition below is required when parilib is built as a .dll file
-otherwise comment it out and replace with"#DEFINE PARILIB_API " */
-//#ifdef _WIN32
-//#ifdef PARILIB_EXPORTS
-//#define PARILIB_API __declspec(dllexport)
-//#else
-//#define PARILIB_API __declspec(dllimport)
-//#endif
-//#else
-#define PARILIB_API
-//#endif
 
 #include "paridecl.h"
 #include "tune.h"

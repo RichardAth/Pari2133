@@ -21,13 +21,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #undef _GNU_SOURCE /* avoid warning */
 //#define _GNU_SOURCE
 #include <string.h>
+
 #if defined(_WIN32) || defined(__CYGWIN32__)
-#include "mingw.h"
 #  include <process.h>
 #endif
+
 #include "pari.h"
 #include "int.h"
 #define INLINE static
+
+#if defined(_WIN32) || defined(__CYGWIN32__)
+#include "mingw.h"
+#endif
 
 #if defined(STACK_CHECK) && !defined(__EMX__) && !defined(_WIN32)
 #  include <sys/types.h>
@@ -93,21 +98,22 @@ static const ulong readonly_constants[] = {
 };
 THREAD GEN zetazone, bernzone, primetab;
 byteptr diffptr;
-FILE    *pari_outfile, *pari_errfile, *pari_logfile, *pari_infile;
+PARILIB_API FILE    *pari_outfile, *pari_errfile, *pari_logfile, *pari_infile;
 char    *current_logfile, *current_psfile, *pari_datadir;
-int64_t    gp_colors[c_LAST];
-int     disable_color;
+int64_t gp_colors[c_LAST];
+PARILIB_API int     disable_color;
 ulong   DEBUGFILES, DEBUGLEVEL, DEBUGMEM;
-int64_t    DEBUGVAR;
+int64_t DEBUGVAR;
 ulong   pari_mt_nbthreads;
-int64_t    precreal;
-ulong   precdl, pari_logstyle;
-gp_data *GP_DATA;
+int64_t precreal;
+ulong   precdl;
+PARILIB_API ulong pari_logstyle;
+PARILIB_API gp_data *GP_DATA;
 
 entree  **varentries;
 THREAD int64_t *varpriority;
 
-THREAD pari_sp avma;
+PARILIB_API THREAD pari_sp avma;
 
 
 THREAD struct pari_mainstack *pari_mainstack;
@@ -125,9 +131,9 @@ void (*cb_pari_ask_confirm)(const char *);
 int  (*cb_pari_handle_exception)(int64_t);
 int  (*cb_pari_err_handle)(GEN);
 int  (*cb_pari_whatnow)(PariOUT *out, const char *, int);
-void (*cb_pari_sigint)(void);
+PARILIB_API void (*cb_pari_sigint)(void);
 void (*cb_pari_pre_recover)(int64_t);
-void (*cb_pari_err_recover)(int64_t);
+PARILIB_API void (*cb_pari_err_recover)(int64_t);
 int (*cb_pari_break_loop)(int);
 int (*cb_pari_is_interactive)(void);
 void (*cb_pari_start_output)();
@@ -625,7 +631,7 @@ pari_daemon(void)
 /*                                                                   */
 /*********************************************************************/
 static int try_to_recover = 0;
-THREAD VOLATILE int PARI_SIGINT_block = 0, PARI_SIGINT_pending = 0;
+PARILIB_API THREAD VOLATILE int PARI_SIGINT_block = 0, PARI_SIGINT_pending = 0;
 
 /*********************************************************************/
 /*                         SIGNAL HANDLERS                           */
@@ -634,7 +640,7 @@ static void
 dflt_sigint_fun(void) { pari_err(e_MISC, "user interrupt"); }
 
 #if defined(_WIN32) || defined(__CYGWIN32__)
-int win32ctrlc = 0, win32alrm = 0;
+PARILIB_API int win32ctrlc = 0, win32alrm = 0;
 void
 dowin32ctrlc(void)
 {

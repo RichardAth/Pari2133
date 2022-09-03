@@ -17,15 +17,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 /**                        PARI CALCULATOR                        **/
 /**                                                               **/
 /*******************************************************************/
+
+#include "pari.h"
+#include "paripriv.h"
+#include "int.h"
+#include "gp.h"
+
 #ifdef _WIN32
 #  include "pwinver.h"
 #  include <windows.h>
 #  include "mingw.h"
 #endif
-#include "pari.h"
-#include "paripriv.h"
-#include "int.h"
-#include "gp.h"
 
 static jmp_buf *env;
 static pari_stack s_env;
@@ -641,7 +643,7 @@ main(int argc, char **argv)
 #endif
   pari_add_module(functions_gp);
 
-  pari_set_plot_engine(gp_get_plot);
+  //pari_set_plot_engine(gp_get_plot);  /* kludge */
   cb_pari_quit = gp_quit;
   cb_pari_whatnow = whatnow;
   cb_pari_sigint = gp_sigint_fun;

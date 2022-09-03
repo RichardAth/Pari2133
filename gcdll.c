@@ -1,4 +1,4 @@
-#line 2 "../src/kernel/none/gcdll.c"
+//#line 2 "../src/kernel/none/gcdll.c"
 /* Copyright (C) 2000  The PARI group.
 
 This file is part of the PARI/GP package.
@@ -17,16 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 #include "int.h"
 
-//extern ulong hiremainder;
-extern ulong overflow;
-int bfffo(ulong x);
-
 #define LOCAL_OVERFLOW ulong overflow = 0
 #define LOCAL_HIREMAINDER ulong hiremainder=0
-
-/* divide (hiremainder * 2^BITS_IN_LONG + n0) by d; assume hiremainder < d.
- * Return quotient, set hiremainder to remainder */
-int64_t divll(ulong n0, ulong d, ulong* hiremainder);
 
 /***********************************************************************/
 /**                                                                   **/

@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include <process.h> /* for getpid */
 #include <fcntl.h>
 #include <io.h>      /* for setmode */
-#include "mingw.h"
 #endif
 #include "paricfg.h"
 #ifdef HAS_STAT
@@ -36,6 +35,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "pari.h"
 #include "paripriv.h"
 #include "anal.h"
+#ifdef _WIN32
+#include "mingw.h"
+#endif
 #ifdef __EMSCRIPTEN__
 #include "../systems/emscripten/emscripten.h"
 #endif
@@ -527,7 +529,7 @@ input_loop(filtre_t *F, input_method *IM)
 /**                  GENERAL PURPOSE PRINTING                      **/
 /**                                                                **/
 /********************************************************************/
-PariOUT *pariOut, *pariErr;
+PARILIB_API PariOUT *pariOut, *pariErr;
 static void
 _fputs(const char *s, FILE *f ) {
 #ifdef _WIN32

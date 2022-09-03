@@ -17,6 +17,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "pwinver.h"
 #include <windows.h>
 #include <stdio.h>
+
+/* definition below is required when parilib is built as a .dll file
+otherwise comment it out and replace with"#DEFINE PARILIB_API " */
+
+#ifdef _WIN32
+#ifdef PARILIBDLL_EXPORTS
+#define PARILIB_API __declspec(dllexport)
+#else
+#ifdef _LIB
+#define PARILIB_API
+#else
+#define PARILIB_API __declspec(dllimport)
+#endif
+#endif
+#else
+#define PARILIB_API
+#endif
+
 #include "mingw.h"
 
 /* for Microsoft Windows Visual Studio, we need to supress error 4996
@@ -189,7 +207,7 @@ win32_set_pdf_viewer(void)
   return buf;
 }
 
-extern int win32ctrlc, win32alrm;
+PARILIB_API extern int win32ctrlc, win32alrm;
 static HANDLE hTimerQueue = NULL;
 
 static void CALLBACK

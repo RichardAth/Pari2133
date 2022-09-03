@@ -25,18 +25,12 @@ based mainly on level1.h */
 #include "int.h"
 #include "parisys.h"
 
-/* external */
-int bfffo(ulong x);
-int64_t divll(ulong x, ulong y, ulong *hiremainder);
 
 /* based on src\kernel\none\addll.h */
 /* note: __extension__ does not exist in visual studio C */
 
-//ulong overflow = 0;
-//ulong hiremainder = 0;
 #define LOCAL_HIREMAINDER ulong hiremainder=0
 #define LOCAL_OVERFLOW ulong overflow = 0;
-
 
 /*
 #define addll(a, b)                                             \
@@ -138,9 +132,7 @@ mulll(ulong x, ulong y)
 }
 #endif
 
-/* return x*y + old hiremainder 
-if result exceeds 64 bits top bits are returned in hiremainder,
-otherwise hiremainder is set to zero*/
+
 #ifdef _WIN32
 #pragma intrinsic(_umul128, _addcarry_u64)
 /* _addcarry_u32(), _addcarry_u64()
@@ -154,6 +146,9 @@ src1     32/64 bit source integer
 src2     32/64 bit source integer
 *sum_out Pointer to memory location where result is stored
 */
+/* return x*y + old hiremainder
+if result exceeds 64 bits top bits are returned in hiremainder,
+otherwise hiremainder is set to zero*/
 int64_t addmul(ulong x, ulong y, ulong *hiremainder) {
     ulong result, top;
     unsigned char c2;

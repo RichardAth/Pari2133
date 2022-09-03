@@ -18,13 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "int.h"
 
 
-/* external */
-int bfffo(ulong x);
-int64_t divll(ulong x, ulong y, ulong* hiremainder);
-//ulong divll_pre(ulong a_lo, ulong n, ulong ninv);
-extern ulong overflow;
-//extern ulong hiremainder;
-
 #define LOCAL_HIREMAINDER ulong hiremainder = 0
 #define LOCAL_OVERFLOW ulong overflow = 0
 

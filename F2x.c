@@ -17,8 +17,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "int.h"
 #include "tune.h"
 
-/* external */
-int bfffo(ulong x);
 
 /* Not so fast arithmetic with polynomials over F_2 */
 

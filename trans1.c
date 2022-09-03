@@ -20,9 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "pari.h"
 #include "paripriv.h"
 
-/* external */
-int bfffo(ulong x);
-//extern ulong hiremainder;
 #define LOCAL_HIREMAINDER ulong hiremainder=0
 
 #ifdef LONG_IS_64BIT

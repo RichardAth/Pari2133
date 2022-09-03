@@ -7,20 +7,22 @@ Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Pari2133", "Pari2133.vcxpro
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "test", "..\test\test.vcxproj", "{A6F14B8A-0463-44C9-A97B-333AA7E2CB9D}"
 	ProjectSection(ProjectDependencies) = postProject
-		{7C0C28B2-985B-4176-A0CA-43BC9C670B6D} = {7C0C28B2-985B-4176-A0CA-43BC9C670B6D}
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF} = {29FE9429-B6B3-4111-87F7-3F0176ED32BF}
 	EndProjectSection
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pariLib", "..\pariLib\pariLib.vcxproj", "{7C0C28B2-985B-4176-A0CA-43BC9C670B6D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PariGp", "..\PariGp\PariGp.vcxproj", "{1EF74DA0-7CBC-4A0D-87BF-3592EEEC9236}"
 	ProjectSection(ProjectDependencies) = postProject
-		{7C0C28B2-985B-4176-A0CA-43BC9C670B6D} = {7C0C28B2-985B-4176-A0CA-43BC9C670B6D}
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF} = {29FE9429-B6B3-4111-87F7-3F0176ED32BF}
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{730844BF-60AC-43E8-9F77-3313C22FD401}"
 	ProjectSection(SolutionItems) = preProject
 		ReadMe.txt = ReadMe.txt
 	EndProjectSection
+EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PariLibDll", "..\PariLibDll\PariLibDll.vcxproj", "{29FE9429-B6B3-4111-87F7-3F0176ED32BF}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -62,6 +64,14 @@ Global
 		{1EF74DA0-7CBC-4A0D-87BF-3592EEEC9236}.Release|x64.Build.0 = Release|x64
 		{1EF74DA0-7CBC-4A0D-87BF-3592EEEC9236}.Release|x86.ActiveCfg = Release|Win32
 		{1EF74DA0-7CBC-4A0D-87BF-3592EEEC9236}.Release|x86.Build.0 = Release|Win32
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Debug|x64.ActiveCfg = Debug|x64
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Debug|x64.Build.0 = Debug|x64
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Debug|x86.ActiveCfg = Debug|Win32
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Debug|x86.Build.0 = Debug|Win32
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Release|x64.ActiveCfg = Release|x64
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Release|x64.Build.0 = Release|x64
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Release|x86.ActiveCfg = Release|Win32
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

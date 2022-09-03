@@ -20,13 +20,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #ifdef _WIN32
 #include "pwinver.h"
 #include <windows.h>
-#include "mingw.h"
 #include <process.h>
 #endif
 
 #include "pari.h"
 #include "paripriv.h"
 #include "int.h"
+#ifdef _WIN32
+#include "mingw.h"
+#endif
 
 #ifdef __EMSCRIPTEN__
 #include "../systems/emscripten/emscripten.h"
@@ -1505,7 +1507,7 @@ prettyp_init(void)
 }
 
 /* n = history number. if n = 0 no history */
-int
+PARILIB_API int
 tex2mail_output(GEN z, int64_t n)
 {
   pariout_t T = *(GP_DATA->fmt); /* copy */

@@ -58,7 +58,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
  * longjmp'ing into another thread's stack will utterly confuse the system.
  * Instead, we check whether win32ctrlc is set in new_chunk(). */
 BEGINEXTERN
-  extern int win32ctrlc, win32alrm;
+PARILIB_API extern int win32ctrlc, win32alrm;
   void dowin32ctrlc(void);
 ENDEXTERN
 #define CHECK_CTRLC if (win32ctrlc) dowin32ctrlc();

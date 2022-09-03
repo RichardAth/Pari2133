@@ -49,12 +49,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #define LOCAL_HIREMAINDER ulong hiremainder
 #define LOCAL_OVERFLOW ulong overflow = 0
 
-/* external */
-int bfffo(ulong x);
-int64_t divll(ulong x, ulong y, ulong* hiremainder);
-extern ulong overflow;
-//extern ulong hiremainder;
-
 static void *pari_gmp_realloc(void *ptr, size_t old_size, size_t new_size) {
   (void)old_size; return (void *) pari_realloc(ptr,new_size);
 }

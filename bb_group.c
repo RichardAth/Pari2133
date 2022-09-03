@@ -21,8 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include "paripriv.h"
 #include "int.h"
 
-int bfffo(ulong x);
-
 #undef pow /* AIX: pow(a,b) is a macro, wrongly expanded on grp->pow(a,b,c) */
 
 /***********************************************************************/

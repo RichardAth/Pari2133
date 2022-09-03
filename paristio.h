@@ -208,7 +208,7 @@ struct gp_context
   GEN err_data;
 };
 
-extern THREAD struct pari_mainstack *pari_mainstack;
+PARILIB_API extern THREAD struct pari_mainstack *pari_mainstack;
 
 struct pari_global_state
 {
@@ -354,13 +354,13 @@ typedef struct {
   ulong primelimit; /* deprecated */
   ulong threadsizemax, threadsize;
 } gp_data;
-extern gp_data *GP_DATA;
+PARILIB_API extern gp_data *GP_DATA;
 
 /* Common global variables: */
 
-extern PariOUT *pariOut, *pariErr;
-extern FILE    *pari_outfile, *pari_logfile, *pari_infile, *pari_errfile;
-extern ulong    pari_logstyle;
+PARILIB_API extern PariOUT *pariOut, *pariErr;
+PARILIB_API extern FILE    *pari_outfile, *pari_logfile, *pari_infile, *pari_errfile;
+PARILIB_API extern ulong    pari_logstyle;
 
 enum pari_logstyles {
     logstyle_none,        /* 0 */
@@ -374,7 +374,7 @@ enum { c_ERR, c_HIST, c_PROMPT, c_INPUT, c_OUTPUT, c_HELP, c_TIME, c_LAST,
 
 enum { TEXSTYLE_PAREN=2, TEXSTYLE_BREAK=4 };
 
-extern THREAD pari_sp avma;
+PARILIB_API extern THREAD pari_sp avma;
 #define DISABLE_MEMUSED (size_t)-1
 extern byteptr diffptr;
 extern char *current_psfile, *pari_datadir;

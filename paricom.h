@@ -39,7 +39,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
  * [ any exception if numer == CATCH_ALL ].
  * pari_RETRY = as pari_TRY, but execute 'recovery', then 'code' again [still catching] */
 
-extern THREAD jmp_buf *iferr_env;
+PARILIB_API extern THREAD jmp_buf *iferr_env;
 extern const int64_t CATCH_ALL;
 
 #define pari_CATCH2(var,err) {         \
@@ -106,25 +106,25 @@ extern const double LOG10_2, LOG2_10;
 extern int new_galois_format, factor_add_primes, factor_proven;
 extern ulong DEBUGFILES, DEBUGLEVEL, DEBUGMEM, precdl;
 extern int64_t DEBUGVAR;
-extern ulong pari_mt_nbthreads;
+PARILIB_API extern ulong pari_mt_nbthreads;
 extern THREAD GEN  zetazone, bernzone, primetab;
-extern GEN gen_m1,gen_1,gen_2,gen_m2,ghalf,gen_0,gnil,err_e_STACK;
-extern THREAD VOLATILE int PARI_SIGINT_block, PARI_SIGINT_pending;
+PARILIB_API extern GEN gen_m1,gen_1,gen_2,gen_m2,ghalf,gen_0,gnil,err_e_STACK;
+PARILIB_API extern THREAD VOLATILE int PARI_SIGINT_block, PARI_SIGINT_pending;
 
 extern const int64_t lontyp[];
-extern void (*cb_pari_ask_confirm)(const char *);
+PARILIB_API extern void (*cb_pari_ask_confirm)(const char *);
 extern void (*cb_pari_init_histfile)(void);
-extern int  (*cb_pari_whatnow)(PariOUT *out, const char *, int);
-extern void (*cb_pari_quit)(int64_t);
-extern void (*cb_pari_sigint)(void);
-extern int (*cb_pari_handle_exception)(int64_t);
+PARILIB_API extern int  (*cb_pari_whatnow)(PariOUT *out, const char *, int);
+PARILIB_API extern void (*cb_pari_quit)(int64_t);
+PARILIB_API extern void (*cb_pari_sigint)(void);
+PARILIB_API extern int (*cb_pari_handle_exception)(int64_t);
 extern int (*cb_pari_err_handle)(GEN);
-extern void (*cb_pari_pre_recover)(int64_t);
-extern void (*cb_pari_err_recover)(int64_t);
-extern int (*cb_pari_break_loop)(int);
-extern int (*cb_pari_is_interactive)(void);
-extern void (*cb_pari_start_output)(void);
-extern const char *pari_library_path;
+PARILIB_API extern void (*cb_pari_pre_recover)(int64_t);
+PARILIB_API extern void (*cb_pari_err_recover)(int64_t);
+PARILIB_API extern int (*cb_pari_break_loop)(int);
+PARILIB_API extern int (*cb_pari_is_interactive)(void);
+PARILIB_API extern void (*cb_pari_start_output)(void);
+PARILIB_API extern const char *pari_library_path;
 extern THREAD int64_t *varpriority;
 
 /* pari_init_opts */

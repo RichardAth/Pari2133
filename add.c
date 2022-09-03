@@ -22,12 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 //#include "mpi.h"
 #include "paripriv.h"
 
-//typedef ulong pari_sp;
-//extern GEN gen_0;
-//extern ulong avma;
-
-int bfffo(ulong x);
-
 
 #define LOCAL_HIREMAINDER ulong hiremainder
 #define LOCAL_OVERFLOW ulong overflow = 0

@@ -12,13 +12,13 @@ Check the License for details. You should have received a copy of it, along
 with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 
-const char* win32_basedir(void);
-char* win32_datadir(void);
-void win32_ansi_fputs(const char* s, void* f);
-int win32_terminal_width(void);
-int win32_terminal_height(void);
-void win32_set_codepage(void);
-char *win32_set_pdf_viewer(void);
-void win32_alarm(unsigned int s);
-long win32_timer(void);
-long win32_nbthreads(void);
+PARILIB_API const char* win32_basedir(void);
+PARILIB_API char* win32_datadir(void);
+PARILIB_API void win32_ansi_fputs(const char* s, void* f);
+PARILIB_API int win32_terminal_width(void);
+PARILIB_API int win32_terminal_height(void);
+PARILIB_API void win32_set_codepage(void);
+PARILIB_API char *win32_set_pdf_viewer(void);
+PARILIB_API void win32_alarm(unsigned int s);
+PARILIB_API long win32_timer(void);
+PARILIB_API long win32_nbthreads(void);

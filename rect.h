@@ -148,7 +148,7 @@ struct plot_eng {
 #define RoPTSsize(rop) (RoPTS(rop)->size)
 
 void gen_draw(struct plot_eng *eng, GEN w, GEN x, GEN y, double xs, double ys);
-void gp_get_plot(PARI_plot *T);
+PARILIB_API void gp_get_plot(PARI_plot *T);
 
 #define gp_get_ploth_default_sizes(S)                                  \
 { PARI_plot *_T = (PARI_plot *)S;                                      \

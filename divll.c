@@ -3,10 +3,6 @@
 #include "parisys.h"
 #include <intrin.h>
 
-/* external */
-int bfffo(ulong x);
-//extern ulong hiremainder;
-
 
 #define __GLUE(hi, lo) (((hi) << BITS_IN_HALFULONG) | (lo))
 #define __SPLIT(a, b, c) b = HIGHWORD(a); c = LOWWORD(a)
