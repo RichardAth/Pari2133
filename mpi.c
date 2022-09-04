@@ -47,7 +47,7 @@ static struct mt_mstate pari_mt_data;
 static struct mt_mstate *pari_mt;
 
 static void
-send_long(int64_t a, int64_t dest)
+send_long(int64_t a, int dest)
 {
   BLOCK_SIGINT_START
   MPI_Send(&a, 1, MPI_LONG, dest, 0, MPI_COMM_WORLD);
@@ -55,7 +55,7 @@ send_long(int64_t a, int64_t dest)
 }
 
 static void
-send_vlong(int64_t *a, int64_t n, int64_t dest)
+send_vlong(int64_t *a, int64_t n, int dest)
 {
   BLOCK_SIGINT_START
   MPI_Send(a, n, MPI_LONG, dest, 0, MPI_COMM_WORLD);
@@ -72,13 +72,13 @@ static void
 send_GEN(GEN elt, int dest)
 {
   pari_sp av = avma;
-  int size;
+  int64_t size;
   GEN reloc = copybin_unlink(elt);
   GENbin *buf = copy_bin_canon(mkvec2(elt,reloc));
   size = sizeof(GENbin) + buf->len*sizeof(ulong);
   {
     BLOCK_SIGINT_START
-    MPI_Send(buf, size, MPI_CHAR, dest, 0, MPI_COMM_WORLD);
+    MPI_Send(buf, (int)size, MPI_CHAR, dest, 0, MPI_COMM_WORLD);
     BLOCK_SIGINT_END
   }
   pari_free(buf); set_avma(av);
@@ -116,7 +116,7 @@ recvfrom_long(int src)
 }
 
 static void
-recvfrom_vlong(int64_t *a, int64_t n, int src)
+recvfrom_vlong(int64_t *a, int n, int src)
 {
   BLOCK_SIGINT_START
   MPI_Recv(a, n, MPI_LONG, src, 0, MPI_COMM_WORLD, MPI_STATUS_IGNORE);
@@ -282,7 +282,7 @@ pari_MPI_child(void)
 }
 
 void
-mt_err_recover(int64_t er)
+mt_err_recover(int er)
 {
   if (pari_MPI_rank) longjmp(child_env,er);
   else if (mt_issingle) mtsingle_err_recover(er);
@@ -313,7 +313,7 @@ void
 mt_export_add(const char *str, GEN val)
 {
   pari_sp av = avma;
-  int64_t i, n = pari_MPI_size-1;
+  int i, n = pari_MPI_size-1;
   GEN s;
   if (pari_mt || pari_MPI_rank)
     pari_err(e_MISC,"export not allowed during parallel sections");
@@ -332,7 +332,7 @@ void
 mt_export_del(const char *str)
 {
   pari_sp av = avma;
-  int64_t i, n = pari_MPI_size-1;
+  int i, n = pari_MPI_size-1;
   GEN s;
   if (pari_MPI_rank)
     pari_err(e_MISC,"unexport not allowed during parallel sections");
@@ -346,7 +346,7 @@ mt_export_del(const char *str)
 void
 mt_broadcast(GEN code)
 {
-  int64_t i;
+  int i;
   if (!pari_MPI_rank && !pari_mt)
     for (i=1;i<pari_MPI_size;i++)
       send_request_GEN(PMPI_eval, code, i);
@@ -395,7 +395,7 @@ mtmpi_queue_get(struct mt_state *junk, int64_t *workid, int64_t *pending)
   struct mt_mstate *mt = pari_mt;
   GEN done;
   (void) junk;
-  if (mt->nbint<=mt->n) { mt->source=mt->nbint; *pending = nbreq; return NULL; }
+  if (mt->nbint<=mt->n) { mt->source = (int)mt->nbint; *pending = nbreq; return NULL; }
   done = recvany_GEN(&mt->source);
   nbreq--; *pending = nbreq;
   if (workid) *workid = mt->workid[mt->source];
@@ -445,7 +445,7 @@ mt_queue_start_lim(struct pari_mt *pt, GEN worker, int64_t lim)
   else
   {
     struct mt_mstate *mt = &pari_mt_data;
-    int64_t i, n = minss(lim, pari_MPI_size-1);
+    int i, n = (int)minss(lim, pari_MPI_size-1);
     int64_t mtparisize = GP_DATA->threadsize? GP_DATA->threadsize: pari_mainstack->rsize;
     int64_t mtparisizemax = GP_DATA->threadsizemax;
     pari_mt = mt;

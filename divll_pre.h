@@ -1,4 +1,4 @@
-#line 2 "../src/kernel/none/divll_pre.h"
+//#line 2 "../src/kernel/none/divll_pre.h"
 /* Copyright (C) 2014  The PARI group.
 
 This file is part of the PARI/GP package.

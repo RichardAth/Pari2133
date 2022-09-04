@@ -2547,9 +2547,9 @@ polgalois(GEN x, int64_t prec)
           for(;;)
           {
             p1=QX_complex_roots(x,prec);
-            for (l=1; l<=6; l++)
+            for (int l=1; l<=6; l++)
             {
-              p2=(l==1)?p1: ((l<6)?transroot(p1,1,l): transroot(p1,2,5));
+              p2=(l==1)?p1: ((l<6)?transroot(p1,1, l): transroot(p1,2,5));
               p3=gen_0;
               for (k=0,i=1; i<=5; i++,k+=4)
               {
@@ -2578,7 +2578,7 @@ polgalois(GEN x, int64_t prec)
           for (l=1; l<=6; l++)
             if (ee[l] <= pr && gequal0(poleval(p5,gel(w,l)))) break;
           if (l>6) pari_err_BUG("galois (bug4)");
-          p2=(l==6)? transroot(p1,2,5):transroot(p1,1,l);
+          p2=(l==6)? transroot(p1,2,5):transroot(p1,1,(int)l);
           p3=gen_0;
           for (i=1; i<=5; i++)
           {
@@ -2604,7 +2604,7 @@ polgalois(GEN x, int64_t prec)
           for(;;)
           {
             p1=QX_complex_roots(x,prec);
-            for (l=1; l<=6; l++)
+            for (int l=1; l<=6; l++)
             {
               p2=(l==1)?p1:transroot(p1,1,l);
               p3=gen_0; k=0;
@@ -2629,8 +2629,8 @@ polgalois(GEN x, int64_t prec)
               p3=gadd(gmul(gmul(gel(p1,1),gel(p1,2)),gel(p1,3)),
                       gmul(gmul(gel(p1,4),gel(p1,5)),gel(p1,6)));
               gel(z,++ind) = p3;
-              for (i=1; i<=3; i++)
-                for (j=4; j<=6; j++)
+              for (int i=1; i<=3; i++)
+                for (int j=4; j<=6; j++)
                 {
                   p2=transroot(p1,i,j);
                   p3=gadd(gmul(gmul(gel(p2,1),gel(p2,2)),gel(p2,3)),

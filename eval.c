@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 static THREAD int64_t br_status, br_count;
 static THREAD GEN br_res;
 
-int64_t
+int
 loop_break(void)
 {
   switch(br_status)
@@ -1264,7 +1264,7 @@ closure_eval(GEN C)
           pari_err_TYPE("&_[,_] OCcompoCptr [not a matrix]", p);
         check_array_index(c, lg(p));
         C->ptcell = (GEN *) p+c;
-        C->full_col = c;
+        C->full_col = (int)c;
         C->parent   = p;
         ptr_proplock(g, *(C->ptcell));
         break;
@@ -1291,7 +1291,7 @@ closure_eval(GEN C)
           pari_err_TYPE("&_[_,] OCcompoLptr [not a matrix]", p);
         check_array_index(r,lg(p) == 1? 1: lgcols(p));
         p2 = rowcopy(p,r);
-        C->full_row = r; /* record row number */
+        C->full_row = (int)r; /* record row number */
         C->ptcell = &p2;
         C->parent   = p;
         g->x = p2;

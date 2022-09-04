@@ -1340,7 +1340,7 @@ inv_fact(FACT *fact)
 }
 
 /* L (small) list of primes above the same p including pr. Return pr index */
-static int
+static int64_t
 pr_index(GEN L, GEN pr)
 {
   int64_t j, l = lg(L);
@@ -2245,7 +2245,7 @@ already_known(RELCACHE_t *cache, int64_t bs, GEN cols)
  * If relation is a linear combination of the previous ones, return 0.
  * Otherwise, update basis and return > 0. Compute mod p (much faster)
  * so some kernel vector might not be genuine. */
-static int
+static int64_t
 add_rel_i(RELCACHE_t *cache, GEN R, int64_t nz, GEN m, int64_t orig, int64_t aut, REL_t **relp, int64_t in_rnd_rel)
 {
   int64_t i, k, n = lg(R)-1;
@@ -2335,7 +2335,7 @@ ADD_REL:
   return k;
 }
 
-static int
+static int64_t
 add_rel(RELCACHE_t *cache, FB_t *F, GEN R, int64_t nz, GEN m, int64_t in_rnd_rel)
 {
   REL_t *rel;

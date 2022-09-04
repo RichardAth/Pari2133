@@ -4968,7 +4968,7 @@ F2Ms_colelim(GEN M, int64_t nbrow)
 /*                                                                 */
 /*******************************************************************/
 /* assume x is square of dimension > 0 */
-static int
+static int64_t
 RgM_is_symmetric_cx(GEN x, int64_t bit)
 {
   pari_sp av = avma;

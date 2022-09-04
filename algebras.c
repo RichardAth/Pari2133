@@ -4205,7 +4205,7 @@ alg_cyclic(GEN rnf, GEN aut, GEN b, int64_t maxord)
   return gerepilecopy(av, al);
 }
 
-static int
+static int64_t
 ismaximalsubfield(GEN al, GEN x, GEN d, int64_t v, GEN *pt_minpol)
 {
   GEN cp = algbasischarpoly(al, x, v), lead;

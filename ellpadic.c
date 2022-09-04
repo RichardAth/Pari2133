@@ -260,7 +260,7 @@ START:
   M2 = cvtop(gel(A,n), p, pis2? pp-2*n: pp);
   setvalp(M2, valp(a));
   u2 = ginv(gmul2n(M2, 2));
-  if (split < 0) split = issquare(u2);
+  if (split < 0) split = (int)issquare(u2);
   x1 = gen_0;
   Qp_descending_Landen(AB,&x1,NULL);
 

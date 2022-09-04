@@ -1,5 +1,5 @@
 
-#line 2 "level1.c"
+//#line 2 "level1.c"
 /* Copyright (C) 2000  The PARI group.
 
 This file is part of the PARI/GP package.

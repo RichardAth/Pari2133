@@ -1,4 +1,4 @@
-#line 1 "../scr/basemath/arith1.c"
+//#line 1 "../scr/basemath/arith1.c"
 /* Copyright (C) 2000  The PARI group.
 
 This file is part of the PARI/GP package.
@@ -3607,8 +3607,8 @@ Fp_select_red(GEN *y, ulong k, GEN N, int64_t lN, muldata *D, void **pt_E)
 GEN
 Fp_powu(GEN A, ulong k, GEN N)
 {
-  int64_t lN = lgefint(N);
-  int base_is_2, use_montgomery;
+  int64_t lN = lgefint(N), use_montgomery;
+  int base_is_2;
   muldata D;
   void *E;
   pari_sp av;
@@ -3666,8 +3666,8 @@ GEN
 Fp_pow(GEN A, GEN K, GEN N)
 {
   pari_sp av;
-  int64_t s, lN = lgefint(N), sA, sy;
-  int base_is_2, use_montgomery;
+  int64_t s, lN = lgefint(N), sA, sy, use_montgomery;
+  int base_is_2;
   GEN y;
   muldata D;
   void *E;

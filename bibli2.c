@@ -1384,7 +1384,8 @@ static int
 veccmp(void *data, GEN x, GEN y)
 {
   GEN k = (GEN)data;
-  int64_t i, s, lk = lg(k), lx = minss(lg(x), lg(y));
+  int64_t i, lk = lg(k), lx = minss(lg(x), lg(y));
+  int s;
 
   if (!is_vec_t(typ(x))) pari_err_TYPE("lexicographic vecsort",x);
   if (!is_vec_t(typ(y))) pari_err_TYPE("lexicographic vecsort",y);
@@ -1634,7 +1635,7 @@ static int
 closurecmp(void *data, GEN x, GEN y)
 {
   pari_sp av = avma;
-  int64_t s = gsigne(closure_callgen2((GEN)data, x,y));
+  int s = gsigne(closure_callgen2((GEN)data, x,y));
   set_avma(av); return s;
 }
 static void

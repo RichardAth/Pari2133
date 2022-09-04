@@ -175,7 +175,7 @@ FpX_quad_factortype(GEN x, GEN p)
 {
   GEN b = gel(x,3), c = gel(x,2);
   GEN D = subii(sqri(b), shifti(c,2));
-  return kronecker(D,p);
+  return (int)kronecker(D,p);  /* Kronecker can only be -1, 0 or +1 */
 }
 /* assume x reduced mod p, monic. Return one root, or NULL if irreducible */
 static GEN
@@ -1450,7 +1450,7 @@ static int
 Flx_quad_factortype(GEN x, ulong p)
 {
   ulong b = x[3], c = x[2];
-  return krouu(Fl_disc_bc(b, c, p), p);
+  return (int)krouu(Fl_disc_bc(b, c, p), p);
 }
 static GEN
 Flx_is_irred_2(GEN f, ulong p, int64_t d)

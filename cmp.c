@@ -1,4 +1,4 @@
-#line 2 "../src/kernel/none/cmp.c"
+//#line 2 "../src/kernel/none/cmp.c"
 /* Copyright (C) 2002-2003  The PARI group.
 
 This file is part of the PARI/GP package.
@@ -77,7 +77,7 @@ equalrr(GEN x, GEN y)
 int
 cmprr(GEN x, GEN y)
 {
-  const int64_t sx = signe(x), sy = signe(y);
+  const int sx = signe(x), sy = signe(y);
   int64_t ex,ey,lx,ly,lz,i;
 
   if (!sx) {

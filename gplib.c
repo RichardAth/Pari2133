@@ -107,7 +107,7 @@ static int disable_exception_handler = 0;
 }
 /* numerr < 0: from SIGINT */
 int
-gp_handle_exception(int64_t numerr)
+gp_handle_exception(int numerr)
 {
   if (disable_exception_handler)
     disable_exception_handler = 0;
@@ -406,7 +406,7 @@ _cat(char *s, const char *t)
 static char *
 filter_quotes(const char *s)
 {
-  int i, l = strlen(s);
+  int64_t i, l = strlen(s);
   int quote = 0;
   int backquote = 0;
   int doubquote = 0;
@@ -648,7 +648,7 @@ static void
 help(const char *s0, int flag)
 {
   const int64_t long_help = flag & h_LONG;
-  int64_t n;
+  int n;
   entree *ep;
   char *s = get_sep(s0);
 
@@ -743,7 +743,7 @@ help(const char *s0, int flag)
 }
 
 void
-gp_help(const char *s, int64_t flag)
+gp_help(const char *s, int flag)
 {
   pari_sp av = avma;
   if ((flag & h_RL) == 0)

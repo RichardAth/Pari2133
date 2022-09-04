@@ -1700,7 +1700,7 @@ oncurve(GEN e, GEN z)
   expx = gexpo(x);
   pr = (expx < ex - prec2nbits(pr) + 15
      || expx < ellexpo(e) - prec2nbits(pr) + 5);
-  return gc_bool(av,pr);
+  return gc_bool(av, (int)pr);
 }
 
 GEN
@@ -5845,7 +5845,7 @@ sievep(ulong p, GEN an, ulong n, ulong SQRTn, int good_red)
 }
 
 static int64_t
-ellan_get_ap(ulong p, int *good_red, int CM, GEN e)
+ellan_get_ap(ulong p, int *good_red, int64_t CM, GEN e)
 {
   if (!umodiu(ell_get_disc(e),p)) /* p|D, bad reduction or nonminimal model */
     return ellQap_u(e, p, good_red);
@@ -5861,7 +5861,7 @@ ellanQ_zv(GEN e, int64_t n0)
   pari_sp av;
   ulong p, SQRTn, n = (ulong)n0;
   GEN an;
-  int CM;
+  int64_t CM;
 
   if (n0 <= 0) return cgetg(1,t_VEC);
   if (n >= LGBITS)

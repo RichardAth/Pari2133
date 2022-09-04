@@ -1355,7 +1355,8 @@ ZC_is_ei(GEN x)
 int
 ZV_cmp(GEN x, GEN y)
 {
-  int64_t fl,i, lx = lg(x);
+  int64_t i, lx = lg(x);
+  int fl;
   for (i=1; i<lx; i++)
     if (( fl = cmpii(gel(x,i), gel(y,i)) )) return fl;
   return 0;
@@ -1364,7 +1365,8 @@ ZV_cmp(GEN x, GEN y)
 int
 ZV_abscmp(GEN x, GEN y)
 {
-  int64_t fl,i, lx = lg(x);
+  int64_t i, lx = lg(x);
+  int fl;
   for (i=1; i<lx; i++)
     if (( fl = abscmpii(gel(x,i), gel(y,i)) )) return fl;
   return 0;

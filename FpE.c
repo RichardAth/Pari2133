@@ -1274,7 +1274,7 @@ ap_j287496(GEN a6, GEN p)
   return s > 0? a: negi(a);
 }
 static GEN
-ap_cm(int CM, int64_t A6B, GEN a6, GEN p)
+ap_cm(int64_t CM, int64_t A6B, GEN a6, GEN p)
 {
   GEN a, b;
   int64_t s = 1;
@@ -1286,7 +1286,7 @@ ap_cm(int CM, int64_t A6B, GEN a6, GEN p)
   return s > 0? a: negi(a);
 }
 static GEN
-ec_ap_cm(int CM, GEN a4, GEN a6, GEN p)
+ec_ap_cm(int64_t CM, GEN a4, GEN a6, GEN p)
 {
   switch(CM)
   {

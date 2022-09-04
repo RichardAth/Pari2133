@@ -1,4 +1,4 @@
-#line 2 "../src64/kernel/none/halfgcd.c"
+//#line 2 "../src64/kernel/none/halfgcd.c"
 /* Copyright (C) 2019  The PARI group.
 
 This file is part of the PARI/GP package.

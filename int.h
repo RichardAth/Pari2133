@@ -1,5 +1,5 @@
 #pragma once
-#line 2 "../src/kernel/gmp/int.h"
+//#line 2 "../src/kernel/gmp/int.h"
 /* Copyright (C) 2000  The PARI group.
 
 This file is part of the PARI/GP package.

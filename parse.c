@@ -74,7 +74,7 @@
 
 
 /* First part of user prologue.  */
-#line 1 "../src/language/parse.y" /* yacc.c:337  */
+//#line 1 "../src/language/parse.y" /* yacc.c:337  */
 
 /* Copyright (C) 2006  The PARI group.
 
@@ -102,7 +102,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #define NOARG(x) newnode(Fnoarg,-1,-1,&(x))
 #define NORANGE(x) newnode(Fnorange,-1,-1,&(x))
 
-#line 106 "../src/language/parse.c" /* yacc.c:337  */
+//#line 106 "../src/language/parse.c" /* yacc.c:337  */
 # ifndef YY_NULLPTR
 #  if defined __cplusplus
 #   if 201103L <= __cplusplus
@@ -1343,129 +1343,129 @@ yydestruct (const char *yymsg, int yytype, YYSTYPE *yyvaluep, YYLTYPE *yylocatio
   switch (yytype)
     {
     case 64: /* seq  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1349 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1349 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 65: /* range  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1355 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1355 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 66: /* matrix_index  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1361 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1361 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 67: /* backticks  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1367 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1367 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 68: /* history  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1373 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1373 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 69: /* deriv  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1379 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1379 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 70: /* expr  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1385 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1385 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 71: /* lvalue  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1391 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1391 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 72: /* exprno  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1397 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1397 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 73: /* matrixeltsno  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1403 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1403 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 74: /* matrixelts  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1409 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1409 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 75: /* matrixlines  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1415 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1415 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 76: /* matrix  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1421 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1421 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 77: /* in  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1427 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1427 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 78: /* inseq  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1433 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1433 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 79: /* compr  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1439 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1439 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 80: /* arg  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1445 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1445 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 82: /* listarg  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1451 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1451 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 83: /* funcid  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1457 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1457 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 84: /* memberid  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1463 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1463 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
     case 85: /* definition  */
-#line 87 "../src/language/parse.y" /* yacc.c:1257  */
+//#line 87 "../src/language/parse.y" /* yacc.c:1257  */
       { pari_discarded++; }
-#line 1469 "../src/language/parse.c" /* yacc.c:1257  */
+//#line 1469 "../src/language/parse.c" /* yacc.c:1257  */
         break;
 
       default:
@@ -1572,10 +1572,10 @@ YYLTYPE yylloc = yyloc_default;
   yychar = YYEMPTY; /* Cause a token to be read.  */
 
 /* User initialization code.  */
-#line 33 "../src/language/parse.y" /* yacc.c:1431  */
+//#line 33 "../src/language/parse.y" /* yacc.c:1431  */
 { yylloc.start=yylloc.end=*lex; }
 
-#line 1579 "../src/language/parse.c" /* yacc.c:1431  */
+//#line 1579 "../src/language/parse.c" /* yacc.c:1431  */
   yylsp[0] = yylloc;
   goto yysetstate;
 
@@ -1767,698 +1767,698 @@ yyreduce:
   switch (yyn)
     {
         case 2:
-#line 90 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 90 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1773 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1773 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 3:
-#line 93 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 93 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=NOARG((yyloc));}
-#line 1779 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1779 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 4:
-#line 94 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 94 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1785 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1785 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 5:
-#line 95 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 95 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[-1].val); (yyloc)=(yylsp[-1]);}
-#line 1791 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1791 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 6:
-#line 96 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 96 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fseq,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 1797 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1797 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 7:
-#line 99 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 99 "../src/language/parse.y" /* yacc.c:1652  */
     { (yyval.val)=newnode(Frange,NORANGE((yyloc)),NORANGE((yyloc)),&(yyloc)); }
-#line 1803 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1803 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 8:
-#line 100 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 100 "../src/language/parse.y" /* yacc.c:1652  */
     { (yyval.val)=newnode(Frange,(yyvsp[0].val),NORANGE((yyloc)),&(yyloc)); }
-#line 1809 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1809 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 9:
-#line 101 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 101 "../src/language/parse.y" /* yacc.c:1652  */
     { (yyval.val)=newnode(Frange,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc)); }
-#line 1815 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1815 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 10:
-#line 102 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 102 "../src/language/parse.y" /* yacc.c:1652  */
     { (yyval.val)=newnode(Frange,NORANGE((yyloc)),(yyvsp[0].val),&(yyloc)); }
-#line 1821 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1821 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 11:
-#line 105 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 105 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatrix,(yyvsp[-3].val),(yyvsp[-1].val),&(yyloc));}
-#line 1827 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1827 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 12:
-#line 106 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 106 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatrix,(yyvsp[-1].val),-1,&(yyloc));}
-#line 1833 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1833 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 13:
-#line 109 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 109 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=1;}
-#line 1839 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1839 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 14:
-#line 110 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 110 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[-1].val)+1;}
-#line 1845 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1845 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 15:
-#line 113 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 113 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhist,-1,-1,&(yyloc));}
-#line 1851 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1851 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 16:
-#line 114 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 114 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhist,newintnode(&(yylsp[0])),-1,&(yyloc));}
-#line 1857 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1857 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 17:
-#line 115 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 115 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhist,newnode(Fsmall,-(yyvsp[0].val),-1,&(yyloc)),-1,&(yyloc));}
-#line 1863 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1863 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 18:
-#line 116 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 116 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhisttime,-1,-1,&(yyloc));}
-#line 1869 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1869 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 19:
-#line 117 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 117 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhisttime,newintnode(&(yylsp[0])),-1,&(yyloc));}
-#line 1875 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1875 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 20:
-#line 118 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 118 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPhisttime,newnode(Fsmall,-(yyvsp[0].val),-1,&(yyloc)),-1,&(yyloc));}
-#line 1881 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1881 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 21:
-#line 121 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 121 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val) = 1;}
-#line 1887 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1887 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 22:
-#line 122 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 122 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val) = (yyvsp[-1].val)+1;}
-#line 1893 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1893 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 23:
-#line 125 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 125 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newintnode(&(yylsp[0]));}
-#line 1899 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1899 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 24:
-#line 126 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 126 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newconst(CSTreal,&(yyloc));}
-#line 1905 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1905 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 25:
-#line 127 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 127 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newconst(CSTreal,&(yyloc));}
-#line 1911 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1911 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 26:
-#line 128 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 128 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Ffunction,newconst(CSTmember,&(yylsp[0])),
                                                 newintnode(&(yylsp[-2])),&(yyloc));}
-#line 1918 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1918 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 27:
-#line 130 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 130 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newconst(CSTstr,&(yyloc));}
-#line 1924 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1924 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 28:
-#line 131 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 131 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newconst(CSTquote,&(yyloc));}
-#line 1930 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1930 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 29:
-#line 132 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 132 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1936 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1936 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 30:
-#line 133 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 133 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fcall,(yyvsp[-3].val),(yyvsp[-1].val),&(yyloc));}
-#line 1942 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1942 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 31:
-#line 134 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 134 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1948 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1948 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 32:
-#line 135 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 135 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1954 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1954 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 33:
-#line 136 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 136 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1960 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1960 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 34:
-#line 137 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 137 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1966 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1966 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 35:
-#line 138 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 138 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 1972 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1972 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 36:
-#line 139 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 139 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fassign,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 1978 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1978 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 37:
-#line 140 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 140 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fassign,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 1984 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1984 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 38:
-#line 141 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 141 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPpp,(yyvsp[-1].val),-1,&(yyloc));}
-#line 1990 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1990 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 39:
-#line 142 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 142 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPss,(yyvsp[-1].val),-1,&(yyloc));}
-#line 1996 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 1996 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 40:
-#line 143 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 143 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPme,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2002 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2002 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 41:
-#line 144 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 144 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPde,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2008 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2008 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 42:
-#line 145 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 145 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPdre,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2014 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2014 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 43:
-#line 146 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 146 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPeuce,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2020 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2020 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 44:
-#line 147 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 147 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPmode,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2026 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2026 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 45:
-#line 148 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 148 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPsle,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2032 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2032 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 46:
-#line 149 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 149 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPsre,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2038 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2038 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 47:
-#line 150 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 150 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPpe,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2044 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2044 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 48:
-#line 151 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 151 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPse,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2050 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2050 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 49:
-#line 152 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 152 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPnb,(yyvsp[0].val),-1,&(yyloc));}
-#line 2056 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2056 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 50:
-#line 153 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 153 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPlength,(yyvsp[0].val),-1,&(yyloc));}
-#line 2062 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2062 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 51:
-#line 154 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 154 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPor,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2068 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2068 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 52:
-#line 155 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 155 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPand,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2074 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2074 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 53:
-#line 156 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 156 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPand,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2080 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2080 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 54:
-#line 157 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 157 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPid,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2086 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2086 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 55:
-#line 158 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 158 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPeq,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2092 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2092 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 56:
-#line 159 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 159 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPne,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2098 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2098 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 57:
-#line 160 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 160 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPge,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2104 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2104 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 58:
-#line 161 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 161 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPg,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2110 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2110 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 59:
-#line 162 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 162 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPle,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2116 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2116 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 60:
-#line 163 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 163 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPl,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2122 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2122 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 61:
-#line 164 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 164 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPs,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2128 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2128 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 62:
-#line 165 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 165 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPp,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2134 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2134 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 63:
-#line 166 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 166 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPsl,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2140 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2140 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 64:
-#line 167 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 167 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPsr,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2146 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2146 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 65:
-#line 168 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 168 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPmod,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2152 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2152 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 66:
-#line 169 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 169 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPdr,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2158 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2158 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 67:
-#line 170 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 170 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPeuc,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2164 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2164 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 68:
-#line 171 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 171 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPd,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2170 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2170 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 69:
-#line 172 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 172 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPm,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2176 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2176 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 70:
-#line 173 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 173 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2182 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2182 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 71:
-#line 174 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 174 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPn,(yyvsp[0].val),-1,&(yyloc));}
-#line 2188 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2188 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 72:
-#line 175 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 175 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPpow,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2194 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2194 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 73:
-#line 176 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 176 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPtrans,(yyvsp[-1].val),-1,&(yyloc));}
-#line 2200 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2200 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 74:
-#line 177 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 177 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPderivn,(yyvsp[-1].val), newnode(Fsmall,(yyvsp[0].val),-1,&(yyloc)),&(yyloc));}
-#line 2206 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2206 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 75:
-#line 178 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 178 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPfact,(yyvsp[-1].val),-1,&(yyloc));}
-#line 2212 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2212 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 76:
-#line 179 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 179 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatcoeff,(yyvsp[-1].val),(yyvsp[0].val),&(yyloc));}
-#line 2218 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2218 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 77:
-#line 180 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 180 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2224 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2224 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 78:
-#line 181 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 181 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Ftag,(yyvsp[-2].val),0,&(yyloc));}
-#line 2230 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2230 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 79:
-#line 182 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 182 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[-1].val);}
-#line 2236 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2236 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 80:
-#line 185 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 185 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fentry,newconst(CSTentry,&(yylsp[0])),-1,&(yyloc));}
-#line 2242 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2242 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 81:
-#line 186 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 186 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatcoeff,(yyvsp[-1].val),(yyvsp[0].val),&(yyloc));}
-#line 2248 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2248 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 82:
-#line 187 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 187 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Ftag,(yyvsp[-2].val),newconst(CSTentry,&(yylsp[-1])),&(yyloc));}
-#line 2254 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2254 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 83:
-#line 190 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 190 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2260 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2260 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 84:
-#line 191 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 191 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=NOARG((yyloc));}
-#line 2266 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2266 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 85:
-#line 193 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 193 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2272 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2272 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 86:
-#line 194 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 194 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=NOARG((yyloc));}
-#line 2278 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2278 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 87:
-#line 197 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 197 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2284 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2284 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 88:
-#line 198 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 198 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatrixelts,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2290 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2290 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 89:
-#line 201 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 201 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatrixlines,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2296 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2296 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 90:
-#line 202 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 202 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmatrixlines,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2302 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2302 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 91:
-#line 205 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 205 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fvec,-1,-1,&(yyloc));}
-#line 2308 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2308 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 92:
-#line 206 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 206 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPrange,(yyvsp[-3].val),(yyvsp[-1].val),&(yyloc));}
-#line 2314 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2314 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 93:
-#line 207 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 207 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmat,-1,-1,&(yyloc));}
-#line 2320 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2320 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 94:
-#line 208 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 208 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fvec,(yyvsp[-1].val),-1,&(yyloc));}
-#line 2326 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2326 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 95:
-#line 209 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 209 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fmat,(yyvsp[-1].val),-1,&(yyloc));}
-#line 2332 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2332 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 96:
-#line 210 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 210 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=-1; YYABORT;}
-#line 2338 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2338 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 97:
-#line 213 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 213 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Flistarg,(yyvsp[0].val),(yyvsp[-3].val),&(yyloc));}
-#line 2344 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2344 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 98:
-#line 216 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 216 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPcompr,(yyvsp[0].val),-2,&(yyloc));}
-#line 2350 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2350 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 99:
-#line 217 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 217 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall3(OPcompr,(yyvsp[-2].val),-2,(yyvsp[0].val),&(yyloc));}
-#line 2356 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2356 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 100:
-#line 218 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 218 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall(OPcomprc,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2362 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2362 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 101:
-#line 219 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 219 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newopcall3(OPcomprc,(yyvsp[-4].val),(yyvsp[0].val),(yyvsp[-2].val),&(yyloc));}
-#line 2368 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2368 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 102:
-#line 222 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 222 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=addcurrexpr((yyvsp[-1].val),(yyvsp[-3].val),&(yyloc));}
-#line 2374 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2374 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 103:
-#line 225 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 225 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2380 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2380 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 104:
-#line 226 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 226 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Fvararg,(yyvsp[-3].val),-1,&(yyloc));}
-#line 2386 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2386 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 105:
-#line 227 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 227 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Frefarg,(yyvsp[0].val),-1,&(yyloc));}
-#line 2392 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2392 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 106:
-#line 228 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 228 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Findarg,(yyvsp[0].val),-1,&(yyloc));}
-#line 2398 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2398 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 107:
-#line 229 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 229 "../src/language/parse.y" /* yacc.c:1652  */
     {if (!pari_once) { yyerrok; } pari_once=1;}
-#line 2404 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2404 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 108:
-#line 230 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 230 "../src/language/parse.y" /* yacc.c:1652  */
     {pari_once=0; (yyval.val)=newopcall(OPcat,(yyvsp[-3].val),(yyvsp[0].val),&(yyloc));}
-#line 2410 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2410 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 109:
-#line 233 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 233 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=(yyvsp[0].val);}
-#line 2416 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2416 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 110:
-#line 234 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 234 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Flistarg,(yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2422 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2422 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 111:
-#line 237 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 237 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Ffunction,newconst(CSTentry,&(yylsp[-3])),(yyvsp[-1].val),&(yyloc));}
-#line 2428 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2428 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 112:
-#line 240 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 240 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Ffunction,newconst(CSTmember,&(yylsp[0])),(yyvsp[-2].val),&(yyloc));}
-#line 2434 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2434 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 113:
-#line 244 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 244 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newfunc(CSTentry,&(yylsp[-5]),(yyvsp[-3].val),(yyvsp[0].val),&(yyloc));}
-#line 2440 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2440 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 114:
-#line 246 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 246 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newfunc(CSTmember,&(yylsp[-2]),newnode(Findarg,(yyvsp[-4].val),-1,&(yylsp[-4])),(yyvsp[0].val),&(yyloc));}
-#line 2446 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2446 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 115:
-#line 247 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 247 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Flambda, (yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2452 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2452 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
   case 116:
-#line 248 "../src/language/parse.y" /* yacc.c:1652  */
+//#line 248 "../src/language/parse.y" /* yacc.c:1652  */
     {(yyval.val)=newnode(Flambda, (yyvsp[-2].val),(yyvsp[0].val),&(yyloc));}
-#line 2458 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2458 "../src/language/parse.c" /* yacc.c:1652  */
     break;
 
 
-#line 2462 "../src/language/parse.c" /* yacc.c:1652  */
+//#line 2462 "../src/language/parse.c" /* yacc.c:1652  */
       default: break;
     }
   /* User semantic actions sometimes alter yychar, and that requires
@@ -2695,5 +2695,5 @@ yyreturn:
 #endif
   return yyresult;
 }
-#line 251 "../src/language/parse.y" /* yacc.c:1918  */
+//#line 251 "../src/language/parse.y" /* yacc.c:1918  */
 

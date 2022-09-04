@@ -1,5 +1,5 @@
 /* Copyright (C) 2000-2004  The PARI group. */
-#line 2 "..src/basemath/bb_group.c"
+//#line 2 "..src/basemath/bb_group.c"
 /* This file is part of the PARI/GP package.
 
 PARI/GP is free software; you can redistribute it and/or modify it under the
@@ -378,7 +378,7 @@ gen_product(GEN x, void *E, GEN (*mul)(void *,GEN,GEN))
     for (k = i = 1; i < n; i += 2) 
         gel(y, k++) = mul(E, gel(y,i), gel(y,i+1));
     if (gc_needed(av,1)) 
-        gerepilecoeffs(av, y+1, k-1);
+        gerepilecoeffs(av, y+1, (int)k-1);
   }
   return gel(y,1);
 }

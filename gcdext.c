@@ -1,4 +1,4 @@
-#line 2 "../src/kernel/gmp/gcdext.c"
+//#line 2 "../src/kernel/gmp/gcdext.c"
 /* Copyright (C) 2000-2003  The PARI group.
 
 This file is part of the PARI/GP package.

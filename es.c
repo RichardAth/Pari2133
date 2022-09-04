@@ -981,7 +981,7 @@ outpad(pari_str *S, const char *buf, int64_t lbuf, int sign, int64_t ljust, int6
 static void
 fmtstr(pari_str *S, const char *buf, int ljust, int len, int maxwidth)
 {
-  int padlen, lbuf = strlen(buf);
+  ptrdiff_t padlen, lbuf = strlen(buf);
 
   if (maxwidth >= 0 && lbuf > maxwidth) lbuf = maxwidth;
 
@@ -1127,7 +1127,7 @@ fmtnum(pari_str *S, int64_t lvalue, GEN gvalue, int base, int signvalue,
         ulong ucp = (ulong)*up;
         int64_t j, ldispo = BITS_IN_LONG;
         if (shift) { /* 0, 1 or 2 */
-          unsigned char cv = ((ucp & mask[shift]) <<(3-shift)) + rem;
+          unsigned char cv = (unsigned char)(((ucp & mask[shift]) <<(3-shift)) + rem);
           *--buf = "01234567"[cv];
           ucp >>= shift;
           ldispo -= shift;
@@ -1913,7 +1913,7 @@ GEN GENtoGENstr_nospace(GEN x) {
 char *
 itostr(GEN x) {
   int64_t sx = signe(x), l;
-  return sx? itostr_sign(x, sx, &l): zerotostr();
+  return sx? itostr_sign(x, (int)sx, &l): zerotostr();
 }
 
 /* x != 0 t_INT, write abs(x) to S */
@@ -2377,8 +2377,8 @@ isnull_for_pol(GEN g)
   switch(typ(g))
   {
     case t_INTMOD: return !signe(gel(g,2));
-    case t_POLMOD: return isnull(gel(g,2));
-    default:       return isnull(g);
+    case t_POLMOD: return (int)isnull(gel(g,2));
+    default:       return (int)isnull(g);
   }
 }
 
@@ -2491,7 +2491,7 @@ texexpo(pari_str *S, int64_t e)
   if (e != 1) {
     str_putc(S, '^');
     if (e >= 0 && e < 10)
-    { str_putc(S, '0' + e); }
+    { str_putc(S, '0' + (char)e); }
     else
     {
       str_putc(S, '{'); str_long(S, e); str_putc(S, '}');
@@ -3236,7 +3236,7 @@ texi_sign(GEN g, pariout_t *T, pari_str *S, int addsign)
 /**                                                               **/
 /*******************************************************************/
 static void
-_initout(pariout_t *T, char f, int64_t sigd, int64_t sp)
+_initout(pariout_t *T, char f, int64_t sigd, int sp)
 {
   T->format = f;
   T->sigd = sigd;

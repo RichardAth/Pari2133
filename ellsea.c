@@ -1658,11 +1658,12 @@ compute_diff(GEN v)
 static int
 cmp_atkin(void*E, GEN a, GEN b)
 {
-  int64_t ta=typ(a)==t_INT, tb=typ(b)==t_INT, c;
+    int ta = typ(a) == t_INT, tb = typ(b) == t_INT;
+    int64_t c;
   (void) E;
   if (ta || tb) return ta-tb;
   c = lg(gel(a,2)) - lg(gel(b,2));
-  if (c) return c;
+  if (c) return (int)c;
   return cmpii(gel(b,1), gel(a,1));
 }
 

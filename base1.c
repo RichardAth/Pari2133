@@ -1,5 +1,5 @@
 /* Copyright (C) 2000  The PARI group. */
-#line 2 "..src/basemath/base1.c"
+//#line 2 "..src/basemath/base1.c"
 /* This file is part of the PARI/GP package.
 
 PARI/GP is free software; you can redistribute it and/or modify it under the
@@ -1120,7 +1120,7 @@ tests_OK(GEN a, GEN nfa, GEN b, GEN nfb, int64_t fliso)
                  : (r1b <= r1a * q && dvdii(db, powiu(da, q)));
   }
   if (!db) return 1;
-  if (fliso) return issquare(gdiv(da,db));
+  if (fliso) return (int)issquare(gdiv(da,db));
 
   if (nfa)
   {

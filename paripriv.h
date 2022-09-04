@@ -16,6 +16,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #ifdef __cplusplus
 BEGINEXTERN
 #endif
+/* Note regarding exporting names: 
+This header file is required by gp.c but is not normally included for other
+programs linking to parilib, so only functions called from gp.c or whatnow.c 
+should need to be exported. This is done with the macro PARILIB_API which
+expands to __declspec(dllexport) or __declspec(dllimport) when needed. */
 
 /* for qsort */
 typedef int (*QSCOMP)(const void *, const void *);
@@ -163,7 +168,7 @@ GEN  listcreate_gp(int64_t n);
 
 /* mt */
 void mt_sigint(void);
-void mt_err_recover(int64_t er);
+void mt_err_recover(int er);
 void mt_export_add(const char *str, GEN val);
 void mt_export_del(const char *str);
 void mt_init_stack(size_t s);
@@ -346,7 +351,7 @@ int    pop_val_if_newer(entree *ep, int64_t loc);
 PARILIB_API void print_errcontext(PariOUT *out, const char *msg, const char *s, const char *entry);    /* called from gp.c */
 PARILIB_API void print_prefixed_text(PariOUT *out, const char *s, const char *prefix, const char *str);
 INLINE void print_text(const char *s) { print_prefixed_text(pariOut, s,NULL,NULL); }    /* called from gp.c */
-INLINE void out_print_text(PariOUT *out, const char *s) { print_prefixed_text(out, s,NULL,NULL); }
+INLINE void out_print_text(PariOUT *out, const char *s) { print_prefixed_text(out, s,NULL,NULL); }    /* called from whatnow.c */
 INLINE int64_t is_keyword_char(char c) { return (isalnum((int)c) || c=='_'); }
 
 /* Interfaces (GP, etc.) */
@@ -365,7 +370,7 @@ void  initout(int initerr);
 void  resetout(int initerr);
 PARILIB_API void  init_linewrap(int64_t w);     /* called from gp.c */
 void  print_functions_hash(const char *s);
-PARILIB_API GEN   readbin(const char *name, FILE *f, int *vector);
+PARILIB_API GEN   readbin(const char *name, FILE *f, int *vector);   /* called from gp.c */
 int   term_height(void);
 int   term_width(void);
 /* gp_colors */
@@ -509,11 +514,11 @@ must be given as first argument to all PARI readline functions. */
 
 /* multiprecision */
 GEN   adduispec_offset(ulong s, GEN x, int64_t offset, int64_t nx);
-PARILIB_API int   lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1, ulong vmax);
-PARILIB_API ulong xxgcduu(ulong d, ulong d1, int f, ulong* u, ulong* u1, ulong* v, ulong* v1, int64_t* s);
-PARILIB_API ulong rgcduu(ulong d, ulong d1, ulong vmax, ulong* u, ulong* u1, ulong* v, ulong* v1, int64_t *s);
-PARILIB_API ulong xgcduu(ulong d, ulong d1, int f, ulong* v, ulong* v1, int64_t *s);
-PARILIB_API ulong xxgcduu(ulong d, ulong d1, int f, ulong* u, ulong* u1, ulong* v, ulong* v1, int64_t *s);
+int   lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1, ulong vmax);
+ulong xxgcduu(ulong d, ulong d1, int f, ulong* u, ulong* u1, ulong* v, ulong* v1, int64_t* s);
+ulong rgcduu(ulong d, ulong d1, ulong vmax, ulong* u, ulong* u1, ulong* v, ulong* v1, int64_t *s);
+ulong xgcduu(ulong d, ulong d1, int f, ulong* v, ulong* v1, int64_t *s);
+
 GEN   divgunu(GEN x, ulong i);
 GEN   divrunu(GEN x, ulong i);
 GEN   muliispec(GEN x, GEN y, int64_t nx, int64_t ny);

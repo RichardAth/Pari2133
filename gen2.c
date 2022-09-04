@@ -600,7 +600,7 @@ gcmp(GEN x, GEN y)
         return 0;
       }
     }
-  if (ty == t_INFINITY) return -inf_get_sign(y);
+  if (ty == t_INFINITY) return (int)-inf_get_sign(y);
   switch(tx)
   {
     case t_INT:
@@ -629,7 +629,7 @@ gcmp(GEN x, GEN y)
       break;
     case t_QUAD:
       return cmpgen(x, y);
-    case t_INFINITY: return inf_get_sign(x);
+    case t_INFINITY: return (int)inf_get_sign(x);
   }
   pari_err_TYPE2("comparison",x,y);
   return 0;/*LCOV_EXCL_LINE*/
@@ -650,7 +650,7 @@ gcmpsg(int64_t s, GEN y)
       pari_sp av = avma;
       return gc_int(av, gsigne(gsubsg(s, y)));
     }
-    case t_INFINITY: return -inf_get_sign(y);
+    case t_INFINITY: return (int)-inf_get_sign(y);
   }
   pari_err_TYPE2("comparison",stoi(s),y);
   return 0; /* LCOV_EXCL_LINE */
@@ -1021,7 +1021,7 @@ gequal(GEN x, GEN y)
 {
   pari_sp av;
   int64_t tx, ty;
-  int64_t i;
+  int i;
 
   if (x == y) return 1;
   tx = typ(x);
@@ -1709,8 +1709,8 @@ ZV_Z_dvd(GEN v, GEN p)
   pari_sp av = avma;
   int64_t i, l = lg(v);
   for (i=1; i<l; i++)
-    if (!dvdii(gel(v,i), p)) return gc_long(av,0);
-  return gc_long(av,1);
+    if (!dvdii(gel(v,i), p)) return gc_int(av,0);
+  return gc_int(av,1);
 }
 
 static int64_t
@@ -2701,7 +2701,7 @@ gsigne(GEN x)
     {
       pari_sp av = avma;
       GEN T = gel(x,1), a = gel(x,2), b = gel(x,3);
-      int64_t sa, sb;
+      int sa, sb;
       if (signe(gel(T,2)) > 0) break;
       a = gmul2n(a,1);
       if (signe(gel(T,3))) a = gadd(a,b);
@@ -2714,7 +2714,7 @@ gsigne(GEN x)
       sb = gsigne(gsub(gsqr(a), gmul(quad_disc(x), gsqr(b))));
       return gc_int(av, sb*sa);
     }
-    case t_INFINITY: return inf_get_sign(x);
+    case t_INFINITY: return (int)inf_get_sign(x);
   }
   pari_err_TYPE("gsigne",x);
   return 0; /* LCOV_EXCL_LINE */

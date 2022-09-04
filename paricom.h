@@ -117,7 +117,7 @@ extern void (*cb_pari_init_histfile)(void);
 PARILIB_API extern int  (*cb_pari_whatnow)(PariOUT *out, const char *, int);
 PARILIB_API extern void (*cb_pari_quit)(int64_t);
 PARILIB_API extern void (*cb_pari_sigint)(void);
-PARILIB_API extern int (*cb_pari_handle_exception)(int64_t);
+PARILIB_API extern int (*cb_pari_handle_exception)(int);
 extern int (*cb_pari_err_handle)(GEN);
 PARILIB_API extern void (*cb_pari_pre_recover)(int64_t);
 PARILIB_API extern void (*cb_pari_err_recover)(int64_t);

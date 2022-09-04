@@ -611,7 +611,7 @@ isogeny_from_kernel_poly(GEN E, GEN kerp, int64_t only_image, int64_t vx, int64_
  * a generating point P on E or as a polynomial kerp whose roots are
  * the x-coordinates of the points in G */
 GEN
-ellisogeny(GEN E, GEN G, int64_t only_image, int64_t vx, int64_t vy)
+ellisogeny(GEN E, GEN G, int only_image, int64_t vx, int64_t vy)
 {
   pari_sp av = avma;
   GEN j, z;

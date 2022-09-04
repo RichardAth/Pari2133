@@ -66,7 +66,7 @@ mathnf0(GEN x, int64_t flag)
 /*                SPECIAL HNF (FOR INTERNAL USE !!!)               */
 /*                                                                 */
 /*******************************************************************/
-static int
+static int64_t
 count(GEN mat, int64_t row, int64_t len, int64_t *firstnonzero)
 {
   int64_t j, n = 0;
@@ -83,7 +83,7 @@ count(GEN mat, int64_t row, int64_t len, int64_t *firstnonzero)
   return n;
 }
 
-static int
+static int64_t
 count2(GEN mat, int64_t row, int64_t len)
 {
   int64_t j;
@@ -1664,7 +1664,7 @@ must_swap(int64_t k, GEN lambda, GEN D)
 }
 
 GEN
-ZM_hnflll(GEN A, GEN *ptB, int remove)
+ZM_hnflll(GEN A, GEN *ptB, int64_t remove)
 {
   pari_sp av = avma;
   int64_t n, k, kmax;
@@ -2133,17 +2133,17 @@ hnfdivide(GEN A, GEN B)
     b = gel(B,k);
     m = gel(b,k);
     gel(u,k) = dvmdii(m, gcoeff(A,k,k), &r);
-    if (r != gen_0) return gc_long(av, 0);
+    if (r != gen_0) return gc_int(av, 0);
     for (i=k-1; i>0; i--)
     {
       m = gel(b,i);
       for (j=i+1; j<=k; j++) m = subii(m, mulii(gcoeff(A,i,j),gel(u,j)));
       m = dvmdii(m, gcoeff(A,i,i), &r);
-      if (r != gen_0) return gc_long(av, 0);
+      if (r != gen_0) return gc_int(av, 0);
       gel(u,i) = m;
     }
   }
-  return gc_long(av, 1);
+  return gc_int(av, 1);
 }
 
 /* A upper HNF, b integral vector. Return A^(-1) b if integral,

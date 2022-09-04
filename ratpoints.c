@@ -653,7 +653,7 @@ rpjacobi(int64_t b, GEN lcf)
   ulong f;
   b >>= vals(b);
   f = umodiu(lcf, b);
-  return krouu(f, u_ppo(b,f));
+  return (int)krouu(f, u_ppo(b,f));
 }
 
 /************************************************************************
@@ -948,7 +948,7 @@ sieving_info(ratpoints_args *args,
     for (n = 0; n <= degree; n++) coeffs_mod_p[n] = umodiu(pel(c,n), p);
 
     np = umael(squares,pn,coeffs_mod_p[0]+1);
-    is_f_square[0] = np;
+    is_f_square[0] = (int)np;
     for (a = 1 ; a < p; a++)
     {
       ulong s = coeffs_mod_p[degree];
@@ -967,7 +967,7 @@ sieving_info(ratpoints_args *args,
         }
         s %= p;
       }
-      if ((is_f_square[a] = mael(squares,pn,s+1))) np++;
+      if ((is_f_square[a] = (int)mael(squares,pn,s+1))) np++;
     }
     is_f_square[p] = odd(degree) || mael(squares,pn,coeffs_mod_p[degree]+1);
 
@@ -1237,7 +1237,7 @@ find_points_work(ratpoints_args *args,
   int64_t height = args->height;
 
   int point_at_infty = 0; /* indicates if there are points at infinity */
-  int lcfsq = Z_issquare(pel(c,degree));
+  int64_t lcfsq = Z_issquare(pel(c,degree));
 
   forbidden_entry *forb_ba = args->forb_ba;
   int64_t *forbidden = args->forbidden;

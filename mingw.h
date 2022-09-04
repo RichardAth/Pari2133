@@ -19,6 +19,6 @@ PARILIB_API int win32_terminal_width(void);
 PARILIB_API int win32_terminal_height(void);
 PARILIB_API void win32_set_codepage(void);
 PARILIB_API char *win32_set_pdf_viewer(void);
-PARILIB_API void win32_alarm(unsigned int s);
+PARILIB_API void win32_alarm(unsigned long long s);
 PARILIB_API long win32_timer(void);
 PARILIB_API long win32_nbthreads(void);

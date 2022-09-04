@@ -1,5 +1,5 @@
 #include "pari.h"
-#line 2 "..bfffo.c"
+//#line 2 "..bfffo.c"
 
 /* return bit number of most significant bit. The most significant bit is 0,
  the least significant is 63, but if x = 0, 64 is returned. */

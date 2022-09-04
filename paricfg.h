@@ -22,7 +22,7 @@
 /*  Location of GNU gzip program (enables reading of .Z and .gz files). */
 #define GNUZCAT
 #define ZCAT "/usr/bin/gzip -dc"
-#define DL_DFLT_NAME "C:\\Program Files (x86)\\Pari64-2-13-2\\libpari.dll"
+#define DL_DFLT_NAME "pariLibDll.dll"
 
 #undef UNIX
 #define GNUZCAT

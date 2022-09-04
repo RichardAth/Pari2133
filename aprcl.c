@@ -1,5 +1,5 @@
 /* Copyright (C) 2000  The PARI group. */
-#line 2 "../src/basemath/aprcl.c"
+//#line 2 "../src/basemath/aprcl.c"
 /* This file is part of the PARI/GP package.
 
 PARI/GP is free software; you can redistribute it and/or modify it under the

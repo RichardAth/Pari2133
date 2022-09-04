@@ -1822,7 +1822,7 @@ static ulong powersmod[106] = {
   032403440ul,  /* 105 */
 };
 
-static int
+static ulong
 check_res(ulong x, ulong N, int shift, ulong *mask)
 {
   int64_t r = x%N; if ((ulong)r> (N >> 1)) r = N - r;
@@ -1861,7 +1861,8 @@ uis_357_power(ulong x, ulong *pt, ulong *mask)
   logx = log((double)x);
   while (*mask)
   {
-    int64_t e, b;
+    int64_t b;
+    int e;
     ulong y, ye;
     if (*mask & 1)      { b = 1; e = 3; }
     else if (*mask & 2) { b = 2; e = 5; }
@@ -1923,7 +1924,7 @@ is_357_power(GEN x, GEN *pt, ulong *mask)
     err_printf("OddPwrs: examining %ld-bit integer\n", expi(x)+1);
   if (lgefint(x) == 3) {
     ulong t;
-    int64_t e = uis_357_power(x[2], &t, mask);
+    int e = uis_357_power(x[2], &t, mask);
     if (e)
     {
       if (pt) *pt = utoi(t);
@@ -1943,7 +1944,8 @@ is_357_power(GEN x, GEN *pt, ulong *mask)
   av = avma;
   while (*mask)
   {
-    int64_t e, b;
+    int64_t b;
+    int e;
     /* priority to higher powers: if we have a 21st, it is easier to rediscover
      * that its 7th root is a cube than that its cube root is a 7th power */
          if (*mask & 4) { b = 4; e = 7; }
@@ -2029,7 +2031,7 @@ is_kth_power(GEN x, ulong n, GEN *pt)
  * Any cutoffbits > 0 is safe, but direct root extraction attempts are faster
  * when trial division has been used to discover very small bases. We become
  * competitive at cutoffbits ~ 10 */
-int
+int64_t
 is_pth_power(GEN x, GEN *pt, forprime_t *T, ulong cutoffbits)
 {
   int64_t cnt=0, size = expi(x) /* not +1 */;

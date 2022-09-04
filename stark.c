@@ -121,7 +121,7 @@ typedef struct {
   GEN cyc; /* t_VECSMALL of elementary divisors */
 } GROUP_t;
 
-static int
+static int64_t
 NextElt(GROUP_t *G)
 {
   int64_t i = 1;
@@ -904,12 +904,12 @@ Polmod2Coeff(int *rep, GEN polmod, int64_t deg)
     int64_t d = degpol(pol);
 
     pol += 2;
-    for (i=0; i<=d; i++) rep[i] = itos(gel(pol,i));
+    for (i=0; i<=d; i++) rep[i] = (int)itos(gel(pol,i));
     for (   ; i<deg; i++) rep[i] = 0;
   }
   else
   {
-    rep[0] = itos(polmod);
+    rep[0] = (int)itos(polmod);
     for (i=1; i<deg; i++) rep[i] = 0;
   }
 }
@@ -2521,7 +2521,7 @@ quadray_init(GEN *pD, GEN f, GEN *pbnf, int64_t prec)
   GEN D = *pD, nf, bnf = NULL;
   if (typ(D) == t_INT)
   {
-    int isfund;
+    int64_t isfund;
     if (pbnf) {
       int64_t v = f? gvar(f): NO_VARIABLE;
       if (v == NO_VARIABLE) v = 1;

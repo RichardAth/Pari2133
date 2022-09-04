@@ -585,7 +585,7 @@ L_compile_err(const char *s)
  * mode: Gusmall, Gsmall, Ggen, Gvar, Gvoid
  */
 static void
-compilecast_loc(int type, int mode, const char *loc)
+compilecast_loc(Gtype type, Gtype mode, const char *loc)
 {
   if (type==mode) return;
   switch (mode)
@@ -618,7 +618,7 @@ compilecast_loc(int type, int mode, const char *loc)
 }
 
 static void
-compilecast(int64_t n, int type, int mode) { compilecast_loc(type, mode, tree[n].str); }
+compilecast(int64_t n, Gtype type, Gtype mode) { compilecast_loc(type, mode, tree[n].str); }
 
 static entree *
 fetch_member_raw(const char *s, int64_t len)
@@ -846,7 +846,7 @@ compilelvalue(int64_t n)
       int mx = matindex_type(tree[x].y);
       if (mx==MAT_line)
       {
-        int xy = tree[x].y, xyx = tree[xy].x;
+        int64_t xy = tree[x].y, xyx = tree[xy].x;
         compilelvalue(tree[x].x);
         compilenode(tree[xyx].x,Gsmall,0);
         compilenode(tree[yx].x,Gsmall,0);
@@ -925,7 +925,7 @@ compilematcoeff(int64_t n, int mode)
 }
 
 static void
-compilesmall(int64_t n, int64_t x, int64_t mode)
+compilesmall(int64_t n, int64_t x, Gtype mode)
 {
   if (mode==Ggen)
     op_push(OCpushstoi, x, n);
@@ -1335,7 +1335,7 @@ compileunexport(GEN arg)
 }
 
 static void
-compilefunc(entree *ep, int64_t n, int mode, int64_t flag)
+compilefunc(entree *ep, int64_t n, Gtype mode, int64_t flag)
 {
   pari_sp ltop=avma;
   int64_t j;
@@ -2053,7 +2053,7 @@ call0(GEN fun, GEN args)
 }
 
 static void
-closurefunc(entree *ep, int64_t n, int64_t mode)
+closurefunc(entree *ep, int64_t n, Gtype mode)
 {
   pari_sp ltop=avma;
   GEN C;

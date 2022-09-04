@@ -32,8 +32,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #include <memory.h>
 #include <ctype.h>
 
-/* definition below is required when parilib is built as a .dll file
-otherwise comment it out and replace with"#DEFINE PARILIB_API " */
+/* Note regarding exporting names:
+This is done with the macro PARILIB_API which
+expands to __declspec(dllexport) or __declspec(dllimport) when needed. 
+
+The definition below is required when parilib is built as a .dll file using 
+Microsoft C otherwise comment it out and replace with"#DEFINE PARILIB_API " 
+Declarations need PARILIB_API if they are documented in the User's Guide to
+PARI/GP, or might usefully be added by the install command, or are called
+from gp.c, texmacs.c or whatnow.c */
 #ifdef _WIN32
 #ifdef PARILIBDLL_EXPORTS
 #define PARILIB_API __declspec(dllexport)

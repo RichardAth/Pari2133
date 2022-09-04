@@ -1,4 +1,4 @@
-#line 2 "../src64/kernel/none/invmod.c"
+//#line 2 "../src64/kernel/none/invmod.c"
 /* Copyright (C) 2003  The PARI group.
 
 This file is part of the PARI/GP package.

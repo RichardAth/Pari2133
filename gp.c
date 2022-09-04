@@ -145,9 +145,12 @@ static char *
 read_arg_equal(int64_t *nread, char *t, int64_t argc, char **argv)
 {
   int64_t i = *nread;
-  if (*t=='=' && isdigit((int)t[1])) return t+1;
-  if (*t || i==argc) usage(argv[0]);
-  *nread = i+1; return argv[i];
+  if (*t=='=' && isdigit((int)t[1])) 
+      return t+1;
+  if (*t || i==argc) 
+      usage(argv[0]);
+  *nread = i+1; 
+  return argv[i];
 }
 
 static void
@@ -643,7 +646,7 @@ main(int argc, char **argv)
 #endif
   pari_add_module(functions_gp);
 
-  //pari_set_plot_engine(gp_get_plot);  /* kludge */
+  pari_set_plot_engine(gp_get_plot);  
   cb_pari_quit = gp_quit;
   cb_pari_whatnow = whatnow;
   cb_pari_sigint = gp_sigint_fun;

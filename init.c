@@ -128,7 +128,7 @@ int (*cb_pari_get_line_interactive)(const char*, const char*, filtre_t *F);
 void (*cb_pari_quit)(int64_t);
 void (*cb_pari_init_histfile)(void);
 void (*cb_pari_ask_confirm)(const char *);
-int  (*cb_pari_handle_exception)(int64_t);
+int  (*cb_pari_handle_exception)(int);
 int  (*cb_pari_err_handle)(GEN);
 int  (*cb_pari_whatnow)(PariOUT *out, const char *, int);
 PARILIB_API void (*cb_pari_sigint)(void);
@@ -138,7 +138,7 @@ int (*cb_pari_break_loop)(int);
 int (*cb_pari_is_interactive)(void);
 void (*cb_pari_start_output)();
 
-const char * pari_library_path = NULL;
+PARILIB_API const char * pari_library_path = NULL;
 
 static THREAD GEN global_err_data;
 THREAD jmp_buf *iferr_env;

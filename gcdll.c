@@ -12,7 +12,7 @@ ANY WARRANTY WHATSOEVER.
 Check the License for details. You should have received a copy of it, along
 with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
-
+#ifndef STOPIT
 #include "pari.h"
 #include "paripriv.h"
 #include "int.h"
@@ -377,7 +377,7 @@ rgcduu(ulong d, ulong d1, ulong vmax,
     { xv += xv1; xu += xu1; }
     /* possible loop exit */
     if (xv > vmax) { 
-        f=xs=1; 
+        xs=f=1; 
         break; 
     }
     if (d <= 1ULL) { 
@@ -567,7 +567,8 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
    * just short of a whole word.  (We terminate the inner loop before these can
    * possibly overflow.) */
   ulong dd,dd1,ddlo,dd1lo, sh,shc; /* `digits', shift count */
-  ulong xu,xu1, xv,xv1, q,res; /* recurrences, partial quotient, count */
+  ulong xu,xu1, xv,xv1, q; /* recurrences, partial quotient, count */
+  int res;
   ulong tmp0,tmp1,tmp2,tmpd,tmpu,tmpv; /* temps */
   ulong dm1, d1m1;
   int64_t ld, ld1, lz;
@@ -740,7 +741,13 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
       { /* commit dd1, xu, xv */
         res++;
         dd1 = tmpd; xu = tmpu; xv = tmpv;
-        if (xv > vmax) { *u = xu1; *u1 = xu; *v = xv1; *v1 = xv; return res; }
+        if (xv > vmax) { 
+            *u = xu1; 
+            *u1 = xu; 
+            *v = xv1; 
+            *v1 = xv; 
+            return res; 
+        }
       }
 
       /* Second half of loop divides dd1 into dd, and the matrix returns to its
@@ -768,7 +775,13 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
       { /* commit dd, xu1, xv1 */
         res++;
         dd = tmpd; xu1 = tmpu; xv1 = tmpv;
-        if (xv1 > vmax) { *u = xu; *u1 = xu1; *v = xv; *v1 = xv1; return res; }
+        if (xv1 > vmax) { 
+            *u = xu; 
+            *u1 = xu1; 
+            *v = xv; 
+            *v1 = xv1; 
+            return res; 
+        }
       }
     } /* end of first loop */
 
@@ -920,7 +933,13 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
     /* commit dd1, xu, xv */
     res++;
     dd1 = tmpd; xu = tmpu; xv = tmpv;
-    if (xv > vmax) { *u = xu1; *u1 = xu; *v = xv1; *v1 = xv; return res; }
+    if (xv > vmax) { 
+        *u = xu1; 
+        *u1 = xu; 
+        *v = xv1; 
+        *v1 = xv; 
+        return res; 
+    }
 
     /* Second half of loop divides dd1 into dd, and the matrix returns to its
      * normal arrangement */
@@ -952,7 +971,13 @@ lgcdii(ulong* d, ulong* d1, ulong* u, ulong* u1, ulong* v, ulong* v1,
 
     res++; /* commit dd, xu1, xv1 */
     dd = tmpd; xu1 = tmpu; xv1 = tmpv;
-    if (xv1 > vmax) { *u = xu; *u1 = xu1; *v = xv; *v1 = xv1; return res; }
+    if (xv1 > vmax) { 
+        *u = xu; 
+        *u1 = xu1; 
+        *v = xv; 
+        *v1 = xv1; 
+        return res; 
+    }
   } /* end of second loop */
 
   return res;
@@ -978,3 +1003,4 @@ Fl_inv(ulong x, ulong p)
       pari_err_INV("Fl_inv", mkintmod(utoi(x), utoi(p)));
   return xv;
 }
+#endif

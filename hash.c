@@ -86,7 +86,7 @@ hash_id(void *x) { return (ulong)x; }
 static int
 eq_id(void *x, void *y) { return x == y; }
 hashtable *
-hash_create_ulong(ulong s, int64_t stack)
+hash_create_ulong(ulong s, int stack)
 { return hash_create(s, &hash_id, &eq_id, stack); }
 
 void
@@ -286,7 +286,7 @@ hash_destroy(hashtable *h)
 static
 int strequal(void *a, void *b) { return !strcmp((char*)a,(char*)b); }
 hashtable *
-hash_create_str(ulong s, int64_t stack)
+hash_create_str(ulong s, int stack)
 { return hash_create(s, (ulong (*)(void *))&hash_str, strequal, stack); }
 
 hashtable *

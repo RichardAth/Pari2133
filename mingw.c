@@ -219,7 +219,7 @@ win32_cb_alarm(void *lpParam, BOOLEAN TimerOrWaitFired)
 }
 
 void
-win32_alarm(unsigned int s)
+win32_alarm(unsigned long long s)
 {
   if (hTimerQueue)
   {

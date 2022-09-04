@@ -167,7 +167,7 @@ psquarenf(GEN nf,GEN x,GEN pr,GEN modpr)
   return gc_long(av,v);
 }
 
-static int64_t
+static int
 ZV_iseven(GEN zlog)
 {
   int64_t i, l = lg(zlog);

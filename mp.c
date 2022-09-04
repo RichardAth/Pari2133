@@ -1,4 +1,4 @@
-#line 2 "../src/kernel/gmp/mp.c"
+//#line 2 "../src/kernel/gmp/mp.c"
 /* Copyright (C) 2002-2003  The PARI group.
 
 This file is part of the PARI/GP package.
@@ -311,7 +311,8 @@ void
 affir(GEN x, GEN y)
 {
   const int64_t s = signe(x), ly = lg(y);
-  int64_t lx, sh, i;
+  int64_t lx, i;
+  int sh;
 
   if (!s)
   {
@@ -368,7 +369,7 @@ shiftispec(GEN x, int64_t nx, int64_t n)
     if (!m) xmpn_copy((mp_limb_t *) (yd + d), (mp_limb_t *) x, nx);
     else
     {
-      ulong carryd = mpn_lshift((mp_limb_t *) (yd + d), (mp_limb_t *) x, nx, m);
+      ulong carryd = mpn_lshift((mp_limb_t *) (yd + d), (mp_limb_t *) x, nx, (unsigned int)m);
       if (carryd) yd[ny - 1] = carryd;
       else ny--;
     }
@@ -384,7 +385,7 @@ shiftispec(GEN x, int64_t nx, int64_t n)
     if (!m) xmpn_copy((mp_limb_t *) yd, (mp_limb_t *) (x + d), nx - d);
     else
     {
-      mpn_rshift((mp_limb_t *) yd, (mp_limb_t *) (x + d), nx - d, m);
+      mpn_rshift((mp_limb_t *) yd, (mp_limb_t *) (x + d), nx - d, (unsigned int)m);
       if (yd[ny - 1] == 0)
       {
         if (ny == 1) return gc_const((pari_sp)(yd + 1), gen_0);
@@ -463,7 +464,7 @@ truncr(GEN x)
   {
     GEN z=cgeti(d);
     for (i=2; i<d; i++) z[d-i+1]=x[i];
-    mpn_rshift(LIMBS(y),LIMBS(z),d-2,BITS_IN_LONG-m);
+    mpn_rshift(LIMBS(y),LIMBS(z),d-2, (unsigned int)BITS_IN_LONG-m);
     set_avma((pari_sp)y);
   }
   return y;
@@ -493,7 +494,7 @@ floorr(GEN x)
   else  {
     GEN z=cgeti(d);
     for (i=2; i<d; i++) z[d-i+1]=x[i];
-    mpn_rshift(LIMBS(y),LIMBS(z),d-2,BITS_IN_LONG-m);
+    mpn_rshift(LIMBS(y),LIMBS(z),d-2, (unsigned int)BITS_IN_LONG-m);
     if (uel(x,d-1)<<m == 0)
     {
       i=d; while (i<lx && !x[i]) i++;
@@ -831,7 +832,7 @@ divri_with_gmp(GEN x, GEN y)
   mp_limb_t *u=(mp_limb_t *)new_chunk(lu);
   mp_limb_t *z=(mp_limb_t *)new_chunk(lly);
   mp_limb_t *q,*r;
-  int64_t sh=bfffo(y[ly+1]);
+  int sh=bfffo(y[ly+1]);
   int64_t e=expo(x)-expi(y);
   int64_t sx=signe(x),sy=signe(y);
   if (sh) mpn_lshift(z,LIMBS(y)+ld,lly,sh);
@@ -1281,8 +1282,8 @@ static void
 GEN2mpz(mpz_t X, GEN x)
 {
   int64_t l = lgefint(x)-2;
-  X->_mp_alloc = l;
-  X->_mp_size = signe(x) > 0? l: -l;
+  X->_mp_alloc = (int)l;
+  X->_mp_size = (int)(signe(x) > 0? l: -l);
   X->_mp_d = LIMBS(x);
 }
 static void
@@ -1357,8 +1358,8 @@ diviiexact(GEN x, GEN y)
     z = cgeti(l);
     GEN2mpz(X, x);
     GEN2mpz(Y, y);
-    Z->_mp_alloc = l-2;
-    Z->_mp_size  = l-2;
+    Z->_mp_alloc = (int)(l-2);
+    Z->_mp_size  = (int)(l-2);
     Z->_mp_d = LIMBS(z);
     mpz_divexact(Z, X, Y);
     mpz2GEN(z, Z);
