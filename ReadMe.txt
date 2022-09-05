@@ -105,4 +105,5 @@ Available Command line options for GP:
   
   Defaults set in the command line by --default over-ride settings in the gprc file.
 
-  Quiet mode can only be set from the command line, not by default() or \d.
+  Quiet mode or Test mode can only be set from the command line, not by default() 
+  or \d.

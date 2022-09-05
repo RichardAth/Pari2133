@@ -12,7 +12,6 @@ ANY WARRANTY WHATSOEVER.
 Check the License for details. You should have received a copy of it, along
 with the package; see the file 'COPYING'. If not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
-#ifndef STOPIT
 #include "pari.h"
 #include "paripriv.h"
 #include "int.h"
@@ -1003,4 +1002,3 @@ Fl_inv(ulong x, ulong p)
       pari_err_INV("Fl_inv", mkintmod(utoi(x), utoi(p)));
   return xv;
 }
-#endif

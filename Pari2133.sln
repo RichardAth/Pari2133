@@ -13,6 +13,9 @@ EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "pariLib", "..\pariLib\pariLib.vcxproj", "{7C0C28B2-985B-4176-A0CA-43BC9C670B6D}"
 EndProject
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "PariGp", "..\PariGp\PariGp.vcxproj", "{1EF74DA0-7CBC-4A0D-87BF-3592EEEC9236}"
+	ProjectSection(ProjectDependencies) = postProject
+		{29FE9429-B6B3-4111-87F7-3F0176ED32BF} = {29FE9429-B6B3-4111-87F7-3F0176ED32BF}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{730844BF-60AC-43E8-9F77-3313C22FD401}"
 	ProjectSection(SolutionItems) = preProject

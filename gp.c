@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301 USA. */
 #ifdef _WIN32
 #  include "pwinver.h"
 #  include <windows.h>
-#  include "mingw.h"
+//#  include "mingw.h"
 #endif
 
 static jmp_buf *env;
